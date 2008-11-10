@@ -30,6 +30,20 @@ Given a long url, returns a shorter one.
   * http://bit.ly/app/demos/shorten.html
 ----
 
+== /expand ==
+Given a bit.ly url or hash, return long source url, ...
+
+* Parameters *
+
+Either *short_url* or *hash* must be given as a parameter.
+  * *short_url*
+    A bitly url, eg: http://bit.ly/1RmnUT
+  * *hash*
+    One or more bitly hashes, eg: 2bYgqR,1RmnUT
+
+* Examples *
+  * http://api.bit.ly/expand?version=2.0.0&short_url=http://bit.ly/31IqMl&login=kortina&api_key=R_8f2c8ab88c410397e5732c505ebcf3b7
+----
 
 == /info ==
 Given a bit.ly url or hash, return information about that page, such as the long source url, ...
