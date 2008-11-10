@@ -1,6 +1,7 @@
 #summary List of API Methods.
 #labels Featured
 
+*Sections*
 <wiki:toc max_depth="3" />
 
 = Introduction =
