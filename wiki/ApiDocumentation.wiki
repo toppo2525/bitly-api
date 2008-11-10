@@ -13,11 +13,11 @@ The bit.ly API allows developers to intereact in a programmatic way with the bit
 
 All APIs require authentication credentials supplied using HTTP Basic Authentication:
 
-    <login>/<password>
+    *login* / *password*
 
   or as query arguments:
 
-    login=<login>&api_key=<api_key>
+    login=*login*&api_key=*api_key*
 
 = Additional Parameters =
 
@@ -27,12 +27,12 @@ All APIs require a version identifier to be present:
 
 All APIs support an optional return format specifier:
 
-    format=<json>
+    format=*json*
        ( We have plans to add support for RSS format for some API methods soon.)
 
 All APIs support an optional callback specifier for use with json return format:
 
-    callback=<callback>
+    callback=•callback*
 
 APIs which take both short_url and hash as arguments must have one or the other present.
 
