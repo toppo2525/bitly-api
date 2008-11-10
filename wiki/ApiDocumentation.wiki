@@ -21,11 +21,9 @@ Add your content here.  Format your content with:
 == /shorten ==
 Given a long url, returns a shorter one.
 
-Parameters
-
-* long_url *
-
-A long url to shorten, eg: http://betaworks.com
+* Parameters *
+  * * long_url *
+    A long url to shorten, eg: http://betaworks.com
 
 
 Example
