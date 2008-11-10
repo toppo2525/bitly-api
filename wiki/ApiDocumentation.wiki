@@ -1,8 +1,11 @@
-#summary One-sentence summary of this page.
+#summary List of API Methods.
+#labels Featured
+
+<wiki:toc max_depth="3" />
 
 = Introduction =
 
-Add your content here.
+The bit.ly API allows developers to intereact in a programmatic way with the bit.ly website.
 
 
 = Details =
