@@ -29,6 +29,8 @@ Given a long url, returns a shorter one.
   * http://api.bit.ly/shorten?version=2.0.0&long_url=http://cnn.com&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
   * http://bit.ly/app/demos/shorten.html
 
+
+
 == /info ==
 Given a bit.ly url or hash, return information about that page, such as the long source url, ...
 
@@ -44,3 +46,22 @@ Either *short_url* or *hash* must be given as a parameter.
 
 * Examples *
   * http://api.bit.ly/info?version=2.0.0&hash=31IqMl,3j4ir4&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
+
+
+
+
+== /stats ==
+Given a bit.ly url or hash, return traffic and referrer data.
+
+* Parameters *
+
+Either *short_url* or *hash* must be given as a parameter.
+  * *short_url*
+    A bitly url, eg: http://bit.ly/1RmnUT
+  * *hash*
+    A single hash, eg: 1RmnUT
+  * *keys*
+    One or more keys to limit the attributes returned about each bitly document, eg: html_title,thumbnail
+
+* Examples *
+  * http://api.bit.ly/stats?version=2.0.0&short_url=http://bit.ly/31IqMl&login=kortina&api_key=R_8f2c8ab88c410397e5732c505ebcf3b7
