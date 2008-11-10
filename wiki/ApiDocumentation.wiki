@@ -64,7 +64,7 @@ Either *short_url* or *hash* must be given as a parameter.
     One or more bitly hashes, eg: 2bYgqR,1RmnUT
 
 * Examples *
-  * http://api.bit.ly/expand?version=2.0.0&short_url=http://bit.ly/31IqMl&login=kortina&api_key=R_8f2c8ab88c410397e5732c505ebcf3b7
+  * http://api.bit.ly/expand?version=2.0.0&short_url=http://bit.ly/31IqMl&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
 ----
 
 == /info ==
@@ -100,5 +100,5 @@ Either *short_url* or *hash* must be given as a parameter.
     One or more keys to limit the attributes returned about each bitly document, eg: html_title,thumbnail
 
 * Examples *
-  * http://api.bit.ly/stats?version=2.0.0&short_url=http://bit.ly/31IqMl&login=kortina&api_key=R_8f2c8ab88c410397e5732c505ebcf3b7
+  * http://api.bit.ly/stats?version=2.0.0&short_url=http://bit.ly/31IqMl&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
 ----
