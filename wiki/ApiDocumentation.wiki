@@ -23,7 +23,7 @@ login=*login*&api_key=*api_key*
 
 All APIs require a version identifier to be present:
 
-version=2.0.0
+{{{version=*2.0.0*}}}
 
 All APIs support an optional return format specifier:
 
