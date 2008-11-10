@@ -21,9 +21,13 @@ Add your content here.  Format your content with:
 == /shorten ==
 Given a long url, returns a shorter one.
 
-* Parameters *
-* long_url *
-  A long url to shorten, eg: http://betaworks.com
+Parameters
 
-* Example *
+* long_url *
+
+A long url to shorten, eg: http://betaworks.com
+
+
+Example
+
 http://api.bit.ly/shorten?version=2.0.0&long_url=http://cnn.com&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
