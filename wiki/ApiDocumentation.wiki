@@ -102,3 +102,6 @@ Either *short_url* or *hash* must be given as a parameter.
 * Examples *
   * http://api.bit.ly/stats?version=2.0.0&short_url=http://bit.ly/31IqMl&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
 ----
+
+== /errors ==
+Get a list of bit.ly API error codes.
