@@ -105,3 +105,6 @@ Either *shortUrl* or *hash* must be given as a parameter.
 
 == /errors ==
 Get a list of bit.ly API error codes.
+
+* Examples *
+  * http://api.bit.ly/errors?version=2.0.1&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
