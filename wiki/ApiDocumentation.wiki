@@ -17,7 +17,7 @@ All APIs require authentication credentials supplied using HTTP Basic Authentica
 
 or as query arguments:
 
-login=*login*&api_key=*api_key*
+login=*login*&apiKey=*apiKey*
 
 = Additional Parameters =
 
@@ -35,7 +35,7 @@ All APIs support an optional callback specifier for use with json return format:
 
 callback=*callback*
 
-APIs which take both short_url and hash as arguments must have one or the other present.
+APIs which take both shortUrl and hash as arguments must have one or the other present.
 
 
 = API Methods =
@@ -44,11 +44,11 @@ APIs which take both short_url and hash as arguments must have one or the other 
 Given a long url, returns a shorter one.
 
 * Parameters *
-  * * long_url *
+  * * longUrl *
     A long url to shorten, eg: http://betaworks.com
 
 * Examples *
-  * http://api.bit.ly/shorten?version=2.0.0&long_url=http://cnn.com&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
+  * http://api.bit.ly/shorten?version=2.0.0&longUrl=http://cnn.com&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
   * http://bit.ly/app/demos/shorten.html
 ----
 
@@ -57,14 +57,14 @@ Given a bit.ly url or hash, return long source url, ...
 
 * Parameters *
 
-Either *short_url* or *hash* must be given as a parameter.
-  * *short_url*
+Either *shortUrl* or *hash* must be given as a parameter.
+  * *shortUrl*
     A bitly url, eg: http://bit.ly/1RmnUT
   * *hash*
     One or more bitly hashes, eg: 2bYgqR,1RmnUT
 
 * Examples *
-  * http://api.bit.ly/expand?version=2.0.0&short_url=http://bit.ly/31IqMl&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
+  * http://api.bit.ly/expand?version=2.0.0&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
 ----
 
 == /info ==
@@ -72,16 +72,16 @@ Given a bit.ly url or hash, return information about that page, such as the long
 
 * Parameters *
 
-Either *short_url* or *hash* must be given as a parameter.
-  * *short_url*
+Either *shortUrl* or *hash* must be given as a parameter.
+  * *shortUrl*
     A bitly url, eg: http://bit.ly/1RmnUT
   * *hash*
     One or more bitly hashes, eg: 2bYgqR,1RmnUT
   * *keys*
-    One or more keys to limit the attributes returned about each bitly document, eg: html_title,thumbnail
+    One or more keys to limit the attributes returned about each bitly document, eg: htmlTitle,thumbnail
 
 * Examples *
-  * http://api.bit.ly/info?version=2.0.0&hash=31IqMl,3j4ir4&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
+  * http://api.bit.ly/info?version=2.0.0&hash=31IqMl,3j4ir4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
 ----
 
 
@@ -91,16 +91,16 @@ Given a bit.ly url or hash, return traffic and referrer data.
 
 * Parameters *
 
-Either *short_url* or *hash* must be given as a parameter.
-  * *short_url*
+Either *shortUrl* or *hash* must be given as a parameter.
+  * *shortUrl*
     A bitly url, eg: http://bit.ly/1RmnUT
   * *hash*
     A single hash, eg: 1RmnUT
   * *keys*
-    One or more keys to limit the attributes returned about each bitly document, eg: html_title,thumbnail
+    One or more keys to limit the attributes returned about each bitly document, eg: htmlTitle,thumbnail
 
 * Examples *
-  * http://api.bit.ly/stats?version=2.0.0&short_url=http://bit.ly/31IqMl&login=bitlyapidemo&api_key=R_0da49e0a9118ff35f52f629d2d71bf07
+  * http://api.bit.ly/stats?version=2.0.0&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
 ----
 
 == /errors ==
