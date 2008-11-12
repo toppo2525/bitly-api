@@ -65,6 +65,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 
 * Examples *
   * http://api.bit.ly/expand?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+  * http://bit.ly/app/demos/expand.html
 ----
 
 == /info ==
@@ -82,6 +83,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 
 * Examples *
   * http://api.bit.ly/info?version=2.0.1&hash=31IqMl,3j4ir4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+  * http://bit.ly/app/demos/stats.html
 ----
 
 
@@ -100,6 +102,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 
 * Examples *
   * http://api.bit.ly/stats?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+  * http://bit.ly/app/demos/stats.html
 ----
 
 == /errors ==
@@ -107,3 +110,7 @@ Get a list of bit.ly API error codes.
 
 * Examples *
   * http://api.bit.ly/errors?version=2.0.1&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+----
+
+= Javascript Client API =
+  * http://bit.ly/app/demos/statsModule.html
