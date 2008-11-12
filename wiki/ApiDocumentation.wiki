@@ -74,7 +74,7 @@ Given a bit.ly url or hash, return information about that page, such as the long
 
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
-    A bitly url, eg: http://bit.ly/1RmnUT
+    A single bitly url, eg: http://bit.ly/1RmnUT
   * *hash*
     One or more bitly hashes, eg: 2bYgqR,1RmnUT
   * *keys*
@@ -93,11 +93,10 @@ Given a bit.ly url or hash, return traffic and referrer data.
 
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
-    A bitly url, eg: http://bit.ly/1RmnUT
+    A single bitly url, eg: http://bit.ly/1RmnUT
   * *hash*
     A single hash, eg: 1RmnUT
-  * *keys*
-    One or more keys to limit the attributes returned about each bitly document, eg: htmlTitle,thumbnail
+
 
 * Examples *
   * http://api.bit.ly/stats?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
