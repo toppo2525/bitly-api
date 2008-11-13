@@ -122,6 +122,7 @@ http://bit.ly/javascript-api.js?version=latest&login=bitlyapidemo&apiKey=R_0da49
 To use the bit.ly javascript client library, *you must pass your login and apiKey in the URL.* If you do not have an apiKey, [http://bit.ly sign up for a bitly account] and go to your [http://bit.ly/account Account] page to get your apiKey.
 
 To include the bit.ly javascript client library on one of your pages, add this inside the {{{<head>}}} tag:
+
 {{{	<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07"></script>}}}
 
 When you include the bit.ly javascript client library, a new instance of the *{{{BitlyApiClient}}}* class is instantiated and assigned to the global variable *{{{BitlyClient}}}*
@@ -129,6 +130,20 @@ When you include the bit.ly javascript client library, a new instance of the *{{
 === !BitlyApiClient class ===
 Use an instance of the {{{BitlyApiClient}}} class to make calls to the bit.ly API using your login and apiKey. 
 
-==== new(login, apiKey, version) ====
+==== Instance Methods ====
+
+===== new(login, apiKey, version) =====
 Creates a new instance of {{{BitlyApiClient}}} class. Generally, you should not ever need to create your own instance of the {{{BitlyApiClient}}} class. Instead, you should use the {{{BitlyClient}}} global instance of the {{{BitlyApiClient}}} class that is instantiated when you include the bit.ly javascript client library.
 
+
+===== call(method, params, callback_method_name) =====
+===== shorten(longUrl, callback_method_name) =====
+===== expand(shortUrl, callback_method_name) =====
+===== info(bitly_hashes_or_bitly_urls_csv, callback_method_name) =====
+===== stats(bitly_hash_or_url, callback_method_name) =====
+===== addPageLoadEvent(func) =====
+===== extractBitlyHash(bitly_url_or_hash) =====
+===== createElement(element_type, attrs) =====
+===== setAttribute(element, attribute_name, attribute_value) =====
+===== loadModules(module_names, callback_method_name) =====
+===== moduleLoaded(module_name, callback_method_name) =====
