@@ -46,6 +46,8 @@ Given a long url, returns a shorter one.
 * Parameters *
   * * longUrl *
     A long url to shorten, eg: http://betaworks.com
+  * * keyword * (optional)
+		Optional custom name for your url. Eg, use *myshort* to generate *http://bit.ly/myshort* as your short URL.
 
 * Examples *
   * http://api.bit.ly/shorten?version=2.0.1&longUrl=http://cnn.com&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
@@ -137,6 +139,22 @@ Creates a new instance of {{{BitlyApiClient}}} class. Generally, you should not 
 
 
 ===== call(method, params, callback_method_name) =====
+Low level method for calling bit.ly REST API. Example:
+{{{
+	BitlyCB.alertResponse = function(data) {
+		var s = '';
+		var first_result;
+		// Results are keyed by longUrl, so we need to grab the first one.
+		for	(var r in data.results) {
+			first_result = data.results[r]; break;
+		}
+		for (var key in first_result) {
+			s += key + ":" + first_result[key].toString() + "\n";
+		}
+		alert(s);
+	}
+	BitlyClient.call('shorten', {'longUrl': 'http://google.com', 'keyword': 'googy1'}, 'BitlyCB.alertResponse');
+}}}
 ===== shorten(longUrl, callback_method_name) =====
 ===== expand(shortUrl, callback_method_name) =====
 ===== info(bitly_hashes_or_bitly_urls_csv, callback_method_name) =====
