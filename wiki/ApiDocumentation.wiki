@@ -38,7 +38,7 @@ callback=*callback*
 APIs which take both shortUrl and hash as arguments must have one or the other present.
 
 
-= API Methods =
+= REST API =
 
 == /shorten ==
 Given a long url, returns a shorter one.
