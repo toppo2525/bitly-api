@@ -245,9 +245,93 @@ Expand a bit.ly URL.
 }}}
 
 ==== stats(bitly_hash_or_url, callback_method_name) ====
+Get clicks and referrer data about a bit.ly URL.
+* Parameters *
+	* *bitly_hash_or_url*
+		Either a single bit.ly URL or a single bit.ly hash.
+	* *callback_method_name*
+		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
+
+*Example:*
+{{{
+	BitlyCB.statsResponse = function(data) {
+		var s = '';
+		var result = data.results;
+		for (var key in result) {
+			s += key + ":" + result[key].toString() + "\n";
+		}
+		alert(s);
+	}
+	BitlyClient.stats('3j4ir4', 'BitlyCB.statsResponse');
+}}}
+
 ==== addPageLoadEvent(func) ====
+Perform a function once the DOM is done rendering. You would use this if you want to safely manipulate the DOM, eg, append stats to all bit.ly link elements.
+* Parameters *
+	* *func*
+		Either a reference to a function or an anonymous function to execute once the page has loaded.
+
+*Example:*
+{{{
+	BitlyClient.addPageLoadEvent(function(){
+		alert("Page is loaded. It's now safe to manipulate the DOM.");
+	});
+}}}
+
 ==== extractBitlyHash(bitly_url_or_hash) ====
+Utility method for ensuring you have a bit.ly hash, given a bit.ly URL or hash.
+* Parameters *
+	* *bitly_url_or_hash*
+		bit.ly URL (or hash) you want to convert into a simple bit.ly hash.
+
+*Example:*
+{{{
+	alert(BitlyClient.extractBitlyHash("http://bit.ly/3j4ir4"));
+}}}
+
 ==== createElement(element_type, attrs) ====
+Utility method for creating a DOM node to insert into the page.
+* Parameters *
+	* *element_type*
+		Type of DOM node to create, eg: 'a' or 'div'
+	* *attrs*
+		Object containing key/value pairs specifying attributes you would like to set on the DOM node, eg: {'class': 'bitly_link', 'text': 'http://bit.ly/3j4ir4', 'href': 'http://bit.ly/3j4ir4'} *NOTE* Use the key *'text'* to set the innerText of the node.
+
+*Example:*
+{{{
+	var a = BitlyClient.createElement('a', {'href': 'http://bit.ly', 'text': 'http://bit.ly'});
+	document.body.appendChild(a);
+}}}
+
 ==== setAttribute(element, attribute_name, attribute_value) ====
+Utility method for setting an attribute on a DOM node.
+* Parameters *
+	* *element*
+		DOM node to manipulate, eg. the result of a document.getElementById call.
+	* *attribute_name*
+		Name of the attribute to set, eg. 'class' or 'id' or 'href'
+	* *attribute_value*
+		Value to set the attribute to, eg. 'http://bit.ly'
+
+*Example:*
+{{{
+	var a = BitlyClient.createElement('a', {'text': 'http://bit.ly'});
+	a.setAttribute('href', 'http://bit.ly');
+	document.body.appendChild(a);
+}}}
+
 ==== loadModules(module_names, callback_method_name) ====
-==== moduleLoaded(module_name, callback_method_name) ====
+Load one of the bit.ly javascript client library modules. These modules provide very easy ways to do common tasks, like append stats to each bit.ly URL on a page or insert a traffic / referrers data table.
+* Parameters *
+	* *module_names*
+		Array containing the names of modules you wish to load.
+	* *callback_method_name*
+		Method to be called when all modules you requested are done loading. Define this method within the !BitlyCB global namespace. *NOTE:* Because modules involve DOM manipulation, this callback method also waits for the page to load before firing.
+
+*Example:*
+{{{
+	BitlyCB.modulesReady = function() {
+		BitlyClient.addStatsToBitlyLinks(); // method defined in BitlyClient stats module
+	}
+	BitlyClient.loadModules(['stats'], 'BitlyCB.modulesReady');
+}}}
