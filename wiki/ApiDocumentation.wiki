@@ -129,7 +129,7 @@ To include the bit.ly javascript client library on one of your pages, add this i
 
 When you include the bit.ly javascript client library, a new instance of the *{{{BitlyApiClient}}}* class is instantiated and assigned to the global variable *{{{BitlyClient}}}*
 
-== !BitlyCB global namespace ==
+== BitlyCB global namespace ==
 Use the !BitlyCB namespace to define callback methods for API calls. See the !BitlyApiClient.call method below for an example of defining a callback in the !BitlyCB namespace.
 
 == !BitlyApiClient class ==
