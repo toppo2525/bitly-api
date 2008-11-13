@@ -341,3 +341,24 @@ Load one of the bit.ly javascript client library modules. These modules provide 
 	}
 	BitlyClient.loadModules(['stats'], 'BitlyCB.modulesReady');
 }}}
+
+=== !BitlyClient Modules ===
+{{{BitlyClient}}} Modules provide a convenient methods for executing common tasks. Modules are loaded dynamically, so you only have to load those that you want to use.
+
+==== stats ====
+The stats module adds the following Instance Methods to !BitlyClient.
+
+===== addStatsToBitlyLinks =====
+Append the number of clicks to every bit.ly link on a page. You can use CSS to show / hide the data as you want. The HTML appended to each bit.ly link element looks like this:
+
+{{{
+	<span class="bitly_left_bracket" classname="bitly_left_bracket"> [ </span><a target="_blank" href="http://urly.local:3600/info/31IqMl" class="bitly_stats_info_link" classname="bitly_stats_info_link"><span class="bitly_user_clicks" classname="bitly_user_clicks"></span><span class="bitly_clicks" classname="bitly_clicks">493 clicks</span></a><span class="bitly_right_bracket" classname="bitly_right_bracket"> ] </span>
+}}}
+
+*Example:*
+{{{
+	BitlyCB.modulesReady = function() {
+		BitlyClient.addStatsToBitlyLinks(); // method defined in BitlyClient stats module
+	}
+	BitlyClient.loadModules(['stats'], 'BitlyCB.modulesReady');
+}}}
