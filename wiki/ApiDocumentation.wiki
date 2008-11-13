@@ -1,4 +1,4 @@
-#summary List of API Methods.
+#summary List of bit.ly REST API Methods. see also JavascriptClientApiDocumentation
 #labels Featured
 
 *Sections*
