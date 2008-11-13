@@ -2,7 +2,7 @@
 #labels Featured
 
 *Sections*
-<wiki:toc max_depth="3" />
+<wiki:toc max_depth="4" />
 
 = Introduction =
 
@@ -129,17 +129,29 @@ To include the bit.ly javascript client library on one of your pages, add this i
 
 When you include the bit.ly javascript client library, a new instance of the *{{{BitlyApiClient}}}* class is instantiated and assigned to the global variable *{{{BitlyClient}}}*
 
-=== !BitlyApiClient class ===
+== !BitlyCB global namespace ==
+Use the !BitlyCB namespace to define callback methods for API calls. See the !BitlyApiClient.call method below for an example of defining a callback in the !BitlyCB namespace.
+
+== !BitlyApiClient class ==
 Use an instance of the {{{BitlyApiClient}}} class to make calls to the bit.ly API using your login and apiKey. 
 
-==== Instance Methods ====
+=== Instance Methods ===
 
-===== new(login, apiKey, version) =====
+==== new(login, apiKey, version) ====
 Creates a new instance of {{{BitlyApiClient}}} class. Generally, you should not ever need to create your own instance of the {{{BitlyApiClient}}} class. Instead, you should use the {{{BitlyClient}}} global instance of the {{{BitlyApiClient}}} class that is instantiated when you include the bit.ly javascript client library.
 
 
-===== call(method, params, callback_method_name) =====
-Low level method for calling bit.ly REST API. Example:
+==== call(method, params, callback_method_name) ====
+Low level method for calling bit.ly REST API. 
+* Parameters *
+	* *method*
+		Name of the bit.ly REST API method to call.
+	* *params*
+		Parameters of teh bit.ly REST API method being called.
+	* *callback_method_name*
+		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
+
+*Example:*
 {{{
 	BitlyCB.alertResponse = function(data) {
 		var s = '';
@@ -155,13 +167,14 @@ Low level method for calling bit.ly REST API. Example:
 	}
 	BitlyClient.call('shorten', {'longUrl': 'http://google.com', 'keyword': 'googy1'}, 'BitlyCB.alertResponse');
 }}}
-===== shorten(longUrl, callback_method_name) =====
-===== expand(shortUrl, callback_method_name) =====
-===== info(bitly_hashes_or_bitly_urls_csv, callback_method_name) =====
-===== stats(bitly_hash_or_url, callback_method_name) =====
-===== addPageLoadEvent(func) =====
-===== extractBitlyHash(bitly_url_or_hash) =====
-===== createElement(element_type, attrs) =====
-===== setAttribute(element, attribute_name, attribute_value) =====
-===== loadModules(module_names, callback_method_name) =====
-===== moduleLoaded(module_name, callback_method_name) =====
+
+==== shorten(longUrl, callback_method_name) ====
+==== expand(shortUrl, callback_method_name) ====
+==== info(bitly_hashes_or_bitly_urls_csv, callback_method_name) ====
+==== stats(bitly_hash_or_url, callback_method_name) ====
+==== addPageLoadEvent(func) ====
+==== extractBitlyHash(bitly_url_or_hash) ====
+==== createElement(element_type, attrs) ====
+==== setAttribute(element, attribute_name, attribute_value) ====
+==== loadModules(module_names, callback_method_name) ====
+==== moduleLoaded(module_name, callback_method_name) ====
