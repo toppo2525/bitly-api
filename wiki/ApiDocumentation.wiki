@@ -137,11 +137,17 @@ Use an instance of the {{{BitlyApiClient}}} class to make calls to the bit.ly AP
 
 === Instance Methods ===
 
-==== new(login, apiKey, version) ====
+==== new ====
 Creates a new instance of {{{BitlyApiClient}}} class. Generally, you should not ever need to create your own instance of the {{{BitlyApiClient}}} class. Instead, you should use the {{{BitlyClient}}} global instance of the {{{BitlyApiClient}}} class that is instantiated when you include the bit.ly javascript client library.
+* Parameters *
+	* *login*
+		bit.ly login
+	* *apiKey*
+		bit.ly apiKey
+	* *version*
+		Version of the bit.ly REST API to call.
 
-
-==== call(method, params, callback_method_name) ====
+==== call ====
 Low level method for calling bit.ly REST API. 
 * Parameters *
 	* *method*
@@ -168,7 +174,7 @@ Low level method for calling bit.ly REST API.
 	BitlyClient.call('shorten', {'longUrl': 'http://google.com', 'keyword': 'googy1'}, 'BitlyCB.alertResponse');
 }}}
 
-==== shorten(longUrl, callback_method_name) ====
+==== shorten ====
 Shorten a long URL.
 * Parameters *
 	* *longUrl*
@@ -194,7 +200,7 @@ Shorten a long URL.
 }}}
 
 
-==== expand(shortUrl, callback_method_name) ====
+==== expand ====
 Expand a bit.ly URL.
 * Parameters *
 	* *shortenUrl*
@@ -220,7 +226,7 @@ Expand a bit.ly URL.
 	BitlyClient.expand('http://bit.ly/1YKMfY', 'BitlyCB.expandResponse');
 }}}
 
-==== info(bitly_hashes_or_bitly_urls_csv, callback_method_name) ====
+==== info ====
 Expand a bit.ly URL.
 * Parameters *
 	* *bitly_hashes_or_bitly_urls_csv*
@@ -244,7 +250,7 @@ Expand a bit.ly URL.
 	BitlyClient.info('3j4ir4,1YKMfY', 'BitlyCB.infoResponse');
 }}}
 
-==== stats(bitly_hash_or_url, callback_method_name) ====
+==== stats ====
 Get clicks and referrer data about a bit.ly URL.
 * Parameters *
 	* *bitly_hash_or_url*
@@ -265,7 +271,7 @@ Get clicks and referrer data about a bit.ly URL.
 	BitlyClient.stats('3j4ir4', 'BitlyCB.statsResponse');
 }}}
 
-==== addPageLoadEvent(func) ====
+==== addPageLoadEvent ====
 Perform a function once the DOM is done rendering. You would use this if you want to safely manipulate the DOM, eg, append stats to all bit.ly link elements.
 * Parameters *
 	* *func*
@@ -278,7 +284,7 @@ Perform a function once the DOM is done rendering. You would use this if you wan
 	});
 }}}
 
-==== extractBitlyHash(bitly_url_or_hash) ====
+==== extractBitlyHash ====
 Utility method for ensuring you have a bit.ly hash, given a bit.ly URL or hash.
 * Parameters *
 	* *bitly_url_or_hash*
@@ -289,7 +295,7 @@ Utility method for ensuring you have a bit.ly hash, given a bit.ly URL or hash.
 	alert(BitlyClient.extractBitlyHash("http://bit.ly/3j4ir4"));
 }}}
 
-==== createElement(element_type, attrs) ====
+==== createElement ====
 Utility method for creating a DOM node to insert into the page.
 * Parameters *
 	* *element_type*
@@ -303,7 +309,7 @@ Utility method for creating a DOM node to insert into the page.
 	document.body.appendChild(a);
 }}}
 
-==== setAttribute(element, attribute_name, attribute_value) ====
+==== setAttribute ====
 Utility method for setting an attribute on a DOM node.
 * Parameters *
 	* *element*
@@ -320,7 +326,7 @@ Utility method for setting an attribute on a DOM node.
 	document.body.appendChild(a);
 }}}
 
-==== loadModules(module_names, callback_method_name) ====
+==== loadModules ====
 Load one of the bit.ly javascript client library modules. These modules provide very easy ways to do common tasks, like append stats to each bit.ly URL on a page or insert a traffic / referrers data table.
 * Parameters *
 	* *module_names*
