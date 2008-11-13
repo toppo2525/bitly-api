@@ -126,6 +126,6 @@ To include the bit.ly javascript client library on one of your pages, add this i
 
 When you include the bit.ly javascript client library, a new instance of the *{{{BitlyApiClient}}}* class is instantiated and assigned to the global variable *{{{BitlyClient}}}*
 
-=== {{{BitlyApiClient}}} class ===
+=== !BitlyApiClient class ===
 Create an instance of the BitlyApiClient class to make calls to the bit.ly API using your login and apiKey. 
 ==== new(login, apiKey, version) ====
