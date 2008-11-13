@@ -1,6 +1,6 @@
 #summary List of bit.ly REST API Methods.
 #labels Featured
-see also JavascriptClientApiDocumentation
+See also JavascriptClientApiDocumentation
 
 *Sections*
 <wiki:toc max_depth="4" />
