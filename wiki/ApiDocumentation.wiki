@@ -169,8 +169,81 @@ Low level method for calling bit.ly REST API.
 }}}
 
 ==== shorten(longUrl, callback_method_name) ====
+Shorten a long URL.
+* Parameters *
+	* *longUrl*
+		Long URL to shorten.
+	* *callback_method_name*
+		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
+
+*Example:*
+{{{
+	BitlyCB.shortenResponse = function(data) {
+		var s = '';
+		var first_result;
+		// Results are keyed by longUrl, so we need to grab the first one.
+		for	(var r in data.results) {
+			first_result = data.results[r]; break;
+		}
+		for (var key in first_result) {
+			s += key + ":" + first_result[key].toString() + "\n";
+		}
+		alert(s);
+	}
+	BitlyClient.shorten('http://google.com', 'BitlyCB.shortenResponse');
+}}}
+
+
 ==== expand(shortUrl, callback_method_name) ====
+Expand a bit.ly URL.
+* Parameters *
+	* *shortenUrl*
+		Short URL to expand.
+	* *callback_method_name*
+		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
+
+*Example:*
+{{{
+	BitlyCB.expandResponse = function(data) {
+		var s = '';
+		var first_result;
+		// Results are keyed by longUrl, so we need to grab the first one.
+		for	(var r in data.results) {
+			first_result = data.results[r]; break;
+		}
+		for (var key in first_result) {
+			s += key + ":" + first_result[key].toString() + "\n";
+		}
+		alert(s);
+	}
+	BitlyClient.expand('http://bit.ly/3j4ir4', 'BitlyCB.expandResponse');
+	BitlyClient.expand('http://bit.ly/1YKMfY', 'BitlyCB.expandResponse');
+}}}
+
 ==== info(bitly_hashes_or_bitly_urls_csv, callback_method_name) ====
+Expand a bit.ly URL.
+* Parameters *
+	* *bitly_hashes_or_bitly_urls_csv*
+		Either a single bit.ly URL or a comma separated list of bit.ly hashes.
+	* *callback_method_name*
+		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
+
+*Example:*
+{{{
+	BitlyCB.infoResponse = function(data) {
+		var s = '';
+		var result;
+		for	(var r in data.results) {
+			result = data.results[r];
+			for (var key in result) {
+				s += key + ":" + result[key].toString() + "\n";
+			}
+		}
+		alert(s);
+	}
+	BitlyClient.info('3j4ir4,1YKMfY', 'BitlyCB.infoResponse');
+}}}
+
 ==== stats(bitly_hash_or_url, callback_method_name) ====
 ==== addPageLoadEvent(func) ====
 ==== extractBitlyHash(bitly_url_or_hash) ====
