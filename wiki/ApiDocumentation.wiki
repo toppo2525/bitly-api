@@ -352,7 +352,14 @@ The stats module adds the following Instance Methods to !BitlyClient.
 Append the number of clicks to every bit.ly link on a page. You can use CSS to show / hide the data as you want. The HTML appended to each bit.ly link element looks like this:
 
 {{{
-	<span class="bitly_left_bracket" classname="bitly_left_bracket"> [ </span><a target="_blank" href="http://urly.local:3600/info/31IqMl" class="bitly_stats_info_link" classname="bitly_stats_info_link"><span class="bitly_user_clicks" classname="bitly_user_clicks"></span><span class="bitly_clicks" classname="bitly_clicks">493 clicks</span></a><span class="bitly_right_bracket" classname="bitly_right_bracket"> ] </span>
+	<span class="bitly_stats" classname="bitly_stats">
+		<span class="bitly_left_bracket" classname="bitly_left_bracket"> [ </span>
+		<a target="_blank" href="http://bit.ly/info/31IqMl" class="bitly_stats_info_link" classname="bitly_stats_info_link">
+			<span class="bitly_user_clicks" classname="bitly_user_clicks"></span>
+			<span class="bitly_clicks" classname="bitly_clicks">493 clicks</span>
+		</a>
+		<span class="bitly_right_bracket" classname="bitly_right_bracket"> ] </span>
+	</span>
 }}}
 
 *Example:*
