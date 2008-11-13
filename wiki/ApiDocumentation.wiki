@@ -29,7 +29,7 @@ All APIs support an optional return format specifier:
 
 format=*json*
 
-_We have plans to add support for RSS format for some API methods soon._
+*json* is the default response format. *xml* is also available.
 
 All APIs support an optional callback specifier for use with json return format:
 
