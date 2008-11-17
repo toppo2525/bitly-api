@@ -72,7 +72,8 @@ Shorten a long URL.
 	* *callback_method_name*
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
-*Example:*
+*Examples:*
+	* http://bit.ly/app/demos/shorten.html
 {{{
 	BitlyCB.shortenResponse = function(data) {
 		var s = '';
@@ -98,7 +99,8 @@ Expand a bit.ly URL.
 	* *callback_method_name*
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
-*Example:*
+*Examples:*
+	* http://bit.ly/app/demos/expand.html
 {{{
 	BitlyCB.expandResponse = function(data) {
 		var s = '';
@@ -124,7 +126,8 @@ Expand a bit.ly URL.
 	* *callback_method_name*
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
-*Example:*
+*Examples:*
+	* http://bit.ly/app/demos/info.html
 {{{
 	BitlyCB.infoResponse = function(data) {
 		var s = '';
@@ -148,7 +151,8 @@ Get clicks and referrer data about a bit.ly URL.
 	* *callback_method_name*
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
-*Example:*
+*Examples:*
+	* http://bit.ly/app/demos/stats.html
 {{{
 	BitlyCB.statsResponse = function(data) {
 		var s = '';
@@ -252,6 +256,10 @@ Append the number of clicks to every bit.ly link on a page. You can use CSS to s
 	</span>
 }}}
 
+*Parameters*
+
+None
+
 *Example:*
 	* * http://bit.ly/app/demos/statsModule.html
 
@@ -260,4 +268,22 @@ Append the number of clicks to every bit.ly link on a page. You can use CSS to s
 		BitlyClient.addStatsToBitlyLinks(); // method defined in BitlyClient stats module
 	}
 	BitlyClient.loadModules(['stats'], 'BitlyCB.modulesReady');
+}}}
+
+==== appendStatsTable ====
+Given url, insert a table showing referring URLs and the number of clicks on each referrer. You can specify as an argument either a bit.ly url or a long url, such as the url of the page currently being viewed ({{{document.URL}}}).
+
+*Parameters*
+	* *opts*
+		A javascript object containing either a longUrl or a bit.ly url, eg either {'longUrl': 'http://google.com'} OR {'shortUrl': 'http://bit.ly/3j4ir4'}
+
+*Examples:*
+	* * http://bit.ly/app/demos/statsTable.html
+
+{{{
+	function modulesReady() {
+		var l = "http://google.com"; // document.URL
+		BitlyClient.appendStatsTable({"longUrl": l}, "result");
+	}
+	BitlyClient.loadModules(['stats'], 'modulesReady');
 }}}
