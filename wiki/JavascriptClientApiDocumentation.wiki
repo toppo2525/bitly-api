@@ -276,7 +276,8 @@ Given url, insert a table showing referring URLs and the number of clicks on eac
 *Parameters*
 	* *opts*
 		A javascript object containing either a longUrl or a bit.ly url, eg either {'longUrl': 'http://google.com'} OR {'shortUrl': 'http://bit.ly/3j4ir4'}
-
+	* *table_container_dom_id*
+		DOM id of the element that should contain the html table showing referrer data, eg: "results_div"
 *Examples:*
 	* * http://bit.ly/app/demos/statsTable.html
 
