@@ -86,7 +86,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 
 * Examples *
   * http://api.bit.ly/info?version=2.0.1&hash=31IqMl,3j4ir4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
-  * http://bit.ly/app/demos/stats.html
+  * http://bit.ly/app/demos/info.html
 ----
 
 
