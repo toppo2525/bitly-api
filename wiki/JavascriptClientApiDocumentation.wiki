@@ -119,10 +119,10 @@ Expand a bit.ly URL.
 }}}
 
 === info ===
-Expand a bit.ly URL.
+Get info about a bit.ly URL.
 * Parameters *
-	* *bitly_hashes_or_bitly_urls_csv*
-		Either a single bit.ly URL or a comma separated list of bit.ly hashes.
+	* *bitly_hash*
+		A single bit.ly URL
 	* *callback_method_name*
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
@@ -140,7 +140,7 @@ Expand a bit.ly URL.
 		}
 		alert(s);
 	}
-	BitlyClient.info('3j4ir4,1YKMfY', 'BitlyCB.infoResponse');
+	BitlyClient.info('3j4ir4', 'BitlyCB.infoResponse');
 }}}
 
 === stats ===
