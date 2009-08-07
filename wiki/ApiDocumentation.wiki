@@ -12,11 +12,7 @@ The bit.ly API allows developers to interact in a programmatic way with the bit.
 
 = Authentication =
 
-All APIs require authentication credentials supplied using HTTP Basic Authentication:
-
-*login* / *password*
-
-or as query arguments:
+All APIs require authentication credentials supplied as query arguments:
 
 login=*login*&apiKey=*apiKey*
 
