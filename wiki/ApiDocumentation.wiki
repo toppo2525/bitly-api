@@ -64,6 +64,7 @@ Given a long URL, /shorten encodes it as a shorter one and returns it.
 Given a bit.ly URL or hash, /expand decodes it back into a long source URL and returns it.
 
 * Parameters *
+
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
     A bitly URL, eg: http://bit.ly/1RmnUT
@@ -79,6 +80,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 Given a bit.ly URL or hash, return information about that page, such as the long source URL, associated usernames, and other information.
 
 * Parameters *
+
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
     A single bitly URL, eg: http://bit.ly/1RmnUT
@@ -98,6 +100,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 Given a bit.ly URL or hash, return traffic and referrer data.
 
 * Parameters *
+
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
     A single bitly URL, eg: http://bit.ly/1RmnUT
