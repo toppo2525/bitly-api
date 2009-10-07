@@ -18,7 +18,7 @@ All APIs require authentication credentials supplied as query arguments:
 
 = Rate Limiting =
 
-bit.ly currently limits API users to no more than five concurrent connections from a single IP address.  In general, if you intend to be an extremely high volume user of the api, please contact us at support@bit.ly to discuss your options.
+bit.ly currently limits API users to no more than five concurrent connections from a single IP address.  In general, if you intend to be an extremely high-volume user of the api, please contact us at support@bit.ly to discuss your options.
  
 
 
