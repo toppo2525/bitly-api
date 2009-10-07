@@ -14,7 +14,7 @@ The bit.ly API allows developers to interact in a programmatic way with the bit.
 
 All APIs require authentication credentials supplied as query arguments:
 
-login=*login*&apiKey=*apiKey*
+ login=*login*&apiKey=*apiKey*
 
 = Rate Limiting =
 
@@ -26,20 +26,20 @@ bit.ly currently limits API users to no more than five concurrent connections fr
 
 All APIs require a version identifier to be present:
 
-version=*2.0.1*
+ version=*2.0.1*
 
-All APIs support an optional return format specifier:
+All APIs support an optional return format specifier (*json* is the default response format. *xml* is also available):
 
-format=*json*
-
-*json* is the default response format. *xml* is also available.
+ format=*json*
 
 All APIs support an optional callback specifier for use with json return format:
 
-callback=*callback*
+ callback=*callback*
 
+<wiki:comment>
+Removed this since it felt confusing and redundant here.
 APIs which take both shortUrl and hash as arguments must have one or the other present.
-
+</wiki:comment>
 
 = REST API =
 
