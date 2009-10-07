@@ -44,7 +44,7 @@ APIs which take both shortUrl and hash as arguments must have one or the other p
 = REST API =
 
 == /shorten ==
-Given a long url, returns a shorter one.
+Given a long URL, /shorten encodes it as a shorter one and returns it.
 
 * Parameters *
   * * longUrl *
@@ -61,13 +61,12 @@ Given a long url, returns a shorter one.
 ----
 
 == /expand ==
-Given a bit.ly url or hash, return long source url, ...
+Given a bit.ly URL or hash, /expand decodes it back into a long source URL and returns it.
 
 * Parameters *
-
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
-    A bitly url, eg: http://bit.ly/1RmnUT
+    A bitly URL, eg: http://bit.ly/1RmnUT
   * *hash*
     A bit.ly hash, eg: 2bYgqR
 
@@ -77,13 +76,12 @@ Either *shortUrl* or *hash* must be given as a parameter.
 ----
 
 == /info ==
-Given a bit.ly url or hash, return information about that page, such as the long source url, ...
+Given a bit.ly URL or hash, return information about that page, such as the long source URL, associated usernames, and other information.
 
 * Parameters *
-
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
-    A single bitly url, eg: http://bit.ly/1RmnUT
+    A single bitly URL, eg: http://bit.ly/1RmnUT
   * *hash*
     A bit.ly hash, eg: 2bYgqR
   * *keys*
@@ -97,16 +95,14 @@ Either *shortUrl* or *hash* must be given as a parameter.
 
 
 == /stats ==
-Given a bit.ly url or hash, return traffic and referrer data.
+Given a bit.ly URL or hash, return traffic and referrer data.
 
 * Parameters *
-
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
-    A single bitly url, eg: http://bit.ly/1RmnUT
+    A single bitly URL, eg: http://bit.ly/1RmnUT
   * *hash*
     A single hash, eg: 1RmnUT
-
 
 * Examples *
   * http://api.bit.ly/stats?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
