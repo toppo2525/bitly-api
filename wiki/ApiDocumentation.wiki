@@ -50,9 +50,9 @@ Given a long url, returns a shorter one.
   * * longUrl *
     A long URL to shorten, eg: http://betaworks.com
     
-    To shorten multiple URLs in a single API call, just post 2 longUrl parameters.
+    To shorten multiple URLs in a single API call, just post as many longUrl parameters.
     		
-    Note: Long URLs should be URL-escaped.
+    Note: Long URLs should be [http://en.wikipedia.org/wiki/Percent-encoding URL-escaped].
 
 * Examples *
   * http://api.bit.ly/shorten?version=2.0.1&longUrl=http://cnn.com&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
