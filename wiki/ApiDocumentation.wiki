@@ -9,8 +9,6 @@ See also JavascriptClientApiDocumentation
 
 The bit.ly API allows developers to interact in a programmatic way with the bit.ly website. The current API version is *2.0.1*
 
-----
-
 = Authentication and Shared Parameters =
 
 All APIs require authentication credentials supplied as query arguments:
@@ -38,6 +36,7 @@ APIs which take both shortUrl and hash as arguments must have one or the other p
 
 bit.ly currently limits API users to no more than five concurrent connections from a single IP address.  In general, if you intend to be an extremely high-volume user of the api, please contact us at support@bit.ly to discuss your options.
  
+----
 ----
 
 = REST API =
@@ -117,6 +116,7 @@ Get a list of bit.ly API error codes.
 * Examples *
   * http://api.bit.ly/errors?version=2.0.1&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
 
+----
 ----
 
 = Discussion = 
