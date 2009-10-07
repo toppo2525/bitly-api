@@ -22,7 +22,7 @@ bit.ly currently limits API users to no more than five concurrent connections fr
  
 
 
-= Additional Parameters =
+= Shared Parameters =
 
 All APIs require a version identifier to be present:
 
@@ -46,7 +46,7 @@ APIs which take both shortUrl and hash as arguments must have one or the other p
 == /shorten ==
 Given a long URL, /shorten encodes it as a shorter one and returns it.
 
-* Parameters *
+* Additional Parameters *
   * * longUrl *
     A long URL to shorten, eg: http://betaworks.com
     
@@ -63,7 +63,7 @@ Given a long URL, /shorten encodes it as a shorter one and returns it.
 == /expand ==
 Given a bit.ly URL or hash, /expand decodes it back into a long source URL and returns it.
 
-* Parameters *
+* Additional Parameters *
 
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
@@ -79,7 +79,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 == /info ==
 Given a bit.ly URL or hash, return information about that page, such as the long source URL, associated usernames, and other information.
 
-* Parameters *
+* Additional Parameters *
 
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
@@ -99,7 +99,7 @@ Either *shortUrl* or *hash* must be given as a parameter.
 == /stats ==
 Given a bit.ly URL or hash, return traffic and referrer data.
 
-* Parameters *
+* Additional Parameters *
 
 Either *shortUrl* or *hash* must be given as a parameter.
   * *shortUrl*
