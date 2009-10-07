@@ -116,4 +116,11 @@ Get a list of bit.ly API error codes.
 
 * Examples *
   * http://api.bit.ly/errors?version=2.0.1&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+
 ----
+
+= Discussion = 
+
+Please visit our Google Group for discussion of projects and technical issues.
+ 
+ http://groups.google.com/group/bitly-api
