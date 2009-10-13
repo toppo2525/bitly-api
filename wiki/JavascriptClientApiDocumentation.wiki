@@ -246,9 +246,11 @@ Load one of the bit.ly javascript client library modules. These modules provide 
 	BitlyClient.loadModules(['stats'], 'BitlyCB.modulesReady');
 }}}
 ----
+----
 
 = Bitly Client Modules =
 {{{BitlyClient}}} Modules provide a convenient methods for executing common tasks. Modules are loaded dynamically, so you only have to load those that you want to use.
+----
 
 == stats ==
 The stats module adds the following Instance Methods to !BitlyClient.
