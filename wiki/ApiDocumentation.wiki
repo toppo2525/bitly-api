@@ -37,7 +37,6 @@ APIs which take both shortUrl and hash as arguments must have one or the other p
 bit.ly currently limits API users to no more than five concurrent connections from a single IP address.  In general, if you intend to be an extremely high-volume user of the api, please contact us at support@bit.ly to discuss your options.
  
 <wiki:comment>
-= Code Generation Gadget =
 
 <wiki:gadget url="http://lehrblogger.com/share/codegen_gadget.xml" height="200" border="0" /> 
 
