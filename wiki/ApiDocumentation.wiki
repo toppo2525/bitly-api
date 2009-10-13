@@ -98,8 +98,6 @@ Given a bit.ly URL or hash, return information about that page, such as the long
   * http://bit.ly/app/demos/info.html
 ----
 
-
-
 == /stats ==
 Given a bit.ly URL or hash, return traffic and referrer data.
 
