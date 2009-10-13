@@ -248,7 +248,7 @@ Load one of the bit.ly javascript client library modules. These modules provide 
 === stats ===
 The stats module adds the following Instance Methods to !BitlyClient.
 
-* ==== addStatsToBitlyLinks ====
+==== addStatsToBitlyLinks ====
 Append the number of clicks to every bit.ly link on a page. You can use CSS to show / hide the data as you want. The HTML appended to each bit.ly link element looks like this:
 
 {{{
