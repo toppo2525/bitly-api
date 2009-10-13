@@ -1,4 +1,4 @@
-#summary Documentation for bit.ly Javascript Client API.
+#summary Documentation of the bit.ly Javascript Client API
 #labels Featured
 See also ApiDocumentation for the bit.ly REST API
 
