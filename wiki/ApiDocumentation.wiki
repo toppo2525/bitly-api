@@ -5,11 +5,12 @@ See also JavascriptClientApiDocumentation
 *Sections*
 <wiki:toc max_depth="4" />
 
-= Introduction =
+= Information =
 
+== Introduction ==
 The bit.ly API allows developers to interact in a programmatic way with the bit.ly website. The current API version is *2.0.1*
 
-= Authentication and Shared Parameters =
+== Authentication and Shared Parameters ==
 
 All APIs require authentication credentials supplied as query arguments:
 
@@ -32,7 +33,7 @@ Removed this since it felt confusing and redundant here.
 APIs which take both shortUrl and hash as arguments must have one or the other present.
 </wiki:comment>
 
-= Rate Limiting =
+== Rate Limiting ==
 
 bit.ly currently limits API users to no more than five concurrent connections from a single IP address.  In general, if you intend to be an extremely high-volume user of the api, please contact us at support@bit.ly to discuss your options.
  
