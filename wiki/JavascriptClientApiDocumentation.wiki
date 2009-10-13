@@ -10,7 +10,7 @@ See also ApiDocumentation for the bit.ly REST API
 bit.ly provides a javascript client library that makes it easy for developers to make calls to the bit.ly REST API.  
 ----
 
-== Introduction == 
+== Authentication and Basic Instructions == 
 
 The bit.ly javascript client library is available at: http://bit.ly/javascript-api.js?version=latest&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
 
