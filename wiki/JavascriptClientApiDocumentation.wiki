@@ -289,3 +289,12 @@ Given url, insert a table showing referring URLs and the number of clicks on eac
 	}
 	BitlyClient.loadModules(['stats'], 'modulesReady');
 }}}
+
+----
+----
+
+= Discussion = 
+
+Please visit our Google Group for discussion of projects and technical issues.
+ 
+ http://groups.google.com/group/bitly-api
