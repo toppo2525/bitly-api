@@ -242,13 +242,13 @@ Load one of the bit.ly javascript client library modules. These modules provide 
 }}}
 ----
 
-== Bitly Client Modules ==
+= Bitly Client Modules =
 {{{BitlyClient}}} Modules provide a convenient methods for executing common tasks. Modules are loaded dynamically, so you only have to load those that you want to use.
 
-=== stats ===
+== stats ==
 The stats module adds the following Instance Methods to !BitlyClient.
 
-==== addStatsToBitlyLinks ====
+=== addStatsToBitlyLinks ===
 Append the number of clicks to every bit.ly link on a page. You can use CSS to show / hide the data as you want. The HTML appended to each bit.ly link element looks like this:
 
 {{{
@@ -276,7 +276,7 @@ None
 	BitlyClient.loadModules(['stats'], 'BitlyCB.modulesReady');
 }}}
 
-==== appendStatsTable ====
+=== appendStatsTable ===
 Given url, insert a table showing referring URLs and the number of clicks on each referrer. You can specify as an argument either a bit.ly url or a long url, such as the url of the page currently being viewed ({{{document.URL}}}).
 
 *Parameters*
