@@ -12,7 +12,7 @@ The bit.ly API allows developers to interact in a programmatic way with the bit.
 
 == Authentication and Shared Parameters ==
 
-All APIs require authentication credentials supplied as query arguments:
+All APIs require authentication credentials supplied as query arguments You can find your apiKey at http://bit.ly/account/your_api_key :
 
  login=*login*&apiKey=*apiKey*
 
