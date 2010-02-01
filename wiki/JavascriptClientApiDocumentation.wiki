@@ -14,7 +14,7 @@ bit.ly provides a javascript client library that makes it easy for developers to
 
 The bit.ly javascript client library is available at: http://bit.ly/javascript-api.js?version=latest&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
 
-To use the bit.ly javascript client library, *you must pass your login and apiKey in the URL* instead of the sample ones above. If you do not have an apiKey, [http://bit.ly sign up for a bitly account] and go to your [http://bit.ly/account Account] page to get your apiKey.
+To use the bit.ly javascript client library, *you must pass your login and apiKey in the URL* instead of the sample ones above. If you do not have an apiKey, [http://bit.ly sign up for a bitly account] and go to your [http://bit.ly/account/ Account] page to get your apiKey.
 
 To include the bit.ly javascript client library on one of your pages, add this inside the {{{<head>}}} tag:
 
