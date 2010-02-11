@@ -14,6 +14,8 @@ The bit.ly API allows developers to interact in a programmatic way with the bit.
 
 All APIs require authentication credentials supplied as query arguments You can find your apiKey at http://bit.ly/account/your_api_key :
 
+*NOTE:* do not use the login `bitlyapidemo`. That login is for example purposes only.
+
  login=*login*&apiKey=*apiKey*
 
 All APIs require a version identifier to be present:
@@ -38,11 +40,6 @@ APIs which take both shortUrl and hash as arguments must have one or the other p
 
 bit.ly currently limits API users to no more than five concurrent connections from a single IP address.  In general, if you intend to be an extremely high-volume user of the api, please contact us at support@bit.ly to discuss your options.
  
-<wiki:comment>
-
-<wiki:gadget url="http://lehrblogger.com/share/codegen_gadget.xml" height="200" border="0" /> 
-
-</wiki:comment>
 ----
 ----
 
