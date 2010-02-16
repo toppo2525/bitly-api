@@ -83,7 +83,6 @@ Shorten a long URL.
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
 *Examples:*
-	* http://bit.ly/app/demos/shorten.html
 {{{
 	BitlyCB.shortenResponse = function(data) {
 		var s = '';
@@ -110,7 +109,6 @@ Expand a bit.ly URL.
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
 *Examples:*
-	* http://bit.ly/app/demos/expand.html
 {{{
 	BitlyCB.expandResponse = function(data) {
 		var s = '';
@@ -137,7 +135,6 @@ Get info about a bit.ly URL.
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
 *Examples:*
-	* http://bit.ly/app/demos/info.html
 {{{
 	BitlyCB.infoResponse = function(data) {
 		var s = '';
@@ -162,7 +159,6 @@ Get clicks and referrer data about a bit.ly URL.
 		Method to be called when response is returned from bit.ly REST API. Define this method within the !BitlyCB global namespace.
 
 *Examples:*
-	* http://bit.ly/app/demos/stats.html
 {{{
 	BitlyCB.statsResponse = function(data) {
 		var s = '';
@@ -274,7 +270,6 @@ Append the number of clicks to every bit.ly link on a page. You can use CSS to s
 None
 
 *Example:*
-	* * http://bit.ly/app/demos/statsModule.html
 
 {{{
 	BitlyCB.modulesReady = function() {
@@ -292,7 +287,6 @@ Given url, insert a table showing referring URLs and the number of clicks on eac
 	* *table_container_dom_id*
 		DOM id of the element that should contain the html table showing referrer data, eg: "results_div"
 *Examples:*
-	* * http://bit.ly/app/demos/statsTable.html
 
 {{{
 	function modulesReady() {
