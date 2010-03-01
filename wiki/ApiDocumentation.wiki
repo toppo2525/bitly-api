@@ -55,8 +55,8 @@ Given a long URL, /shorten encodes it as a shorter one and returns it.
     Note: Long URLs should be [http://en.wikipedia.org/wiki/Percent-encoding URL-escaped].
 
 * Examples *
-  * http://api.bit.ly/shorten?version=2.0.1&longUrl=http://cnn.com&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
-  * http://bit.ly/app/demos/shorten.html
+  * `http://api.bit.ly/shorten?version=2.0.1&longUrl=http://cnn.com&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07`
+
 ----
 
 == /expand ==
@@ -71,8 +71,7 @@ Given a bit.ly URL or hash, /expand decodes it back into a long source URL and r
     A bit.ly hash, eg: 2bYgqR
 
 * Examples *
-  * http://api.bit.ly/expand?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
-  * http://bit.ly/app/demos/expand.html
+  * `http://api.bit.ly/expand?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07`
 ----
 
 == /info ==
@@ -89,8 +88,7 @@ Given a bit.ly URL or hash, return information about that page, such as the long
     One or more keys to limit the attributes returned about each bitly document, eg: htmlTitle,thumbnail
 
 * Examples *
-  * http://api.bit.ly/info?version=2.0.1&hash=3j4ir4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
-  * http://bit.ly/app/demos/info.html
+  * `http://api.bit.ly/info?version=2.0.1&hash=3j4ir4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07`
 ----
 
 == /stats ==
@@ -105,15 +103,15 @@ Given a bit.ly URL or hash, return traffic and referrer data.
     A single hash, eg: 1RmnUT
 
 * Examples *
-  * http://api.bit.ly/stats?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
-  * http://bit.ly/app/demos/stats.html
+  * `http://api.bit.ly/stats?version=2.0.1&shortUrl=http://bit.ly/31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07`
+
 ----
 
 == /errors ==
 Get a list of bit.ly API error codes.
 
 * Examples *
-  * http://api.bit.ly/errors?version=2.0.1&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+  * `http://api.bit.ly/errors?version=2.0.1&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07`
 
 ----
 ----
