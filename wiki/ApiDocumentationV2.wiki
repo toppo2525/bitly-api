@@ -1,13 +1,16 @@
 #summary Documentation of the bit.ly REST API methods
-#labels Featured
-See also the JavascriptClientApiDocumentation
+#labels Deprecated
+See also the ApiDocumentation and JavascriptClientApiDocumentation
+
+= Deprecation Notice =
+
+*As of 2010-Mar-30 this v2 API has been deprecated in favor of V3 endpoints (see ApiDocumentation). This document will be updated with the phaseout schedule when that is available.  For the time being, existing API endpoints will remain active, but we encourage you to upgrade your client libraries and API calls to the newest version at your earliest convenience.  Additionally, upcoming endpoints that provide increased functionality will only be rolled out via the V3 interface.
+
+The document is in regards to API version *2.0.1*
 
 *Sections*
 <wiki:toc max_depth="4" />
 
-= Information =
-
-The bit.ly API allows developers to interact in a programmatic way with the bit.ly website. The current API version is *2.0.1*
 ----
 
 == Authentication and Shared Parameters ==
