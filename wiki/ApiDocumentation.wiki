@@ -1,0 +1,502 @@
+#summary bit.ly REST API method documentation
+#labels Featured
+
+= bit.ly API Documentation =
+
+*bit.ly exposes its data via an Application Programming Interface (API), so developers can interact in a programmatic way with the bit.ly website. This document is the official reference for that functionality. The current API version is 3.0*
+
+== Getting Started ==
+
+Here are the topics covered in the bit.ly REST API documentation. Also, see our JavascriptClientApiDocumentation
+
+*Sections*
+<wiki:toc max_depth="3" />
+
+----
+
+== Authentication and Shared Parameters ==
+
+All API endpoints require that authentication credentials be supplied as query arguments. 
+
+To get started, you'll need a free bit.ly user account and apiKey. Signup at: http://bit.ly/account/register 
+
+If you already have an account, you can find your apiKey at: http://bit.ly/account/your_api_key
+
+ login=*login*&apiKey=*apiKey*
+
+Note: the bitlyapidemo login and apiKey used in this document is intended for us as an example only.
+
+<wiki:comment>
+
+=== Optional signed request format ===
+
+Some v3 requests also support an *optional* request format, which is designated as a 'signed' request. Signed requests must include a timestamp and a signature parameter.
+
+t=1263870836&signature=*signature*
+
+Time is expressed in epoch format, as seconds from Jan 1 1970 UTC. NOTE: timezone for this value must be [http://en.wikipedia.org/wiki/Coordinated_Universal_Time UTC].
+
+The signature is the first 10 characters of a md5 calculated on all the query parameters in sorted order along with the user secret.
+
+=== Example signed request ===
+in pseudo code, this would look like:
+
+{{{
+def calculate_signature(parameters, user_secret):
+   hash_source = ""
+   parameter_names = parameters.keys()
+   parameter_names.sort()
+   for parameter in parameter_names:
+      hash_source.append(parameters[parameter])
+   hash_source.append(user_secret)
+   return md5(hash_source).hexdigest()[:10]
+
+def make_request():
+    params = {...}
+    params['t'] = int(time.mktime(time.gmtime()))
+    params['signature'] = calculate_signature(params, user_secret)
+    make_http_call('http://api.bit.ly/v3/shorten?' + urllib.urlencode(params))
+}}}
+
+=== Requesting a user secret ===
+If you need to request a user_secret, please email the bit.ly support team at: support@bit.ly
+</wiki:comment>
+
+----
+
+== Request / Response Formats ==
+All bit.ly APIs support an optional return format parameter. Note that *json* is the default response format. but *xml* is also available. Some endpoints also support a simple *txt* format.
+
+ format=*json*
+
+All bit.ly APIs support jsonp which is the json format with a callback specified, such as:
+
+ format=json&callback=*callback_method*
+
+ * HTTP Response Status Code is 200 on all valid response in *json* and *xml* formats. In json and xml responses, the status_code and status_txt values indicate whether a request is well formed and valid.
+
+ * For *txt* format calls, the HTTP Response Status Codes 403, 500 and 503 are used denote rate limiting, a problem with the request format, or an unknown error. The response body will be equivalent to status_txt in *json* and *xml* calls for non 200 response codes.
+
+ * The *status_code* is 200 for a successful request, 403 when rate limited, 503 for an unknown error or temporary unavailability, and 500 for all other invalid requests or responses.
+
+ * *status_txt* will be a value that describes the nature of any error encountered. Common values are `MISSING_ARG_%s` to denote a missing URL parameter, and `INVALID_%s` to denote an invalid value in a request parameter (where `%s` is substituted with the name of the request parameter). 
+
+*Here are some examples:*
+
+ * json `{ "status_code": 200, "status_txt": "OK", "data" : ... }`
+ * json `{ "status_code": 403, "status_txt": "RATE_LIMIT_EXCEEDED", "data" : null }`
+ * json `{ "status_code": 500, "status_txt": "INVALID_URI", "data" : null }`
+ * json `{ "status_code": 500, "status_txt": "MISSING_ARG_LOGIN", "data" : null }`
+ * json `{ "status_code": 503, "status_txt": "UNKNOWN_ERROR", "data" : null }`
+ * jsonp `callback_method({ "status_code": 200, "status_txt": "OK", "data" : ... })`
+ * xml 
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+     <status_code>200</status_code>
+     <status_txt>OK</status_txt>
+     <data>
+         ...
+     </data>
+</response>
+}}}
+
+----
+== Rate Limiting ==
+
+It's important to note that bit.ly currently limits API users to no more than five concurrent connections from a single IP address. Also, bit.ly also institutes per-hour, per-minute, and per-ip rate limits for each API method. 
+
+=== High-volume users ===
+If you're a high-volume user of the bit.ly API, please contact us at support@bit.ly to discuss your options.
+
+----
+== REST API ==
+
+=== /v3/shorten ===
+For a long URL, /v3/shorten encodes a URL and returns a short one.
+
+* Parameters *
+  * * format * (optional) indicates the requested response format. supported formats: json (default), xml, txt.
+  * * longUrl * is a long URL to be shortened (example: http://betaworks.com/).
+  * * domain * (optional) refers to a preferred domain; either bit.ly [default] or j.mp. This affects the output value of `url`.
+  * *x_login* (optional) is the end-user's login when make requests on behalf of another bit.ly user. This allows application developers to pass along an end user's bit.ly login.
+  * *x_apiKey* (optional) is the end-user's apiKey when making requests on behalf of another bit.ly user. This allows application developers to pass along an end user's bit.ly apiKey.
+    
+* Notes *
+ * Long URLs should be [http://en.wikipedia.org/wiki/Percent-encoding URL-encoded]. You can not include a `longUrl` in the request that has '&', '?', '#', ' ', or other reserved parameters without first encoding it.
+ * Long URLs should not contain spaces: any `longUrl` with spaces will be rejected. All spaces should be either percent encoded (%20) or plus encoded (+). Note that tabs, newlines and trailing spaces are all indications of errors. Please remember to strip leading and trailing whitespace from any user input before shortening.
+ * Long URLs must have a slash between the domain and the path component. For example, `http://example.com?query=parameter` is invalid, and instead should be formatted as `http://example.com/?query=parameter`
+ * When including `x_login` and `x_apiKey`, the shortened URL will be inserted into the history for the user specified by `x_login`. it will not be inserted into the history for the user specified by `login`.
+
+* Output *
+
+ * *`new_hash`* designates if this is the first time this `long_url` was shortened . The return value will equal `1` the first time a long_url is shortened. It will also then be added to the user history.
+ * *`url `* is the actual link that should be used, and is a unique value for the given bit.ly account.
+ * *`hash`* is a bit.ly identifier for `long_url` which is unique to the given account. 
+ * *`global_hash`* is a bit.ly identifier for `long_url` which can be used to track aggregate stats across all matching bit.ly links.
+ * *`long_url`* is an echo back of the longUrl request parameter. This may not always be equal to the URL requested. That's because some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This `long_url` will always be functionally identical the the request parameter.
+
+* Examples *
+  * json format `http://api.bit.ly/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&uri=http%3A%2F%2Fbetaworks.com%2F&format=json`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "url": "http://bit.ly/cmeH01", 
+        "hash": "cmeH01", 
+        "global_hash": "1YKMfY", 
+        "long_url": "http://betaworks.com/", 
+        "new_hash": 0
+    }, 
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&uri=http%3A%2F%2Fbetaworks.com%2F&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <status_txt>OK</status_txt>
+    <data>
+        <url>http://bit.ly/cmeH01</url>
+        <hash>cmeH01</hash>
+        <global_hash>1YKMfY</global_hash>
+        <long_url>http://betaworks.com/</long_url>
+        <new_hash>0</new_hash>
+    </data>
+</response>
+}}}
+
+  * txt format `http://api.bit.ly/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&uri=http%3A%2F%2Fbetaworks.com%2F&format=txt`
+{{{
+http://bit.ly/cmeH01
+}}}
+
+
+----
+
+=== /v3/expand ===
+Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back the target URL.
+
+* Parameters *
+
+  * *format*  (optional) indicates the requested response format. supported formats: json (default), xml, txt.
+  * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+  * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name ).
+
+Note: Either `shortUrl` or `hash` must be given as a parameter
+
+* Output *
+  * *short_url* this matches the shortUrl request parameter.
+  * *hash* this matches the hash request parameter.
+  * *user_hash* is the corresponding bit.ly user identifier.
+  * *global_hash* is the corresponding bit.ly aggregate identifier.
+  * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND".
+
+* Examples *
+  * json format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "expand": [
+            {
+                "short_url": "http://tcrn.ch/a4MSUH", 
+                "global_hash": "bWw49z", 
+                "long_url": "http://www.techcrunch.com/2010/01/29/windows-mobile-foursquare/", 
+                "user_hash": "a4MSUH"
+            }, 
+            {
+                "short_url": "http://bit.ly/1YKMfY", 
+                "global_hash": "1YKMfY", 
+                "long_url": "http://betaworks.com/", 
+                "user_hash": "1YKMfY"
+            }, 
+            {
+                "long_url": "http://www.scotster.com/qf/?1152", 
+                "global_hash": "lLWr", 
+                "hash": "j3", 
+                "user_hash": "j3"
+            }, 
+            {
+                "hash": "a35.", 
+                "error": "NOT_FOUND"
+            }
+        ]
+    }, 
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <status_txt>OK</status_txt>
+    <data>
+        <entry>
+            <short_url>http://tcrn.ch/a4MSUH</short_url>
+            <long_url>http://www.techcrunch.com/2010/01/29/windows-mobile-foursquare/</long_url>
+            <user_hash>a4MSUH</user_hash>
+            <global_hash>bWw49z</global_hash>
+        </entry>
+        <entry>
+            <short_url>http://bit.ly/1YKMfY</short_url>
+            <long_url>http://betaworks.com/</long_url>
+            <user_hash>1YKMfY</user_hash>
+            <global_hash>1YKMfY</global_hash>
+        </entry>
+        <entry>
+            <hash>j3</hash>
+            <long_url>http://www.scotster.com/qf/?1152</long_url>
+            <user_hash>j3</user_hash>
+            <global_hash>lLWr</global_hash>
+        </entry>
+        <entry>
+            <error>NOT_FOUND</error>
+            <hash>a35.</hash>
+        </entry>
+    </data>
+</response>
+}}}
+  * json format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "expand": [
+            {
+                "short_url": "http://bit.ly/31IqMl", 
+                "global_hash": "31IqMl", 
+                "long_url": "http://cnn.com/", 
+                "user_hash": "31IqMl"
+            }
+        ]
+    }, 
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <status_txt>OK</status_txt>
+    <data>
+        <entry>
+            <short_url>http://bit.ly/31IqMl</short_url>
+            <long_url>http://cnn.com/</long_url>
+            <user_hash>31IqMl</user_hash>
+            <global_hash>31IqMl</global_hash>
+        </entry>
+    </data>
+</response>
+}}}
+
+  * txt format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=txt`
+{{{
+http://cnn.com/
+}}}
+----
+
+
+=== /v3/validate ===
+For any given a bit.ly user login and apiKey, you can validate that the pair is active.
+
+* Parameters *
+  * *format* (optional) indicates the requested response format. supported formats: json (default), xml, txt.
+  * *x_login* is the end users user's bit.ly login (for validation).
+  * *x_apiKey* is the end users bit.ly apiKey (for validation).
+
+* Output *
+
+  * *`valid`* 0 or 1 designating whether the x_login and x_apiKey pair is currently valid.
+
+* Examples *
+  * json format `http://api.bit.ly/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "valid": 0
+    }, 
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <status_txt>OK</status_txt>
+    <data>
+        <valid>0</valid>
+    </data>
+</response>
+
+
+}}}
+
+  * txt format `http://api.bit.ly/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=txt`
+{{{
+0
+}}}
+
+----
+=== /v3/clicks ===
+For one or more bit.ly URL's or hashes, you can generate statistics about the clicks on that link. 
+
+* Parameters *
+
+  Note: Either `shortUrl` or `hash` must be given as a request parameter
+
+  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+  * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+  * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+
+* Output *
+  * *short_url* this matches the shortUrl request parameter.
+  * *hash* this matches the hash request parameter.
+  * *user_hash* is the corresponding bit.ly user identifier.
+  * *global_hash* is the corresponding bit.ly aggregate identifier.
+  * *user_clicks* this is the total count of clicks to this users bit.ly link.
+  * *global_clicks* this is the total count of clicks to all bit.ly links that point to the same same long url.
+  * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND"
+
+* Examples *
+  * json format `http://api.bit.ly/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "clicks": [
+            {
+                "short_url": "http://tcrn.ch/a4MSUH", 
+                "global_hash": "bWw49z", 
+                "user_clicks": 0, 
+                "user_hash": "a4MSUH", 
+                "global_clicks": 1105
+            }, 
+            {
+                "short_url": "http://bit.ly/1YKMfY", 
+                "global_hash": "1YKMfY", 
+                "user_clicks": 2218, 
+                "user_hash": "1YKMfY", 
+                "global_clicks": 2218
+            }, 
+            {
+                "hash": "j3", 
+                "global_hash": "lLWr", 
+                "user_clicks": 105, 
+                "user_hash": "j3", 
+                "global_clicks": 106
+            }, 
+            {
+                "hash": "a35.", 
+                "error": "NOT_FOUND"
+            }
+        ]
+    }, 
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <clicks>
+            <short_url>http://tcrn.ch/a4MSUH</short_url>
+            <global_hash>bWw49z</global_hash>
+            <user_clicks>0</user_clicks>
+            <user_hash>a4MSUH</user_hash>
+            <global_clicks>1105</global_clicks>
+        </clicks>
+        <clicks>
+            <short_url>http://bit.ly/1YKMfY</short_url>
+            <global_hash>1YKMfY</global_hash>
+            <user_clicks>2218</user_clicks>
+            <user_hash>1YKMfY</user_hash>
+            <global_clicks>2218</global_clicks>
+        </clicks>
+        <clicks>
+            <user_clicks>105</user_clicks>
+            <global_hash>lLWr</global_hash>
+            <hash>j3</hash>
+            <user_hash>j3</user_hash>
+            <global_clicks>106</global_clicks>
+        </clicks>
+        <clicks>
+            <hash>a35.</hash>
+            <error>NOT_FOUND</error>
+        </clicks>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+
+----
+=== /v3/bitly_pro_domain ===
+
+This is used to query whether a given short domain is assigned for bitly.Pro, and is consequently a valid shortUrl parameter for other api calls. keep in mind that bitly.pro domains are restricted to less than 15 characters in length.
+
+* Parameters *
+
+  * *domain* A short domain (ie: nyti.ms).
+  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+
+* Output *
+
+  * *`bitly_pro_domain`* 0 or 1 designating whether this is a current bitly.Pro domain.
+  * *`domain`* this is an echo back of the request parameter.
+
+* Examples *
+  * json format `http://api.bit.ly/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "domain": "nyti.ms", 
+        "bitly_pro_domain": 1
+    }, 
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <domain>nyti.ms</domain>
+        <bitly_pro_domain>1</bitly_pro_domain>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+ 
+----
+
+= Discussion = 
+
+We invite you to visit our Google Group to discuss technical issues related to using the bit.ly API:
+ 
+ http://groups.google.com/group/bitly-api
+
+To report an error with a request or response please submit an issue:
+
+ http://code.google.com/p/bitly-api/issues/list
+
+----
+
+= Revision History =
+
+|| *Date** || *Change* ||
+|| 2010-Mar-30 || Initial v3 documentation ||
