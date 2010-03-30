@@ -28,7 +28,7 @@ Note: the bitlyapidemo login and apiKey used in this document is intended for us
 
 <wiki:comment>
 
-=== Optional signed request format ===
+#=== Optional signed request format ===
 
 Some v3 requests also support an *optional* request format, which is designated as a 'signed' request. Signed requests must include a timestamp and a signature parameter.
 
@@ -38,7 +38,7 @@ Time is expressed in epoch format, as seconds from Jan 1 1970 UTC. NOTE: timezon
 
 The signature is the first 10 characters of a md5 calculated on all the query parameters in sorted order along with the user secret.
 
-=== Example signed request ===
+#=== Example signed request ===
 in pseudo code, this would look like:
 
 {{{
@@ -58,7 +58,7 @@ def make_request():
     make_http_call('http://api.bit.ly/v3/shorten?' + urllib.urlencode(params))
 }}}
 
-=== Requesting a user secret ===
+#=== Requesting a user secret ===
 If you need to request a user_secret, please email the bit.ly support team at: support@bit.ly
 </wiki:comment>
 
