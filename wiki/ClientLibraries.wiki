@@ -37,6 +37,8 @@ PHP
 
  http://classes.verkoyen.eu/bitly/
 
+ http://www.yiiframework.com/extension/bitly-url-shortener/ (yii framework)
+
 Python
  http://opie4624.github.com/bitly.py/
 
