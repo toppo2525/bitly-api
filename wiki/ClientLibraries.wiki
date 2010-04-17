@@ -52,3 +52,5 @@ Ruby
 
 VB .NET
  http://www.databatrix.com/2009/08/a-net-bit-ly-api-helper-class-visual-basic-net/
+
+ http://bitly3.codeplex.com/
