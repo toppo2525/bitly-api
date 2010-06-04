@@ -459,8 +459,8 @@ This is used to query whether a given short domain is assigned for bitly.Pro, an
 
 * Output *
 
-  * *`bitly_pro_domain`* 0 or 1 designating whether this is a current bitly.Pro domain.
-  * *`domain`* this is an echo back of the request parameter.
+  * *bitly_pro_domain* 0 or 1 designating whether this is a current bitly.Pro domain.
+  * *domain* this is an echo back of the request parameter.
 
 * Examples *
   * json format `http://api.bit.ly/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
@@ -487,7 +487,191 @@ This is used to query whether a given short domain is assigned for bitly.Pro, an
     <status_txt>OK</status_txt>
 </response>
 }}}
+
+----
+=== /v3/lookup ===
+
+This is used to query for a bit.ly link based on a long URL. For example you would use `/v3/lookup` followed by `/v3/clicks` to find click data when you have a long URL to start with.
+
+* Parameters *
+
+  * *url* One or more long URLs to lookup.
+  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+
+* Note *
+
+  * The maximum number of url parameters is 15
+
+* Output *
+
+  * *url* an echo back of the url parameter.
+  * *short_url* is the corresponding bit.ly short link.
+  * *global_hash* is the corresponding bit.ly aggregate identifier.
+
+* Examples *
+  * json format `http://api.bit.ly/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{
+{
+    "data": {
+        "lookup": [
+            {
+                "global_hash": "beta",
+                "short_url": "http://bit.ly/beta",
+                "url": "http://betaworks.com/"
+            },
+            {
+                "global_hash": "1oDCU",
+                "short_url": "http://bit.ly/1oDCU",
+                "url": "http://code.google.com/p/bitly-api/"
+            }
+        ]
+    },
+    "status_code": 200,
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <lookup>
+            <url>http://betaworks.com/</url>
+            <short_url>http://bit.ly/beta</short_url>
+            <global_hash>beta</global_hash>
+        </lookup>
+        <lookup>
+            <url>http://code.google.com/p/bitly-api/</url>
+            <short_url>http://bit.ly/1oDCU</short_url>
+            <global_hash>1oDCU</global_hash>
+        </lookup>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+
+  * json format `http://api.bit.ly/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{
+{
+    "data": {
+        "lookup": [
+            {
+                "error": "NOT_FOUND",
+                "url": "asdf://www.google.com/not/a/real/link"
+            }
+        ]
+    },
+    "status_code": 200,
+    "status_txt": "OK"
+}
+}}}
+
+  * xml format `http://api.bit.ly/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <lookup>
+            <url>asdf://www.google.com/not/a/real/link</url>
+            <error>NOT_FOUND</error>
+        </lookup>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
  
+----
+=== /v3/authenticate ===
+
+This is used by applications to lookup a bit.ly API key for a user given a bit.ly username and password.
+
+Access to this endpoint is restricted and must be requested by emailing support@bit.ly. When requesting access include your application login and apiKey, and a description of your use case and an estimated volume of requests.
+
+* Parameters *
+
+  * *x_login* is the end-user's bit.ly username or email address.
+  * *x_password* is the end-user's bit.ly password.
+  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+
+* Note *
+
+  * This request must be a HTTP POST, and can not be a HTTP GET request.
+
+* Output *
+
+  * *successful* is an indicator of weather or not the login and password combination is valid.
+  * *username* is the corresponding bit.ly users username.
+  * *api_key* is the corresponding bit.ly users `apiKey`
+
+* Examples *
+  * json format `http://api.bit.ly/v3/authenticate`
+  POST: `x_login=bitlyapidemo&x_password=bad-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+{{{
+{
+    "data": {
+        "authenticate": {
+            "successfull": false
+        }
+    },
+    "status_code": 200,
+    "status_txt": "OK"
+}
+}}}
+
+
+  * xml format `http://api.bit.ly/v3/authenticate`
+  POST: `x_login=bitlyapidemo&x_password=bad-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <authenticate>
+            <successfull>0</successfull>
+        </authenticate>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+
+
+  * json format `http://api.bit.ly/v3/authenticate`
+  POST: `x_login=bitlyapidemo&x_password=good-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+{{{
+{
+    "data": {
+        "authenticate": {
+            "api_key": "R_0da49e0a9118ff35f52f629d2d71bf07",
+            "successfull": true,
+            "username": "bitlyapidemo"
+        }
+    },
+    "status_code": 200,
+    "status_txt": "OK"
+}
+}}}
+
+
+  * xml format `http://api.bit.ly/v3/authenticate`
+  POST: `x_login=bitlyapidemo&x_password=good-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <authenticate>
+            <username>bitlyapidemo</username>
+            <successfull>1</successfull>
+            <api_key>R_0da49e0a9118ff35f52f629d2d71bf07</api_key>
+        </authenticate>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+
 ----
 
 = Discussion = 
@@ -505,4 +689,5 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2010-Jun-4 || added /v3/lookup and /v3/authenticate ||
 || 2010-Mar-30 || Initial v3 documentation ||
