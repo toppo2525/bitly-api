@@ -613,7 +613,7 @@ Access to this endpoint is restricted and must be requested by emailing support@
 {
     "data": {
         "authenticate": {
-            "successfull": false
+            "successful": false
         }
     },
     "status_code": 200,
@@ -630,7 +630,7 @@ Access to this endpoint is restricted and must be requested by emailing support@
     <status_code>200</status_code>
     <data>
         <authenticate>
-            <successfull>0</successfull>
+            <successful>0</successful>
         </authenticate>
     </data>
     <status_txt>OK</status_txt>
@@ -645,7 +645,7 @@ Access to this endpoint is restricted and must be requested by emailing support@
     "data": {
         "authenticate": {
             "api_key": "R_0da49e0a9118ff35f52f629d2d71bf07",
-            "successfull": true,
+            "successful": true,
             "username": "bitlyapidemo"
         }
     },
@@ -664,7 +664,7 @@ Access to this endpoint is restricted and must be requested by emailing support@
     <data>
         <authenticate>
             <username>bitlyapidemo</username>
-            <successfull>1</successfull>
+            <successful>1</successful>
             <api_key>R_0da49e0a9118ff35f52f629d2d71bf07</api_key>
         </authenticate>
     </data>
