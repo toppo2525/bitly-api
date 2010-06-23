@@ -104,10 +104,14 @@ All bit.ly APIs support jsonp which is the json format with a callback specified
 ----
 == Rate Limiting ==
 
-It's important to note that bit.ly currently limits API users to no more than five concurrent connections from a single IP address. Also, bit.ly also institutes per-hour, per-minute, and per-ip rate limits for each API method. 
+bit.ly currently limits API users to no more than five concurrent connections from a single IP address. Also, bit.ly also institutes per-hour, per-minute, and per-ip rate limits for each API method.
+
+While rate limits exist, default limits are more than sufficient for nearly any size site.
 
 === High-volume users ===
-If you're a high-volume user of the bit.ly API, please contact us at support@bit.ly to discuss your options.
+If you're a high-volume user of the bit.ly API, please contact us at api@bit.ly to discuss your options.
+
+When contacting bit.ly support include a description of how you are using the bit.ly API, which API endpoints you are using, and a current request volume over a 24 hour period.
 
 ----
 == REST API ==
@@ -588,7 +592,7 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
 
 This is used by applications to lookup a bit.ly API key for a user given a bit.ly username and password.
 
-Access to this endpoint is restricted and must be requested by emailing support@bit.ly. When requesting access include your application login and apiKey, and a description of your use case and an estimated volume of requests.
+Access to this endpoint is restricted and must be requested by emailing api@bit.ly. When requesting access include your application login and apiKey, and a description of your use case and an estimated volume of requests.
 
 * Parameters *
 
