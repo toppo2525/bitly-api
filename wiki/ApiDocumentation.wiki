@@ -195,11 +195,12 @@ Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back
  * The maximum number of `shortUrl` and `hash` parameters is 15
 
 * Output *
-  * *short_url* this matches the shortUrl request parameter.
-  * *hash* this matches the hash request parameter.
+  * *short_url* this is an echo back of the shortUrl request parameter.
+  * *hash* this is an echo back of the hash request parameter.
   * *user_hash* is the corresponding bit.ly user identifier.
   * *global_hash* is the corresponding bit.ly aggregate identifier.
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND".
+  * *long_url* is the URL that the requested `short_url` or `hash` points to.
 
 * Examples *
   * json format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
@@ -677,6 +678,105 @@ Access to this endpoint is restricted and must be requested by emailing api@bit.
 }}}
 
 ----
+=== /v3/info ===
+
+This is used to return the page title for a given bit.ly link.
+
+* Parameters *
+  * *format*  (optional) indicates the requested response format. supported formats: json (default), xml, txt.
+  * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+  * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name ).
+
+* Note *
+
+ * Either `shortUrl` or `hash` must be given as a parameter
+ * The maximum number of `shortUrl` and `hash` parameters is 15
+
+* Output *
+  * *short_url* this is an echo back of the shortUrl request parameter.
+  * *hash* this is an echo back of the hash request parameter.
+  * *user_hash* is the corresponding bit.ly user identifier.
+  * *global_hash* is the corresponding bit.ly aggregate identifier.
+  * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND".
+  * *title* is the HTML page title for the destination page (when available).
+  * *created_by* the bit.ly username that originally shortened this link.
+
+* Examples *
+  * json format `http://api.bit.ly/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=json`
+{{{
+{
+    "data": {
+        "info": [
+            {
+                "created_by": "scotster",
+                "global_hash": "lLWr",
+                "hash": "j3",
+                "title": null,
+                "user_hash": "j3"
+            },
+            {
+                "error": "NOT_FOUND",
+                "hash": "a.35"
+            },
+            {
+                "created_by": "j3h14h",
+                "global_hash": "bWw49z",
+                "short_url": "http://tcrn.ch/a4MSUH",
+                "title": "Windows Mobile Finally Checks Out Foursquare",
+                "user_hash": "a4MSUH"
+            },
+            {
+                "created_by": "bitly",
+                "global_hash": "1YKMfY",
+                "short_url": "http://bit.ly/1YKMfY",
+                "title": null,
+                "user_hash": "1YKMfY"
+            }
+        ]
+    },
+    "status_code": 200,
+    "status_txt": "OK"
+}
+}}}
+
+
+  * xml format `http://api.bit.ly/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <info>
+            <global_hash>lLWr</global_hash>
+            <hash>j3</hash>
+            <user_hash>j3</user_hash>
+            <created_by>scotster</created_by>
+            <title/>
+        </info>
+        <info>
+            <hash>a.35</hash>
+            <error>NOT_FOUND</error>
+        </info>
+        <info>
+            <short_url>http://tcrn.ch/a4MSUH</short_url>
+            <global_hash>bWw49z</global_hash>
+            <user_hash>a4MSUH</user_hash>
+            <created_by>j3h14h</created_by>
+            <title>Windows Mobile Finally Checks Out Foursquare</title>
+        </info>
+        <info>
+            <short_url>http://bit.ly/1YKMfY</short_url>
+            <global_hash>1YKMfY</global_hash>
+            <user_hash>1YKMfY</user_hash>
+            <created_by>bitly</created_by>
+            <title/>
+        </info>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+
+----
 
 = Discussion = 
 
@@ -693,5 +793,6 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2010-Jun-28 || added /v3/info ||
 || 2010-Jun-4 || added /v3/lookup and /v3/authenticate ||
 || 2010-Mar-30 || Initial v3 documentation ||
