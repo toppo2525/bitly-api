@@ -40,6 +40,9 @@ PHP
  http://www.yiiframework.com/extension/bitly-url-shortener/ (yii framework)
 
 Python
+ Official Python Client
+ http://github.com/bitly/bitly-api-python
+
  http://opie4624.github.com/bitly.py/
 
  (for [https://appengine.google.com/ Google App Engine])
