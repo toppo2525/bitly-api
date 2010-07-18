@@ -73,6 +73,8 @@ All bit.ly APIs support jsonp which is the json format with a callback specified
 
  format=json&callback=*callback_method*
 
+ * All API requests should be against the domain `api.bit.ly` (see examples).
+
  * HTTP Response Status Code is 200 on all valid response in *json* and *xml* formats. In json and xml responses, the status_code and status_txt values indicate whether a request is well formed and valid.
 
  * For *txt* format calls, the HTTP Response Status Codes 403, 500 and 503 are used denote rate limiting, a problem with the request format, or an unknown error. The response body will be equivalent to status_txt in *json* and *xml* calls for non 200 response codes.
