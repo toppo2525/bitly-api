@@ -18,9 +18,9 @@ Here are the topics covered in the bit.ly REST API documentation. Also, see our 
 
 All API endpoints require that authentication credentials be supplied as query arguments. 
 
-To get started, you'll need a free bit.ly user account and apiKey. Signup at: http://bit.ly/account/register 
+To get started, you'll need a free bit.ly user account and apiKey. Signup at: http://bit.ly/a/sign_up 
 
-If you already have an account, you can find your apiKey at: http://bit.ly/account/your_api_key
+If you already have an account, you can find your apiKey at: http://bit.ly/a/your_api_key
 
  login=*login*&apiKey=*apiKey*
 
