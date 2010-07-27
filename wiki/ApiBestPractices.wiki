@@ -1,4 +1,4 @@
-#summary Best Practices Guide for the bit.ly REST API
+#summary Best Practices for the bit.ly API
 #labels Featured
 
 =bit.ly API Best Practices=
