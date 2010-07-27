@@ -7,7 +7,7 @@
 
 == Getting Started ==
 
-Here are the topics covered in the bit.ly REST API documentation. Also, see our JavascriptClientApiDocumentation
+Here are the topics covered in the bit.ly REST API documentation. Also, see our JavascriptClientApiDocumentation and ApiBestPractices
 
 *Sections*
 <wiki:toc max_depth="3" />
@@ -111,6 +111,8 @@ bit.ly currently limits API users to no more than five concurrent connections fr
 While rate limits exist, default limits are more than sufficient for nearly any size site.
 
 Please note that our API rate limits reset every hour on the hour. If you are experiencing rate limiting errors, please wait until the top of the hour to resume making API calls.
+
+To avoid common causes of rate limiting issues, please read our ApiBestPractices.
 
 === High-volume users ===
 If you're a high-volume user of the bit.ly API, please contact us at api@bit.ly to discuss your options.
