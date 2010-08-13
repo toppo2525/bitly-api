@@ -40,4 +40,4 @@ For example, the link `http://betaworks.com/page?parameter=value#anchor` should 
 
 A valid API call to shorten the link `http://betaworks.com/page?parameter=value#anchor` would be: `http://api.bit.ly/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2Fpage%3Fparameter%3Dvalue%23anchor&format=json`
 
-Most languages include a function for URL encoding, including urlib.quote() in Python, encoreURIComponent() in javascript, and urlencode() in PHP.
+Most languages include a function for URL encoding, including urlib.quote() in Python, encodeURIComponent() in javascript, and urlencode() in PHP.
