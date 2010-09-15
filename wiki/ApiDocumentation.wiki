@@ -459,6 +459,495 @@ For one or more bit.ly URL's or hashes, you can generate statistics about the cl
 }}}
 
 ----
+=== /v3/referrers ===
+Provides a list of referring sites for a specified bit.ly short link, and the number of clicks per referrer.
+
+* Parameters *
+
+* *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+* *shortUrl* refers a bit.ly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+* *hash* refers to a bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+
+* Note *
+
+* Either `shortUrl` or `hash` must be given as a parameter.
+* This API endpoint can only provide data for one bit.ly short link per API call.
+
+* Output *
+* *short_url* this matches the shortUrl request parameter.
+* *hash* this matches the hash request parameter.
+* *user_hash* is the corresponding bit.ly user identifier.
+* *global_hash* is the corresponding bit.ly aggregate identifier.
+* *referrer* is a referring site for a given bit.ly link.
+* *referrer_app* is a referring application (such as Tweetdeck) for a given bit.ly link.
+* *url* is the URL of a referring application (such as http://tweetdeck.com).
+* *clicks* is the number of clicks from the corresponding referrer.
+<wiki:comment>
+* Examples *
+
+
+ * json format `http://api.bit.ly/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2Fdg9y6W&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{
+{
+   "data": {
+       "global_hash": "dnd4KR",
+       "referrers": [
+           {
+               "clicks": 80,
+               "referrer": "direct"
+           },
+           {
+               "clicks": 7,
+               "referrer": "http://www.google.com/"
+           },
+           {
+               "clicks": 4,
+               "referrer": "http://jehiah.cz/test"
+           },
+           {
+               "clicks": 1,
+               "referrer": "http://bitly.org/"
+           },
+           {
+               "clicks": 1,
+               "referrer": "http://jehiah.cz/testb"
+           }
+       ],
+       "short_url": "http://bit.ly/dg9y6W",
+       "user_hash": "dg9y6W"
+   },
+   "status_code": 200,
+   "status_txt": "OK"
+}
+}}}
+
+
+ * xml format `http://api.bit.ly/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2Fdg9y6W&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+   <status_code>200</status_code>
+   <data>
+       <short_url>http://bit.ly/dg9y6W</short_url>
+       <global_hash>dnd4KR</global_hash>
+       <user_hash>dg9y6W</user_hash>
+       <referrers>
+           <referrer>direct</referrer>
+           <clicks>80</clicks>
+       </referrers>
+       <referrers>
+           <referrer>http://www.google.com/</referrer>
+           <clicks>7</clicks>
+       </referrers>
+       <referrers>
+           <referrer>http://jehiah.cz/test</referrer>
+           <clicks>4</clicks>
+       </referrers>
+       <referrers>
+           <referrer>http://bitly.org/</referrer>
+           <clicks>1</clicks>
+       </referrers>
+       <referrers>
+           <referrer>http://jehiah.cz/testb</referrer>
+           <clicks>1</clicks>
+       </referrers>
+   </data>
+   <status_txt>OK</status_txt>
+</response>
+}}}
+</wiki:comment>
+----
+=== /v3/countries ===
+Provides a list of countries from which clicks on a specified bit.ly short link have originated, and the number of clicks per country.
+
+* Parameters *
+
+ * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+ * *shortUrl* refers a bit.ly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+ * *hash* refers to a bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+
+* Note *
+
+* Either `shortUrl` or `hash` must be given as a parameter.
+* This API endpoint can only provide data for one bit.ly short link per API call.
+
+* Output *
+ * *short_url* this matches the shortUrl request parameter.
+ * *hash* this matches the hash request parameter.
+ * *user_hash* is the corresponding bit.ly user identifier.
+ * *global_hash* is the corresponding bit.ly aggregate identifier.
+ * *countries* is a list of countries from which clicks on the bit.ly short link have originated.
+ * *clicks* is the number of clicks that have originated from the corresponding country.
+<wiki:comment>
+* Examples *
+
+
+ * json format `http://api.bit.ly/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2Fdg9y6W&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{
+{
+   "data": {
+       "countries": [
+           {
+               "clicks": 93,
+               "country": null
+           },
+           {
+               "clicks": 1,
+               "country": "79899270\thttp://bitly.org/"
+           }
+       ],
+       "global_hash": "dnd4KR",
+       "short_url": "http://bit.ly/dg9y6W",
+       "user_hash": "dg9y6W"
+   },
+   "status_code": 200,
+   "status_txt": "OK"
+}
+}}}
+
+ * xml format `http://api.bit.ly/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2Fdg9y6W&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+   <status_code>200</status_code>
+   <data>
+       <short_url>http://bit.ly/dg9y6W</short_url>
+       <global_hash>dnd4KR</global_hash>
+       <user_hash>dg9y6W</user_hash>
+       <countries>
+           <country/>
+           <clicks>93</clicks>
+       </countries>
+       <countries>
+           <country>79899270	http://bitly.org/</country>
+           <clicks>1</clicks>
+       </countries>
+   </data>
+   <status_txt>OK</status_txt>
+</response>
+}}}
+</wiki:comment>
+----
+=== /v3/clicks_by_minute ===
+For one or more bit.ly links, provides time series clicks per minute for the last hour in reverse chronological order (most recent to least recent).
+
+* Parameters *
+
+ * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+ * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+ * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+
+* Note *
+
+* Either `shortUrl` or `hash` must be given as a parameter
+* The maximum number of `shortUrl` and `hash` parameters is 15
+
+* Output *
+ * *short_url* this matches the shortUrl request parameter.
+ * *hash* this matches the hash request parameter.
+ * *user_hash* is the corresponding bit.ly user identifier.
+ * *global_hash* is the corresponding bit.ly aggregate identifier.
+ * *clicks* is the number of clicks received for a given link that minute.
+</wiki:comment>
+* Examples *
+
+ * json format `http://api.bit.ly/v3/clicks_by_minute?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2Fdg9y6W&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=b2xzJo&format=json`
+{{{
+{
+   "data": {
+       "clicks_by_minute": [
+           {
+               "clicks": [
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0
+               ],
+               "global_hash": "cRAOCR",
+               "hash": "b2xzJo",
+               "user_hash": "b2xzJo"
+           },
+           {
+               "error": "NOT_FOUND",
+               "short_url": "http://tcrn.ch/a4MSUH"
+           },
+           {
+               "clicks": [
+                   5,
+                   0,
+                   3,
+                   8,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0,
+                   0
+               ],
+               "global_hash": "dnd4KR",
+               "short_url": "http://bit.ly/dg9y6W",
+               "user_hash": "dg9y6W"
+           }
+       ]
+   },
+   "status_code": 200,
+   "status_txt": "OK"
+}
+}}}
+
+ * xml format `http://api.bit.ly/v3/clicks_by_minute?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2Fdg9y6W&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=b2xzJo&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+   <status_code>200</status_code>
+   <data>
+       <clicks_by_minute>
+           <global_hash>cRAOCR</global_hash>
+           <hash>b2xzJo</hash>
+           <user_hash>b2xzJo</user_hash>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+       </clicks_by_minute>
+       <clicks_by_minute>
+           <short_url>http://tcrn.ch/a4MSUH</short_url>
+           <error>NOT_FOUND</error>
+       </clicks_by_minute>
+       <clicks_by_minute>
+           <short_url>http://bit.ly/dg9y6W</short_url>
+           <global_hash>dnd4KR</global_hash>
+           <user_hash>dg9y6W</user_hash>
+           <clicks>5</clicks>
+           <clicks>0</clicks>
+           <clicks>3</clicks>
+           <clicks>8</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+           <clicks>0</clicks>
+       </clicks_by_minute>
+   </data>
+   <status_txt>OK</status_txt>
+</response>
+}}}
+</wiki:comment>
+
+----
 === /v3/bitly_pro_domain ===
 
 This is used to query whether a given short domain is assigned for bitly.Pro, and is consequently a valid shortUrl parameter for other api calls. keep in mind that bitly.pro domains are restricted to less than 15 characters in length.
