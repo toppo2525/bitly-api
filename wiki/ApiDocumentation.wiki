@@ -119,6 +119,29 @@ If you're a high-volume user of the bit.ly API, please contact us at api@bit.ly 
 
 When contacting bit.ly support include a description of how you are using the bit.ly API, which API endpoints you are using, and a current request volume over a 24 hour period.
 
+_____
+== OAuth ==
+
+bit.ly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bit.ly/`
+
+OAuth 2.0 is a simple and secure authentication mechanism. It allows web applications to acquire an access token for bit.ly via a quick redirect to the bit.ly site. Once a web application has an access token, it can access a user’s link metrics, and shorten links using that user’s bit.ly account.  Authentication with OAuth can be accomplished in the following steps:
+
+=== OAuth Web Flow ===
+
+Web applications can easily acquire an OAuth access token for a bit.ly end user by following these steps:
+
+  * Register your application from within your bit.ly account settings -- your application will be assigned a client_id and a client_secret.
+
+  * Redirect the user to https://bit.ly/oauth/authorize, using the client_id and redirect_uri parameters to pass your client ID and the page you would like to redirect to upon acquiring an access token.  An example redirect URL looks like: ` https://bit.ly/oauth/authorize?client_id=...&redirect_uri=http://myexamplewebapp.com/oauth_page`
+
+  * Upon authorizing your application, the user is directed to the page specified in the redirect_uri parameter. We append a “code” parameter to this URI, that contains a value that can be exchanged for an OAuth access token using the oauth/access_token endpoint documented below.  For example, if you passed a redirect_uri value of `http://myexamplewebapp.com/oauth_page`, a successful authentication will redirect the user to `http://myexamplewebapp.com/oauth_page?code=...`.  
+
+  *  Use the /oauth/access_token API endpoint documented below to acquire an OAuth access token, passing the “code” value appended by bit.ly to the previous redirect and the same redirect_uri value that was used previously.  This API endpoint will return an OAuth access token, as well as the specified bit.ly user’s login and API key, allowing your application to utilize the bit.ly API on that user’s behalf.
+
+=== OAuth XAuth Flow ===
+
+For applications where OAuth web flow cannot be used (for example, mobile applications without a browser layer), an OAuth access token can be acquired by making a single call to the /oauth/access_token API endpoint and passing the end-user’s bit.ly account credentials with the x_auth_username and x_auth_password parameters. *Note that the end-user need only enter his/her username and password once for the application to authenticate -- applications using XAuth SHOULD NOT store end-user passwords.*
+
 ----
 == REST API ==
 
@@ -1272,6 +1295,234 @@ This is used to return the page title for a given bit.ly link.
 }}}
 
 ----
+=== /oauth/access_token ===
+
+This endpoint returns an OAuth access token. To register an OAuth application, contact api@bit.ly. 
+
+* Parameters for OAuth Web flow*
+   * *client_id* is your application’s bit.ly client id.
+   * *client_secret* is your application’s bit.ly client secret.
+   * *code* is the OAuth verification code acquired via OAuth’s web authentication protocol.
+   * *redirect_uri* is the page to which a user was redirected upon successfully authenticating. 
+
+* Parameters for OAuth XAuth*
+   * *client_id* is your application’s bit.ly client id.
+   * *client_secret* is your application’s bit.ly client secret.
+   * *x_auth_username* is the end-user's bit.ly username *for XAuth authentication only*.
+   * *x_auth_password* is the end-user's bit.ly password *for XAuth authentication only*..
+* Note * 
+  * This request MUST be a `HTTP POST` request.
+  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * The x_auth_username and x_auth_password are only to be used when authentication via web redirect is not possible (for example, mobile applications without a browser layer). Access to these parameters must be requested by e-mailing api@bit.ly.
+
+* Output *
+
+URL encoded string in the format of access_token=%s&login=%s&apiKey=%s
+   * *access_token* is the OAuth access token for specified user
+   * *login* is the end-user’s bit.ly username
+   * *apiKey* is the end-user’s bit.ly API key
+
+<wiki:comment>
+* Examples *
+
+{{{
+curl -F 'client_id=388f84ca4f128dd3cba0819aa67d7c9380ad4400' \
+       -F 'client_secret=cae8d040187d4570c25cebe015ec2ffff056f86e' \
+       -F 'code=abc12345aabbexample' \
+        -F 'redirect_uri=http://myexamplewebapp.com/oauth_page' \
+https://api.bit.ly/oauth/access_token
+}}}
+{{{
+access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+}}}
+
+{{{
+curl -F 'client_id=388f84ca4f128dd3cba0819aa67d7c9380ad4400' \
+       -F 'client_secret=cae8d040187d4570c25cebe015ec2ffff056f86e' \
+       -F 'x_auth_username=bitlyapidemo' \
+        -F 'x_auth_password=password' \
+https://api.bit.ly/oauth/access_token
+}}}
+{{{
+access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
+}}}
+</wiki:comment>
+
+----
+=== /v3/user/clicks ===
+
+OAuth 2 endpoint that provides the total clicks per day on a user’s bit.ly links.
+
+* Parameters *
+
+   * *access_token* is the OAuth access token for a bit.ly user
+   * *days* (optional) an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7).
+   * * format * (optional) indicates the requested response format. Supported formats: json (default), xml.
+
+* Note *
+  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * Results are returned in reverse chronological order (from most recent to least recent)
+
+* Output *
+  * *clicks* the total number of clicks on that day
+
+<wiki:comment>
+* Examples *
+
+  * json format `https://api-ssl.bit.ly/v3/user/clicks?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{
+{
+    "data": {
+        "days": 7,
+        "results": [
+            2,
+            45,
+            92,
+            7,
+            0,
+            0,
+            0
+        ]
+    },
+    "status_code": 200,
+    "status_txt": "OK"
+}
+}}}
+</wiki:comment>
+
+----
+=== /v3/user/referrers ===
+
+OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a given user’s bit.ly links, and the number of clicks per referrer.
+
+* Parameters *
+
+   * *access_token* is the OAuth access token for a bit.ly user,
+   * *days* (optional) an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7)
+   * * format * (optional) indicates the requested response format. Supported formats: json (default), xml.
+
+* Note *
+  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * Results are returned in reverse chronological order (from most recent to least recent).
+
+* Output *
+  * *referrers* a list of top referrers (up to 500) for that day.
+  * *clicks* the number of clicks received from a given referrer for that day.
+
+<wiki:comment>
+* Examples *
+
+ * json format `https://api-ssl.bit.ly/v3/user/referrers?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{{    "data": {        "days": 7,        "referrers": [            [                {                    "clicks": 4,                    "referrer": "http://bitly.org/"                },                {                    "clicks": 2,                    "referrer": "http://jehiah.cz/testa"                }            ],            [],            [],            [],            [],            [],            []        ]    },    "status_code": 200,    "status_txt": "OK"}}}}
+
+  * xml format `https://api-ssl.bit.ly/v3/user/referrers?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <refererrs>
+            <item>
+                <referer>http://bitly.org/</referer>
+                <clicks>4</clicks>
+            </item>
+            <item>
+                <referer>http://jehiah.cz/testa</referer>
+                <clicks>2</clicks>
+            </item>
+        </refererrs>
+        <refererrs/>
+        <refererrs/>
+        <refererrs/>
+        <refererrs/>
+        <refererrs/>
+        <refererrs/>
+        <days>7</days>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+</wiki:comment>
+
+----
+=== /v3/user/countries ===
+ 
+OAuth 2 endpoint that provides a list of countries from which clicks on a given user’s bit.ly links are originating, and the number of clicks per country.
+
+* Parameters *
+
+   * *access_token* is the OAuth access token for a bit.ly user.
+   * *days* (optional) an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7).
+   * * format * (optional) indicates the requested response format. supported formats: json (default), xml.
+
+* Note *
+  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * Results are returned in reverse chronological order (from most recent to least recent).
+
+* Output *
+  * *countries* a list of countries from which clicks on the specified bit.ly user’s links are originating.
+  * *clicks* the number of clicks originating from a given country.
+
+----
+=== /v3/user/realtime_links ===
+
+OAuth 2 endpoint that provides a given user’s 100 most popular links based on click traffic in the past hour, and the number of clicks per link.
+
+* Parameters *
+
+   * *access_token* is the OAuth access token for a bit.ly user
+   * * format * (optional) indicates the requested response format. supported formats: json (default), xml.
+
+* Note *
+   * This endpoint is only available on `https://api-ssl.bit.ly/`
+   * This endpoint returns a maximum of 100 results.
+
+* Output *
+   * *clicks* is the number of clicks within the past hour.
+   * *user_hash* is the corresponding bit.ly user link identifier.
+
+<wiki:comment>
+* Examples *
+  * json format `https://api-ssl.bit.ly/v3/user/realtime_links?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+{{{
+{
+    "data": {
+        "realtime_links": [
+            {
+                "clicks": 15,
+                "user_hash": "cKRxor"
+            },
+            {
+                "clicks": 1,
+                "user_hash": "bnC1ZD"
+            }
+        ]
+    },
+    "status_code": 200,
+    "status_txt": "OK"
+}
+}}}
+  * xml format `https://api-ssl.bit.ly/v3/user/realtime_links?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <status_code>200</status_code>
+    <data>
+        <realtime_links>
+            <clicks>15</clicks>
+            <user_hash>cKRxor</user_hash>
+        </realtime_links>
+        <realtime_links>
+            <clicks>1</clicks>
+            <user_hash>bnC1ZD</user_hash>
+        </realtime_links>
+    </data>
+    <status_txt>OK</status_txt>
+</response>
+}}}
+</wiki:comment>
+
+----
 
 = Discussion = 
 
@@ -1288,6 +1539,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2010-Sep-15 || added OAuth and metrics endpoints ||
 || 2010-Jun-28 || added /v3/info ||
 || 2010-Jun-4 || added /v3/lookup and /v3/authenticate ||
 || 2010-Mar-30 || Initial v3 documentation ||
