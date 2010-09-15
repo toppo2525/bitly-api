@@ -464,24 +464,24 @@ Provides a list of referring sites for a specified bit.ly short link, and the nu
 
 * Parameters *
 
-* *format* (optional) indicates the requested response format. supported formats: json (default), xml.
-* *shortUrl* refers a bit.ly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
-* *hash* refers to a bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+ * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
+ * *shortUrl* refers a bit.ly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+ * *hash* refers to a bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
 
 * Note *
 
-* Either `shortUrl` or `hash` must be given as a parameter.
-* This API endpoint can only provide data for one bit.ly short link per API call.
+ * Either `shortUrl` or `hash` must be given as a parameter.
+ * This API endpoint can only provide data for one bit.ly short link per API call.
 
 * Output *
-* *short_url* this matches the shortUrl request parameter.
-* *hash* this matches the hash request parameter.
-* *user_hash* is the corresponding bit.ly user identifier.
-* *global_hash* is the corresponding bit.ly aggregate identifier.
-* *referrer* is a referring site for a given bit.ly link.
-* *referrer_app* is a referring application (such as Tweetdeck) for a given bit.ly link.
-* *url* is the URL of a referring application (such as http://tweetdeck.com).
-* *clicks* is the number of clicks from the corresponding referrer.
+ * *short_url* this matches the shortUrl request parameter.
+ * *hash* this matches the hash request parameter.
+ * *user_hash* is the corresponding bit.ly user identifier.
+ * *global_hash* is the corresponding bit.ly aggregate identifier.
+ * *referrer* is a referring site for a given bit.ly link.
+ * *referrer_app* is a referring application (such as Tweetdeck) for a given bit.ly link.
+ * *url* is the URL of a referring application (such as http://tweetdeck.com).
+ * *clicks* is the number of clicks from the corresponding referrer. 
 <wiki:comment>
 * Examples *
 
@@ -568,8 +568,8 @@ Provides a list of countries from which clicks on a specified bit.ly short link 
 
 * Note *
 
-* Either `shortUrl` or `hash` must be given as a parameter.
-* This API endpoint can only provide data for one bit.ly short link per API call.
+ * Either `shortUrl` or `hash` must be given as a parameter.
+ * This API endpoint can only provide data for one bit.ly short link per API call.
 
 * Output *
  * *short_url* this matches the shortUrl request parameter.
@@ -639,8 +639,8 @@ For one or more bit.ly links, provides time series clicks per minute for the las
 
 * Note *
 
-* Either `shortUrl` or `hash` must be given as a parameter
-* The maximum number of `shortUrl` and `hash` parameters is 15
+ * Either `shortUrl` or `hash` must be given as a parameter
+ * The maximum number of `shortUrl` and `hash` parameters is 15
 
 * Output *
  * *short_url* this matches the shortUrl request parameter.
@@ -648,7 +648,7 @@ For one or more bit.ly links, provides time series clicks per minute for the las
  * *user_hash* is the corresponding bit.ly user identifier.
  * *global_hash* is the corresponding bit.ly aggregate identifier.
  * *clicks* is the number of clicks received for a given link that minute.
-</wiki:comment>
+<wiki:comment>
 * Examples *
 
  * json format `http://api.bit.ly/v3/clicks_by_minute?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2Fdg9y6W&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=b2xzJo&format=json`
