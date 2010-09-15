@@ -16,7 +16,7 @@ Here are the topics covered in the bit.ly REST API documentation. Also, see our 
 
 == Authentication and Shared Parameters ==
 
-All API endpoints require that authentication credentials be supplied as query arguments. 
+All API endpoints require that authentication credentials be supplied as query arguments. Authentication can be either a login and apiKey or an OAuth request_token depending on the endpoint.
 
 To get started, you'll need a free bit.ly user account and apiKey. Signup at: http://bit.ly/a/sign_up 
 
@@ -25,42 +25,6 @@ If you already have an account, you can find your apiKey at: http://bit.ly/a/you
  login=*login*&apiKey=*apiKey*
 
 Note: the bitlyapidemo login and apiKey used in this document is intended for us as an example only.
-
-<wiki:comment>
-
-#=== Optional signed request format ===
-
-Some v3 requests also support an *optional* request format, which is designated as a 'signed' request. Signed requests must include a timestamp and a signature parameter.
-
-t=1263870836&signature=*signature*
-
-Time is expressed in epoch format, as seconds from Jan 1 1970 UTC. NOTE: timezone for this value must be [http://en.wikipedia.org/wiki/Coordinated_Universal_Time UTC].
-
-The signature is the first 10 characters of a md5 calculated on all the query parameters in sorted order along with the user secret.
-
-#=== Example signed request ===
-in pseudo code, this would look like:
-
-{{{
-def calculate_signature(parameters, user_secret):
-   hash_source = ""
-   parameter_names = parameters.keys()
-   parameter_names.sort()
-   for parameter in parameter_names:
-      hash_source.append(parameters[parameter])
-   hash_source.append(user_secret)
-   return md5(hash_source).hexdigest()[:10]
-
-def make_request():
-    params = {...}
-    params['t'] = int(time.mktime(time.gmtime()))
-    params['signature'] = calculate_signature(params, user_secret)
-    make_http_call('http://api.bit.ly/v3/shorten?' + urllib.urlencode(params))
-}}}
-
-#=== Requesting a user secret ===
-If you need to request a user_secret, please email the bit.ly support team at: support@bit.ly
-</wiki:comment>
 
 ----
 
@@ -130,7 +94,7 @@ OAuth 2.0 is a simple and secure authentication mechanism. It allows web applica
 
 Web applications can easily acquire an OAuth access token for a bit.ly end user by following these steps:
 
-  * Register your application from within your bit.ly account settings -- your application will be assigned a client_id and a client_secret.
+  * Register your application from within your bit.ly account settings -- your application will be assigned a client_id and a client_secret. Request access to register your application by emailing api@bit.ly.
 
   * Redirect the user to https://bit.ly/oauth/authorize, using the client_id and redirect_uri parameters to pass your client ID and the page you would like to redirect to upon acquiring an access token.  An example redirect URL looks like: ` https://bit.ly/oauth/authorize?client_id=...&redirect_uri=http://myexamplewebapp.com/oauth_page`
 
@@ -1539,7 +1503,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
-|| 2010-Sep-15 || added OAuth and metrics endpoints ||
+|| 2010-Sep-15 || added OAuth2 support, /v3/referrers, /v3/countries, /v3/clicks_by_minute, /v3/user/realtime_links, /v3/user/clicks /v3/user/countries /v3/user/referrers ||
 || 2010-Jun-28 || added /v3/info ||
 || 2010-Jun-4 || added /v3/lookup and /v3/authenticate ||
 || 2010-Mar-30 || Initial v3 documentation ||
