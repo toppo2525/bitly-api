@@ -52,6 +52,9 @@ Python
 
 Ruby
  http://github.com/nas/url_shortener 
+ 
+ http://github.com/playgood/get_shorty A ruby gem that extends `ActiveRecord` models to cache a short url from
+bitly in the database.
 
  http://github.com/philnash/bitly or "sudo gem install philnash-bitly"
 
