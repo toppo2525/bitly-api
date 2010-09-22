@@ -28,8 +28,6 @@ JSP
  http://www.servletsuite.com/servlets/bitlytag.htm
 
 javascript - jQuery
- JavascriptClientApiDocumentation
-
  http://code.google.com/p/bitly/
 
 PHP 
