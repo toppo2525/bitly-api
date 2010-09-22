@@ -7,7 +7,7 @@
 
 == Getting Started ==
 
-Here are the topics covered in the bit.ly REST API documentation. Also, see our JavascriptClientApiDocumentation and ApiBestPractices
+Here are the topics covered in the bit.ly REST API documentation. Also, see our ApiBestPractices
 
 *Sections*
 <wiki:toc max_depth="3" />
