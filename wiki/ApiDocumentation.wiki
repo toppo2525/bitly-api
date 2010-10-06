@@ -1369,6 +1369,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2010-Oct-7 || added QR Code support ||
 || 2010-Sep-15 || added OAuth2 support, /v3/referrers, /v3/countries, /v3/clicks_by_minute, /v3/user/realtime_links, /v3/user/clicks /v3/user/countries /v3/user/referrers ||
 || 2010-Jun-28 || added /v3/info ||
 || 2010-Jun-4 || added /v3/lookup and /v3/authenticate ||
