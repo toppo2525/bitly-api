@@ -109,7 +109,7 @@ For applications where OAuth web flow cannot be used (for example, mobile applic
 ----
 == QR Codes ==
 
-To generate a QR code, simply append `.qr` to the end of any bit.ly link. For example, the following URL: `http://bit.ly/3eI7.qr` returns a QR code for the bit.ly link to this page.
+To generate a QR code, simply append `.qrcode` to the end of any bit.ly link. For example, the following URL: `http://bit.ly/3eI7.qrcode` returns a QR code for the bit.ly link to this page.
 
 ----
 == REST API ==
