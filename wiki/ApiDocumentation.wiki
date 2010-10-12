@@ -821,7 +821,6 @@ For one or more bit.ly links, provides time series clicks per day for the last 3
  * *user_hash* is the corresponding bit.ly user identifier.
  * *global_hash* is the corresponding bit.ly aggregate identifier.
  * *clicks* is the number of clicks received for a given link that day.
- * *clicks* is the number of clicks received for a given link that day.
  * *day_start* is time code representing the start of the day for which click data is provided.
 
 ----
