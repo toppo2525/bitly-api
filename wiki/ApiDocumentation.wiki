@@ -132,7 +132,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 
 * Output *
 
- * *`new_hash`* designates if this is the first time this `long_url` was shortened . The return value will equal `1` the first time a long_url is shortened. It will also then be added to the user history.
+ * *`new_hash`* designates if this is the first time this `long_url` was shortened by this user. The return value will equal `1` the first time a long_url is shortened. It will also then be added to the user history.
  * *`url `* is the actual link that should be used, and is a unique value for the given bit.ly account.
  * *`hash`* is a bit.ly identifier for `long_url` which is unique to the given account. 
  * *`global_hash`* is a bit.ly identifier for `long_url` which can be used to track aggregate stats across all matching bit.ly links.
