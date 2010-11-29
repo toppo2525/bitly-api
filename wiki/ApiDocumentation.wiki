@@ -86,7 +86,7 @@ When contacting bit.ly support include a description of how you are using the bi
 ----
 == OAuth ==
 
-bit.ly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bit.ly/`
+bit.ly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bit.ly/` *To request OAuth access, e-mail api@bit.ly with your bit.ly username.*
 
 OAuth 2.0 is a simple and secure authentication mechanism. It allows web applications to acquire an access token for bit.ly via a quick redirect to the bit.ly site. Once a web application has an access token, it can access a user’s link metrics, and shorten links using that user’s bit.ly account.  Authentication with OAuth can be accomplished in the following steps:
 
