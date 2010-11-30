@@ -823,6 +823,76 @@ For one or more bit.ly links, provides time series clicks per day for the last 3
  * *clicks* is the number of clicks received for a given link that day.
  * *day_start* is time code representing the start of the day for which click data is provided.
 
+* Examples *
+  * json format `http://api.bit.ly/v3/clicks_by_day?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json&days=7&hash=grqSlY&hash=dYhyia`
+{{{
+{
+    "status_code": 200,
+    "data": {
+        "clicks_by_day": [
+            {
+                "global_hash": "doWfPZ",
+                "hash": "grqSlY",
+                "user_hash": "grqSlY",
+                "clicks": [
+                    {
+                        "clicks": 0, 
+                        "day_start": 1291093200
+                    }, {
+                        "clicks": 1,
+                        "day_start": 1291006800
+                    }, {
+                        "clicks": 1, 
+                        "day_start": 1290920400
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1290834000
+                    }, {
+                        "clicks": 6,
+                        "day_start": 1290747600
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1290661200
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1290574800
+                    }
+                ]
+            }, {
+                "global_hash": "cW0m0h",
+                "hash": "dYhyia",
+                "user_hash": "dYhyia",
+                "clicks": [
+                    {
+                        "clicks": 0,
+                        "day_start": 1291093200
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1291006800
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1290920400
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1290834000
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1290747600
+                    }, {
+                        "clicks": 0,
+                        "day_start": 1290661200
+                    }, {
+                        "clicks": 0, 
+                        "day_start": 1290574800
+                    }
+                ]
+            }
+        ]
+    },
+    "status_txt": "OK"
+}
+}}}
+
 ----
 === /v3/bitly_pro_domain ===
 
