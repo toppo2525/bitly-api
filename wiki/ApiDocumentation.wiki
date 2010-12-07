@@ -1287,31 +1287,48 @@ OAuth 2 endpoint that provides the total clicks per day on a user’s bit.ly lin
   * Results are returned in reverse chronological order (from most recent to least recent)
 
 * Output *
+  * *days* is an echo of the "days" parameter
+  * * total_clicks* is the total number of clicks in the specified time period
   * *clicks* the total number of clicks on that day
+  * *day_start* is time code representing the start of the day for which click data is provided.
 
-<wiki:comment>
 * Examples *
-
-  * json format `https://api-ssl.bit.ly/v3/user/clicks?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `https://api-ssl.bit.ly/v3/user/clicks?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
 {{{
 {
+    "status_code": 200, 
     "data": {
-        "days": 7,
-        "results": [
-            2,
-            45,
-            92,
-            7,
-            0,
-            0,
-            0
+        "days": 7, 
+        "total_clicks": 29, 
+        "clicks": [
+            {
+                "clicks": 4, 
+                "day_start": 1291093200
+            }, {
+                "clicks": 6, 
+                "day_start": 1291006800
+            }, {
+                "clicks": 1, 
+                "day_start": 1290920400
+            }, {
+                "clicks": 2, 
+                "day_start": 1290834000
+            }, {
+                "clicks": 8,
+                "day_start": 1290747600
+            }, {
+                "clicks": 5,
+                "day_start": 1290661200
+            }, {
+                "clicks": 3,
+                "day_start": 1290574800
+            }
         ]
-    },
-    "status_code": 200,
+    }, 
     "status_txt": "OK"
 }
 }}}
-</wiki:comment>
+
 
 ----
 === /v3/user/referrers ===
@@ -1332,40 +1349,77 @@ OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a
   * *referrers* a list of top referrers (up to 500) for that day.
   * *clicks* the number of clicks received from a given referrer for that day.
 
-<wiki:comment>
 * Examples *
-
- * json format `https://api-ssl.bit.ly/v3/user/referrers?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
-{{{{    "data": {        "days": 7,        "referrers": [            [                {                    "clicks": 4,                    "referrer": "http://bitly.org/"                },                {                    "clicks": 2,                    "referrer": "http://jehiah.cz/testa"                }            ],            [],            [],            [],            [],            [],            []        ]    },    "status_code": 200,    "status_txt": "OK"}}}}
-
-  * xml format `https://api-ssl.bit.ly/v3/user/referrers?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * json format `https://api-ssl.bit.ly/v3/user/referrers?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
 {{{
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-    <status_code>200</status_code>
-    <data>
-        <refererrs>
-            <item>
-                <referer>http://bitly.org/</referer>
-                <clicks>4</clicks>
-            </item>
-            <item>
-                <referer>http://jehiah.cz/testa</referer>
-                <clicks>2</clicks>
-            </item>
-        </refererrs>
-        <refererrs/>
-        <refererrs/>
-        <refererrs/>
-        <refererrs/>
-        <refererrs/>
-        <refererrs/>
-        <days>7</days>
-    </data>
-    <status_txt>OK</status_txt>
-</response>
+{
+    "status_code": 200, 
+    "data": {
+        "referrers": [
+            [
+                {
+                    "referrer": "direct",
+                    "clicks": 3
+                }, {
+                    "referrer": "http://www.facebook.com/l.php",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "referrer": "direct",
+                    "clicks": 5
+                }, {
+                    "referrer": "http://twitter.com/",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "referrer": "direct",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "referrer": "http://twitter.com/",
+                    "clicks": 1
+                }, {
+                    "referrer": "http://twitter.com/falicon",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "referrer": "http://twitter.com/",
+                    "clicks": 4
+                }, {
+                    "referrer": "direct",
+                    "clicks": 3
+                }, {
+                    "referrer": "http://hootsuite.com/dashboard",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "referrer": "direct",
+                    "clicks": 4
+                }, {
+                    "referrer": "http://www.facebook.com/l.php",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "referrer": "http://twitter.com/falicon",
+                    "clicks": 2
+                }, {
+                    "referrer": "direct",
+                    "clicks": 1
+                }
+            ]
+        ],
+        "days": 7
+    }, 
+    "status_txt": "OK"
+}
 }}}
-</wiki:comment>
+
 
 ----
 === /v3/user/countries ===
@@ -1386,6 +1440,71 @@ OAuth 2 endpoint that provides a list of countries from which clicks on a given 
   * *countries* a list of countries from which clicks on the specified bit.ly user’s links are originating.
   * *clicks* the number of clicks originating from a given country.
 
+* Examples *
+  * json format `https://api-ssl.bit.ly/v3/user/countries?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "days": 7,
+        "countries": [
+            [
+                {
+                    "country": "US",
+                    "clicks": 4
+                }
+            ], [
+                {
+                    "country": "US",
+                    "clicks": 5
+                }, {
+                    "country": "unknown",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "country": "unknown",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "country": "US",
+                    "clicks": 2
+                }
+            ], [
+                {
+                    "country": "US",
+                    "clicks": 5
+                }, {
+                    "country": "IN",
+                    "clicks": 1
+                }, {
+                    "country": "FR",
+                    "clicks": 1
+                }, {
+                    "country": "CA",
+                    "clicks": 1
+                }
+            ], [
+                {
+                    "country": "US",
+                    "clicks": 5
+                }
+            ], [
+                {
+                    "country": "CA",
+                    "clicks": 2
+                }, {
+                    "country": "US",
+                    "clicks": 1
+                }
+            ]
+        ]
+    },
+    "status_txt": "OK"
+}
+}}}
+
 ----
 === /v3/user/realtime_links ===
 
@@ -1404,46 +1523,26 @@ OAuth 2 endpoint that provides a given user’s 100 most popular links based on 
    * *clicks* is the number of clicks within the past hour.
    * *user_hash* is the corresponding bit.ly user link identifier.
 
-<wiki:comment>
+
 * Examples *
-  * json format `https://api-ssl.bit.ly/v3/user/realtime_links?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `https://api-ssl.bit.ly/v3/user/realtime_links?format=json&access_token=BITLY_ASSIGNED_ACCESS_TOKEN`
 {{{
 {
+    "status_code": 200,
     "data": {
         "realtime_links": [
             {
                 "clicks": 15,
-                "user_hash": "cKRxor"
-            },
-            {
+                "user_hash": "i7JWw0"
+            }, {
                 "clicks": 1,
-                "user_hash": "bnC1ZD"
+                "user_hash": "eiRiMo"
             }
         ]
     },
-    "status_code": 200,
     "status_txt": "OK"
 }
 }}}
-  * xml format `https://api-ssl.bit.ly/v3/user/realtime_links?access_token=41c1eb48e830a9942d5f1a21896932137f40b9be&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
-{{{
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-    <status_code>200</status_code>
-    <data>
-        <realtime_links>
-            <clicks>15</clicks>
-            <user_hash>cKRxor</user_hash>
-        </realtime_links>
-        <realtime_links>
-            <clicks>1</clicks>
-            <user_hash>bnC1ZD</user_hash>
-        </realtime_links>
-    </data>
-    <status_txt>OK</status_txt>
-</response>
-}}}
-</wiki:comment>
 
 ----
 
