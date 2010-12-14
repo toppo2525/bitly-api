@@ -31,6 +31,9 @@ javascript - jQuery
  http://code.google.com/p/bitly/
 
 PHP 
+
+ http://github.com/Falicon/BitlyPHP 
+
  http://blog.verkoyen.eu/blog/p/detail/bit-ly-php-wrapper-class
 
  http://classes.verkoyen.eu/bitly/
