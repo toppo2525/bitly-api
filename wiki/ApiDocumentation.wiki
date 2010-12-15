@@ -68,6 +68,29 @@ All bit.ly APIs support jsonp which is the json format with a callback specified
 }}}
 
 ----
+== CORS (Cross Origin Resource Sharing) ==
+The bit.ly API supports CORS, or Cross Origin Resource Sharing.
+
+Previously, JavaScript AJAX requests were restricted to a same domain origin policy. This meant that your website at http://mysite.com/ could not make AJAX requests to http://api.bit.ly/, since there were not the same domain. With the introduction of HTML5 and advancements in modern browsers, CORS allows website owners to control who can access data via JavaScript AJAX requests. In this way, CORS functions like Flash’s Cross Domain Origin Policy.
+
+The latest version of the bit.ly API (V3) supports CORS requests from any domain. Here is some basic example JavaScript to get you started:
+
+{{{
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://api.bitly.net/v3/expand?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&shortUrl=http://bitly.net/hnB7HI");
+xhr.onreadystatechange = function() { 
+    if(xhr.readyState == 4) { 
+        if(xhr.status==200) {
+            console.log("CORS works!", xhr.responseText);         
+        } else {
+            console.log("Oops", xhr);
+        }
+    } 
+}
+xhr.send();
+}}}
+
+----
 == Rate Limiting ==
 
 bit.ly currently limits API users to no more than five concurrent connections from a single IP address. Also, bit.ly also institutes per-hour, per-minute, and per-ip rate limits for each API method.
@@ -1561,6 +1584,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2010-Dec-15 || added CORS support ||
 || 2010-Oct-12 || added /v3/clicks_by_day ||
 || 2010-Oct-7 || added QR Code support ||
 || 2010-Sep-15 || added OAuth2 support, /v3/referrers, /v3/countries, /v3/clicks_by_minute, /v3/user/realtime_links, /v3/user/clicks /v3/user/countries /v3/user/referrers ||
