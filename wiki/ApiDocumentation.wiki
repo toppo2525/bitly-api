@@ -71,9 +71,9 @@ All bit.ly APIs support jsonp which is the json format with a callback specified
 == CORS (Cross Origin Resource Sharing) ==
 The bit.ly API supports CORS, or Cross Origin Resource Sharing.
 
-Previously, JavaScript AJAX requests were restricted to a same domain origin policy. This meant that your website at http://mysite.com/ could not make AJAX requests to http://api.bit.ly/, since there were not the same domain. With the introduction of HTML5 and advancements in modern browsers, CORS allows website owners to control who can access data via JavaScript AJAX requests. In this way, CORS functions like Flash’s Cross Domain Origin Policy.
+Previously, Javascript AJAX requests were restricted to a same domain origin policy. This meant that your website at http://mysite.com/ could not make AJAX requests to http://api.bit.ly/, since there were not the same domain. With the introduction of HTML5 and advancements in modern browsers, CORS allows website owners to control who can access data via Javascript AJAX requests. In this way, CORS functions like Flash’s Cross Domain Origin Policy. The latest version of the bit.ly API (V3) supports CORS requests from any domain. 
 
-The latest version of the bit.ly API (V3) supports CORS requests from any domain. Here is some basic example JavaScript to get you started:
+Here is some basic example Javascript to get you started:
 
 {{{
 var xhr = new XMLHttpRequest();
@@ -89,6 +89,8 @@ xhr.onreadystatechange = function() {
 }
 xhr.send();
 }}}
+
+You can also read more about CORS [http://en.wikipedia.org/wiki/Cross-Origin_Resource_Sharing here].
 
 ----
 == Rate Limiting ==
