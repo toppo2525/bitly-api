@@ -125,11 +125,11 @@ Web applications can easily acquire an OAuth access token for a bit.ly end user 
 
   * Upon authorizing your application, the user is directed to the page specified in the redirect_uri parameter. We append a “code” parameter to this URI, that contains a value that can be exchanged for an OAuth access token using the oauth/access_token endpoint documented below.  For example, if you passed a redirect_uri value of `http://myexamplewebapp.com/oauth_page`, a successful authentication will redirect the user to `http://myexamplewebapp.com/oauth_page?code=...`.  
 
-  *  Use the /oauth/access_token API endpoint documented below to acquire an OAuth access token, passing the “code” value appended by bit.ly to the previous redirect and the same redirect_uri value that was used previously.  This API endpoint will return an OAuth access token, as well as the specified bit.ly user’s login and API key, allowing your application to utilize the bit.ly API on that user’s behalf.
+  *  Use the [#/oauth/access_token /oauth/access_token] API endpoint documented below to acquire an OAuth access token, passing the “code” value appended by bit.ly to the previous redirect and the same redirect_uri value that was used previously.  This API endpoint will return an OAuth access token, as well as the specified bit.ly user’s login and API key, allowing your application to utilize the bit.ly API on that user’s behalf.
 
 === OAuth XAuth Flow ===
 
-For applications where OAuth web flow cannot be used (for example, mobile applications without a browser layer), an OAuth access token can be acquired by making a single call to the /oauth/access_token API endpoint and passing the end-user’s bit.ly account credentials with the x_auth_username and x_auth_password parameters. *Note that the end-user need only enter his/her username and password once for the application to authenticate -- applications using XAuth SHOULD NOT store end-user passwords.  Authentication via XAuth must be requested by e-mailing api@bit.ly.*
+For applications where OAuth web flow cannot be used (for example, mobile applications without a browser layer), an OAuth access token can be acquired by making a single call to the [#/oauth/access_token /oauth/access_token] API endpoint and passing the end-user’s bit.ly account credentials with the x_auth_username and x_auth_password parameters. *Note that the end-user need only enter his/her username and password once for the application to authenticate -- applications using XAuth SHOULD NOT store end-user passwords.  Authentication via XAuth must be requested by e-mailing api@bit.ly.*
 
 ----
 == QR Codes ==
