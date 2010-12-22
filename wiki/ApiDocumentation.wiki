@@ -1245,7 +1245,7 @@ This is used to return the page title for a given bit.ly link.
 ----
 === /oauth/access_token ===
 
-This endpoint returns an OAuth access token. To register an OAuth application, contact api@bit.ly. 
+This endpoint returns an OAuth access token, and is the 3rd step for [#OAuth_Web_Flow Oauth Web Flow] and the only step for [#OAuth_XAuth_Flow OAuth XAuth Flow].
 
 * Parameters for OAuth Web flow*
    * *client_id* is your application’s bit.ly client id.
