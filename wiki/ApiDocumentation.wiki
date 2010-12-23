@@ -77,7 +77,7 @@ Here is some basic example Javascript to get you started:
 
 {{{
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://api.bitly.net/v3/expand?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&shortUrl=http://bitly.net/hnB7HI");
+xhr.open("GET", "http://api.bit.ly/v3/expand?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&shortUrl=http://bit.ly/hnB7HI");
 xhr.onreadystatechange = function() { 
     if(xhr.readyState == 4) { 
         if(xhr.status==200) {
