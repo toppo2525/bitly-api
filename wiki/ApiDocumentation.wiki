@@ -827,13 +827,14 @@ For one or more bit.ly links, provides time series clicks per minute for the las
 
 ----
 === /v3/clicks_by_day ===
-For one or more bit.ly links, provides time series clicks per day for the last 30 days in reverse chronological order (most recent to least recent).
+For one or more bit.ly links, provides time series clicks per day for the last 1-30 days in reverse chronological order (most recent to least recent).
 
 * Parameters *
 
  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
  * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
  * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+ * *days* specifies the number of days for which to retrieve click data, from 1 to 30 (default 7).
 
 * Note *
 
