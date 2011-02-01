@@ -16,13 +16,17 @@ Here are the topics covered in the bit.ly REST API documentation. Also, see our 
 
 == Authentication and Shared Parameters ==
 
-All API endpoints require that authentication credentials be supplied as query arguments. Authentication can be either a login and apiKey or an OAuth request_token depending on the endpoint.
+All API endpoints require that authentication credentials be supplied as query arguments. Authentication can be either a login and apiKey or an OAuth access_token depending on the endpoint.
 
 To get started, you'll need a free bit.ly user account and apiKey. Signup at: http://bit.ly/a/sign_up 
 
 If you already have an account, you can find your apiKey at: http://bit.ly/a/your_api_key
 
  login=*login*&apiKey=*apiKey*
+
+For user-level OAuth API endpoints, you will need to register an OAuth application and then acquire an access_token using either OAuth Web Flow or OAuth XAuth flow, both documented [ApiDocumentation#OAuth here].
+
+ access_token=*access_token*
 
 Note: the bitlyapidemo login and apiKey used in this document is intended for us as an example only.
 
