@@ -41,7 +41,7 @@ All bit.ly APIs support jsonp which is the json format with a callback specified
 
  format=json&callback=*callback_method*
 
- * All API requests should be against the domain `api.bit.ly` (see examples).
+ * All API requests should be against the domain `api.bitly.com` (see examples).
 
  * HTTP Response Status Code is 200 on all valid response in *json* and *xml* formats. In json and xml responses, the status_code and status_txt values indicate whether a request is well formed and valid.
 
@@ -75,13 +75,13 @@ All bit.ly APIs support jsonp which is the json format with a callback specified
 == CORS (Cross Origin Resource Sharing) ==
 The bit.ly API supports CORS, or Cross Origin Resource Sharing.
 
-Previously, Javascript AJAX requests were restricted to a same domain origin policy. This meant that your website at http://mysite.com/ could not make AJAX requests to http://api.bit.ly/, since there were not the same domain. With the introduction of HTML5 and advancements in modern browsers, CORS allows website owners to control who can access data via Javascript AJAX requests. In this way, CORS functions like Flash’s Cross Domain Origin Policy. The latest version of the bit.ly API (V3) supports CORS requests from any domain. 
+Previously, Javascript AJAX requests were restricted to a same domain origin policy. This meant that your website at http://mysite.com/ could not make AJAX requests to http://api.bitly.com/, since there were not the same domain. With the introduction of HTML5 and advancements in modern browsers, CORS allows website owners to control who can access data via Javascript AJAX requests. In this way, CORS functions like Flash’s Cross Domain Origin Policy. The latest version of the bit.ly API (V3) supports CORS requests from any domain. 
 
 Here is some basic example Javascript to get you started:
 
 {{{
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://api.bit.ly/v3/expand?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&shortUrl=http://bit.ly/hnB7HI");
+xhr.open("GET", "http://api.bitly.com/v3/expand?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&shortUrl=http://bit.ly/hnB7HI");
 xhr.onreadystatechange = function() { 
     if(xhr.readyState == 4) { 
         if(xhr.status==200) {
@@ -115,7 +115,7 @@ When contacting bit.ly support include a description of how you are using the bi
 ----
 == OAuth ==
 
-bit.ly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bit.ly/` *To request OAuth access, e-mail api@bit.ly with your bit.ly username.*
+bit.ly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bitly.com/` *To request OAuth access, e-mail api@bit.ly with your bit.ly username.*
 
 OAuth 2.0 is a simple and secure authentication mechanism. It allows web applications to acquire an access token for bit.ly via a quick redirect to the bit.ly site. Once a web application has an access token, it can access a user’s link metrics, and shorten links using that user’s bit.ly account.  Authentication with OAuth can be accomplished in the following steps:
 
@@ -168,7 +168,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
  * *`long_url`* is an echo back of the longUrl request parameter. This may not always be equal to the URL requested. That's because some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This `long_url` will always be functionally identical the the request parameter.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
+  * json format `http://api.bitly.com/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
 {{{
 {
     "status_code": 200, 
@@ -183,7 +183,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=xml`
+  * xml format `http://api.bitly.com/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -199,7 +199,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 </response>
 }}}
 
-  * txt format `http://api.bit.ly/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=txt`
+  * txt format `http://api.bitly.com/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=txt`
 {{{
 http://bit.ly/cmeH01
 }}}
@@ -230,7 +230,7 @@ Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back
   * *long_url* is the URL that the requested `short_url` or `hash` points to.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
+  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
 {{{
 {
     "status_code": 200, 
@@ -264,7 +264,7 @@ Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
+  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -296,7 +296,7 @@ Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back
     </data>
 </response>
 }}}
-  * json format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
 {{{
 {
     "status_code": 200, 
@@ -314,7 +314,7 @@ Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -331,7 +331,7 @@ Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back
 </response>
 }}}
 
-  * txt format `http://api.bit.ly/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=txt`
+  * txt format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=txt`
 {{{
 http://cnn.com/
 }}}
@@ -351,7 +351,7 @@ For any given a bit.ly user login and apiKey, you can validate that the pair is 
   * *`valid`* 0 or 1 designating whether the x_login and x_apiKey pair is currently valid.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+  * json format `http://api.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
 {{{
 {
     "status_code": 200, 
@@ -362,7 +362,7 @@ For any given a bit.ly user login and apiKey, you can validate that the pair is 
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+  * xml format `http://api.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -376,7 +376,7 @@ For any given a bit.ly user login and apiKey, you can validate that the pair is 
 
 }}}
 
-  * txt format `http://api.bit.ly/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=txt`
+  * txt format `http://api.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=txt`
 {{{
 0
 }}}
@@ -406,7 +406,7 @@ For one or more bit.ly URL's or hashes, you can generate statistics about the cl
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND"
 
 * Examples *
-  * json format `http://api.bit.ly/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
+  * json format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
 {{{
 {
     "status_code": 200, 
@@ -443,7 +443,7 @@ For one or more bit.ly URL's or hashes, you can generate statistics about the cl
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
+  * xml format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -505,7 +505,7 @@ Provides a list of referring sites for a specified bit.ly short link, and the nu
  * *clicks* is the number of clicks from the corresponding referrer. 
 
 * Examples *
-  * json format `http://api.bit.ly/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
 {{{
 {
     "data": {
@@ -559,7 +559,7 @@ Provides a list of referring sites for a specified bit.ly short link, and the nu
 }}}
 
 
-  * xml format `http://api.bit.ly/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -635,7 +635,7 @@ Provides a list of countries from which clicks on a specified bit.ly short link 
  * *clicks* is the number of clicks that have originated from the corresponding country.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
 {{{
 {
     "data": {
@@ -672,7 +672,7 @@ Provides a list of countries from which clicks on a specified bit.ly short link 
 }}}
 
 
-  * xml format `http://api.bit.ly/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -732,7 +732,7 @@ For one or more bit.ly links, provides time series clicks per minute for the las
 
 * Examples *
 
-  * json format `http://api.bit.ly/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
 {{{
 {
     "data": {
@@ -751,7 +751,7 @@ For one or more bit.ly links, provides time series clicks per minute for the las
 }}}
 
 
-  * xml format `http://api.bit.ly/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -854,7 +854,7 @@ For one or more bit.ly links, provides time series clicks per day for the last 1
  * *day_start* is time code representing the start of the day for which click data is provided.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/clicks_by_day?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json&days=7&hash=grqSlY&hash=dYhyia`
+  * json format `http://api.bitly.com/v3/clicks_by_day?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json&days=7&hash=grqSlY&hash=dYhyia`
 {{{
 {
     "status_code": 200,
@@ -939,7 +939,7 @@ This is used to query whether a given short domain is assigned for bitly.Pro, an
   * *domain* this is an echo back of the request parameter.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+  * json format `http://api.bitly.com/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
 {{{
 {
     "status_code": 200, 
@@ -951,7 +951,7 @@ This is used to query whether a given short domain is assigned for bitly.Pro, an
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+  * xml format `http://api.bitly.com/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -985,7 +985,7 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
   * *global_hash* is the corresponding bit.ly aggregate identifier.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
 {{{
 {
     "data": {
@@ -1007,7 +1007,7 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1028,7 +1028,7 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
 </response>
 }}}
 
-  * json format `http://api.bit.ly/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
 {{{
 {
     "data": {
@@ -1044,7 +1044,7 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
 }
 }}}
 
-  * xml format `http://api.bit.ly/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1083,7 +1083,7 @@ Access to this endpoint is restricted and must be requested by emailing api@bit.
   * *api_key* is the corresponding bit.ly users `apiKey`
 
 * Examples *
-  * json format `http://api.bit.ly/v3/authenticate`
+  * json format `http://api.bitly.com/v3/authenticate`
   POST: `x_login=bitlyapidemo&x_password=bad-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
 {{{
 {
@@ -1098,7 +1098,7 @@ Access to this endpoint is restricted and must be requested by emailing api@bit.
 }}}
 
 
-  * xml format `http://api.bit.ly/v3/authenticate`
+  * xml format `http://api.bitly.com/v3/authenticate`
   POST: `x_login=bitlyapidemo&x_password=bad-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1114,7 +1114,7 @@ Access to this endpoint is restricted and must be requested by emailing api@bit.
 }}}
 
 
-  * json format `http://api.bit.ly/v3/authenticate`
+  * json format `http://api.bitly.com/v3/authenticate`
   POST: `x_login=bitlyapidemo&x_password=good-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
 {{{
 {
@@ -1131,7 +1131,7 @@ Access to this endpoint is restricted and must be requested by emailing api@bit.
 }}}
 
 
-  * xml format `http://api.bit.ly/v3/authenticate`
+  * xml format `http://api.bitly.com/v3/authenticate`
   POST: `x_login=bitlyapidemo&x_password=good-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1173,7 +1173,7 @@ This is used to return the page title for a given bit.ly link.
   * *created_by* the bit.ly username that originally shortened this link.
 
 * Examples *
-  * json format `http://api.bit.ly/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=json`
+  * json format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=json`
 {{{
 {
     "data": {
@@ -1211,7 +1211,7 @@ This is used to return the page title for a given bit.ly link.
 }}}
 
 
-  * xml format `http://api.bit.ly/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=xml`
+  * xml format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1265,7 +1265,7 @@ This endpoint returns an OAuth access token, and is the 3rd step for [#OAuth_Web
    * *x_auth_password* is the end-user's bit.ly password *for XAuth authentication only*..
 * Note * 
   * This request MUST be a `HTTP POST` request.
-  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * This endpoint is only available on `https://api-ssl.bitly.com/`
   * The x_auth_username and x_auth_password are only to be used when authentication via web redirect is not possible (for example, mobile applications without a browser layer). Access to these parameters must be requested by e-mailing api@bit.ly.
 
 * Output *
@@ -1283,7 +1283,7 @@ curl -F 'client_id=388f84ca4f128dd3cba0819aa67d7c9380ad4400' \
        -F 'client_secret=cae8d040187d4570c25cebe015ec2ffff056f86e' \
        -F 'code=abc12345aabbexample' \
         -F 'redirect_uri=http://myexamplewebapp.com/oauth_page' \
-https://api.bit.ly/oauth/access_token
+https://api.bitly.com/oauth/access_token
 }}}
 {{{
 access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
@@ -1294,7 +1294,7 @@ curl -F 'client_id=388f84ca4f128dd3cba0819aa67d7c9380ad4400' \
        -F 'client_secret=cae8d040187d4570c25cebe015ec2ffff056f86e' \
        -F 'x_auth_username=bitlyapidemo' \
         -F 'x_auth_password=password' \
-https://api.bit.ly/oauth/access_token
+https://api.bitly.com/oauth/access_token
 }}}
 {{{
 access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07
@@ -1313,7 +1313,7 @@ OAuth 2 endpoint that provides the total clicks per day on a user’s bit.ly lin
    * * format * (optional) indicates the requested response format. Supported formats: json (default), xml.
 
 * Note *
-  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * This endpoint is only available on `https://api-ssl.bitly.com/`
   * Results are returned in reverse chronological order (from most recent to least recent)
 
 * Output *
@@ -1323,7 +1323,7 @@ OAuth 2 endpoint that provides the total clicks per day on a user’s bit.ly lin
   * *day_start* is time code representing the start of the day for which click data is provided.
 
 * Examples *
-  * json format `https://api-ssl.bit.ly/v3/user/clicks?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
+  * json format `https://api-ssl.bitly.com/v3/user/clicks?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
 {{{
 {
     "status_code": 200, 
@@ -1372,7 +1372,7 @@ OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a
    * * format * (optional) indicates the requested response format. Supported formats: json (default), xml.
 
 * Note *
-  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * This endpoint is only available on `https://api-ssl.bitly.com/`
   * Results are returned in reverse chronological order (from most recent to least recent).
 
 * Output *
@@ -1380,7 +1380,7 @@ OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a
   * *clicks* the number of clicks received from a given referrer for that day.
 
 * Examples *
-  * json format `https://api-ssl.bit.ly/v3/user/referrers?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
+  * json format `https://api-ssl.bitly.com/v3/user/referrers?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
 {{{
 {
     "status_code": 200, 
@@ -1463,7 +1463,7 @@ OAuth 2 endpoint that provides a list of countries from which clicks on a given 
    * * format * (optional) indicates the requested response format. supported formats: json (default), xml.
 
 * Note *
-  * This endpoint is only available on `https://api-ssl.bit.ly/`
+  * This endpoint is only available on `https://api-ssl.bitly.com/`
   * Results are returned in reverse chronological order (from most recent to least recent).
 
 * Output *
@@ -1471,7 +1471,7 @@ OAuth 2 endpoint that provides a list of countries from which clicks on a given 
   * *clicks* the number of clicks originating from a given country.
 
 * Examples *
-  * json format `https://api-ssl.bit.ly/v3/user/countries?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
+  * json format `https://api-ssl.bitly.com/v3/user/countries?access_token=BITLY_ASSIGNED_ACCESS_TOKEN&days=7`
 {{{
 {
     "status_code": 200, 
@@ -1546,7 +1546,7 @@ OAuth 2 endpoint that provides a given user’s 100 most popular links based on 
    * * format * (optional) indicates the requested response format. supported formats: json (default), xml.
 
 * Note *
-   * This endpoint is only available on `https://api-ssl.bit.ly/`
+   * This endpoint is only available on `https://api-ssl.bitly.com/`
    * This endpoint returns a maximum of 100 results.
 
 * Output *
@@ -1555,7 +1555,7 @@ OAuth 2 endpoint that provides a given user’s 100 most popular links based on 
 
 
 * Examples *
-  * json format `https://api-ssl.bit.ly/v3/user/realtime_links?format=json&access_token=BITLY_ASSIGNED_ACCESS_TOKEN`
+  * json format `https://api-ssl.bitly.com/v3/user/realtime_links?format=json&access_token=BITLY_ASSIGNED_ACCESS_TOKEN`
 {{{
 {
     "status_code": 200,
@@ -1591,6 +1591,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2011-Feb-16 || migrated endpoints to api.bitly.com ||
 || 2010-Dec-15 || added CORS support ||
 || 2010-Oct-12 || added /v3/clicks_by_day ||
 || 2010-Oct-7 || added QR Code support ||
