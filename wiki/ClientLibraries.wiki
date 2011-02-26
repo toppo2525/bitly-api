@@ -59,6 +59,8 @@ bitly in the database.
 
  http://github.com/philnash/bitly or "sudo gem install philnash-bitly"
 
+ https://gist.github.com/843371
+
 VB .NET
  http://www.databatrix.com/2009/08/a-net-bit-ly-api-helper-class-visual-basic-net/
 
