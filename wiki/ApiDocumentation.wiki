@@ -1060,95 +1060,6 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
 }}}
  
 ----
-=== /v3/authenticate ===
-
-This is used by applications to lookup a bit.ly API key for a user given a bit.ly username and password.
-
-Access to this endpoint is restricted and must be requested by emailing api@bit.ly. When requesting access include your application login and apiKey, and a description of your use case and an estimated volume of requests.
-
-* Parameters *
-
-  * *x_login* is the end-user's bit.ly username or email address.
-  * *x_password* is the end-user's bit.ly password.
-  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
-
-* Note *
-
-  * This request must be a HTTP POST, and can not be a HTTP GET request.
-
-* Output *
-
-  * *successful* is an indicator of weather or not the login and password combination is valid.
-  * *username* is the corresponding bit.ly users username.
-  * *api_key* is the corresponding bit.ly users `apiKey`
-
-* Examples *
-  * json format `http://api.bitly.com/v3/authenticate`
-  POST: `x_login=bitlyapidemo&x_password=bad-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
-{{{
-{
-    "data": {
-        "authenticate": {
-            "successful": false
-        }
-    },
-    "status_code": 200,
-    "status_txt": "OK"
-}
-}}}
-
-
-  * xml format `http://api.bitly.com/v3/authenticate`
-  POST: `x_login=bitlyapidemo&x_password=bad-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
-{{{
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-    <status_code>200</status_code>
-    <data>
-        <authenticate>
-            <successful>0</successful>
-        </authenticate>
-    </data>
-    <status_txt>OK</status_txt>
-</response>
-}}}
-
-
-  * json format `http://api.bitly.com/v3/authenticate`
-  POST: `x_login=bitlyapidemo&x_password=good-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
-{{{
-{
-    "data": {
-        "authenticate": {
-            "api_key": "R_0da49e0a9118ff35f52f629d2d71bf07",
-            "successful": true,
-            "username": "bitlyapidemo"
-        }
-    },
-    "status_code": 200,
-    "status_txt": "OK"
-}
-}}}
-
-
-  * xml format `http://api.bitly.com/v3/authenticate`
-  POST: `x_login=bitlyapidemo&x_password=good-password&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
-{{{
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-    <status_code>200</status_code>
-    <data>
-        <authenticate>
-            <username>bitlyapidemo</username>
-            <successful>1</successful>
-            <api_key>R_0da49e0a9118ff35f52f629d2d71bf07</api_key>
-        </authenticate>
-    </data>
-    <status_txt>OK</status_txt>
-</response>
-}}}
-
-----
 === /v3/info ===
 
 This is used to return the page title for a given bit.ly link.
@@ -1591,6 +1502,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2011-Mar-09 || removed /v3/authenticate endpoint ||
 || 2011-Feb-16 || migrated endpoints to api.bitly.com ||
 || 2010-Dec-15 || added CORS support ||
 || 2010-Oct-12 || added /v3/clicks_by_day ||
