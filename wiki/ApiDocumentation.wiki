@@ -1,13 +1,13 @@
-#summary bit.ly REST API method documentation
+#summary bitly REST API method documentation
 #labels Featured
 
-= bit.ly API Documentation =
+= bitly API Documentation =
 
-*bit.ly exposes its data via an Application Programming Interface (API), so developers can interact in a programmatic way with the bit.ly website. This document is the official reference for that functionality. The current API version is 3.0*
+*bitly exposes its data via an Application Programming Interface (API), so developers can interact in a programmatic way with the bitly website. This document is the official reference for that functionality. The current API version is 3.0*
 
 == Getting Started ==
 
-Here are the topics covered in the bit.ly REST API documentation. Also, see our ApiBestPractices
+Here are the topics covered in the bitly REST API documentation. Also, see our ApiBestPractices
 
 *Sections*
 <wiki:toc max_depth="3" />
@@ -18,7 +18,7 @@ Here are the topics covered in the bit.ly REST API documentation. Also, see our 
 
 All API endpoints require that authentication credentials be supplied as query arguments. Authentication can be either a login and apiKey or an OAuth access_token depending on the endpoint.
 
-To get started, you'll need a free bit.ly user account and apiKey. Signup at: http://bit.ly/a/sign_up 
+To get started, you'll need a free bitly user account and apiKey. Signup at: http://bit.ly/a/sign_up 
 
 If you already have an account, you can find your apiKey at: http://bit.ly/a/your_api_key
 
@@ -33,11 +33,11 @@ Note: the bitlyapidemo login and apiKey used in this document is intended for us
 ----
 
 == Request / Response Formats ==
-All bit.ly APIs support an optional return format parameter. Note that *json* is the default response format. but *xml* is also available. Some endpoints also support a simple *txt* format.
+All bitly APIs support an optional return format parameter. Note that *json* is the default response format. but *xml* is also available. Some endpoints also support a simple *txt* format.
 
  format=*json*
 
-All bit.ly APIs support jsonp which is the json format with a callback specified, such as:
+All bitly APIs support jsonp which is the json format with a callback specified, such as:
 
  format=json&callback=*callback_method*
 
@@ -73,9 +73,9 @@ All bit.ly APIs support jsonp which is the json format with a callback specified
 
 ----
 == CORS (Cross Origin Resource Sharing) ==
-The bit.ly API supports CORS, or Cross Origin Resource Sharing.
+The bitly API supports CORS, or Cross Origin Resource Sharing.
 
-Previously, Javascript AJAX requests were restricted to a same domain origin policy. This meant that your website at http://mysite.com/ could not make AJAX requests to http://api.bitly.com/, since there were not the same domain. With the introduction of HTML5 and advancements in modern browsers, CORS allows website owners to control who can access data via Javascript AJAX requests. In this way, CORS functions like Flash’s Cross Domain Origin Policy. The latest version of the bit.ly API (V3) supports CORS requests from any domain. 
+Previously, Javascript AJAX requests were restricted to a same domain origin policy. This meant that your website at http://mysite.com/ could not make AJAX requests to http://api.bitly.com/, since there were not the same domain. With the introduction of HTML5 and advancements in modern browsers, CORS allows website owners to control who can access data via Javascript AJAX requests. In this way, CORS functions like Flash’s Cross Domain Origin Policy. The latest version of the bitly API (V3) supports CORS requests from any domain. 
 
 Here is some basic example Javascript to get you started:
 
@@ -99,7 +99,7 @@ You can also read more about CORS [http://en.wikipedia.org/wiki/Cross-Origin_Res
 ----
 == Rate Limiting ==
 
-bit.ly currently limits API users to no more than five concurrent connections from a single IP address. Also, bit.ly also institutes per-hour, per-minute, and per-ip rate limits for each API method.
+bitly currently limits API users to no more than five concurrent connections from a single IP address. Also, bitly also institutes per-hour, per-minute, and per-ip rate limits for each API method.
 
 While rate limits exist, default limits are more than sufficient for nearly any size site.
 
@@ -108,37 +108,37 @@ Please note that our API rate limits reset every hour on the hour. If you are ex
 To avoid common causes of rate limiting issues, please read our ApiBestPractices.
 
 === High-volume users ===
-If you're a high-volume user of the bit.ly API, please contact us at api@bit.ly to discuss your options.
+If you're a high-volume user of the bitly API, please contact us at api@bit.ly to discuss your options.
 
-When contacting bit.ly support include a description of how you are using the bit.ly API, which API endpoints you are using, and a current request volume over a 24 hour period.
+When contacting bitly support include a description of how you are using the bitly API, which API endpoints you are using, and a current request volume over a 24 hour period.
 
 ----
 == OAuth ==
 
-bit.ly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bitly.com/` *To request OAuth access, e-mail api@bit.ly with your bit.ly username.*
+bitly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bitly.com/` *To request OAuth access, e-mail api@bit.ly with your bitly username.*
 
-OAuth 2.0 is a simple and secure authentication mechanism. It allows web applications to acquire an access token for bit.ly via a quick redirect to the bit.ly site. Once a web application has an access token, it can access a user’s link metrics, and shorten links using that user’s bit.ly account.  Authentication with OAuth can be accomplished in the following steps:
+OAuth 2.0 is a simple and secure authentication mechanism. It allows web applications to acquire an access token for bitly via a quick redirect to the bitly site. Once a web application has an access token, it can access a user’s link metrics, and shorten links using that user’s bitly account.  Authentication with OAuth can be accomplished in the following steps:
 
 === OAuth Web Flow ===
 
-Web applications can easily acquire an OAuth access token for a bit.ly end user by following these steps:
+Web applications can easily acquire an OAuth access token for a bitly end user by following these steps:
 
-  * Register your application from within your bit.ly account settings -- your application will be assigned a client_id and a client_secret. Request access to register your application by emailing api@bit.ly.
+  * Register your application from within your bitly account settings -- your application will be assigned a client_id and a client_secret. Request access to register your application by emailing api@bit.ly.
 
   * Redirect the user to https://bit.ly/oauth/authorize, using the client_id and redirect_uri parameters to pass your client ID and the page you would like to redirect to upon acquiring an access token.  An example redirect URL looks like: ` https://bit.ly/oauth/authorize?client_id=...&redirect_uri=http://myexamplewebapp.com/oauth_page`
 
   * Upon authorizing your application, the user is directed to the page specified in the redirect_uri parameter. We append a “code” parameter to this URI, that contains a value that can be exchanged for an OAuth access token using the oauth/access_token endpoint documented below.  For example, if you passed a redirect_uri value of `http://myexamplewebapp.com/oauth_page`, a successful authentication will redirect the user to `http://myexamplewebapp.com/oauth_page?code=...`.  
 
-  *  Use the [#/oauth/access_token /oauth/access_token] API endpoint documented below to acquire an OAuth access token, passing the “code” value appended by bit.ly to the previous redirect and the same redirect_uri value that was used previously.  This API endpoint will return an OAuth access token, as well as the specified bit.ly user’s login and API key, allowing your application to utilize the bit.ly API on that user’s behalf.
+  *  Use the [#/oauth/access_token /oauth/access_token] API endpoint documented below to acquire an OAuth access token, passing the “code” value appended by bitly to the previous redirect and the same redirect_uri value that was used previously.  This API endpoint will return an OAuth access token, as well as the specified bitly user’s login and API key, allowing your application to utilize the bitly API on that user’s behalf.
 
 === OAuth XAuth Flow ===
 
-For applications where OAuth web flow cannot be used (for example, mobile applications without a browser layer), an OAuth access token can be acquired by making a single call to the [#/oauth/access_token /oauth/access_token] API endpoint and passing the end-user’s bit.ly account credentials with the x_auth_username and x_auth_password parameters. *Note that the end-user need only enter his/her username and password once for the application to authenticate -- applications using XAuth SHOULD NOT store end-user passwords.  Authentication via XAuth must be requested by e-mailing api@bit.ly.*
+For applications where OAuth web flow cannot be used (for example, mobile applications without a browser layer), an OAuth access token can be acquired by making a single call to the [#/oauth/access_token /oauth/access_token] API endpoint and passing the end-user’s bitly account credentials with the x_auth_username and x_auth_password parameters. *Note that the end-user need only enter his/her username and password once for the application to authenticate -- applications using XAuth SHOULD NOT store end-user passwords.  Authentication via XAuth must be requested by e-mailing api@bit.ly.*
 
 ----
 == QR Codes ==
 
-To generate a QR code, simply append `.qrcode` to the end of any bit.ly link. For example, the following URL: `http://bit.ly/3eI7.qrcode` returns a QR code for the bit.ly link to this page.
+To generate a QR code, simply append `.qrcode` to the end of any bitly link. For example, the following URL: `http://bit.ly/3eI7.qrcode` returns a QR code for the bitly link to this page.
 
 ----
 == REST API ==
@@ -150,8 +150,8 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
   * * format * (optional) indicates the requested response format. supported formats: json (default), xml, txt.
   * * longUrl * is a long URL to be shortened (example: http://betaworks.com/).
   * * domain * (optional) refers to a preferred domain; either bit.ly [default] or j.mp. This affects the output value of `url`.
-  * *x_login* (optional) is the end-user's login when make requests on behalf of another bit.ly user. This allows application developers to pass along an end user's bit.ly login.
-  * *x_apiKey* (optional) is the end-user's apiKey when making requests on behalf of another bit.ly user. This allows application developers to pass along an end user's bit.ly apiKey.
+  * *x_login* (optional) is the end-user's login when make requests on behalf of another bitly user. This allows application developers to pass along an end user's bitly login.
+  * *x_apiKey* (optional) is the end-user's apiKey when making requests on behalf of another bitly user. This allows application developers to pass along an end user's bitly apiKey.
     
 * Notes *
  * Long URLs should be [http://en.wikipedia.org/wiki/Percent-encoding URL-encoded]. You can not include a `longUrl` in the request that has '&', '?', '#', ' ', or other reserved parameters without first encoding it.
@@ -162,9 +162,9 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 * Output *
 
  * *`new_hash`* designates if this is the first time this `long_url` was shortened by this user. The return value will equal `1` the first time a long_url is shortened. It will also then be added to the user history.
- * *`url `* is the actual link that should be used, and is a unique value for the given bit.ly account.
- * *`hash`* is a bit.ly identifier for `long_url` which is unique to the given account. 
- * *`global_hash`* is a bit.ly identifier for `long_url` which can be used to track aggregate stats across all matching bit.ly links.
+ * *`url `* is the actual link that should be used, and is a unique value for the given bitly account.
+ * *`hash`* is a bitly identifier for `long_url` which is unique to the given account. 
+ * *`global_hash`* is a bitly identifier for `long_url` which can be used to track aggregate stats across all matching bitly links.
  * *`long_url`* is an echo back of the longUrl request parameter. This may not always be equal to the URL requested. That's because some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This `long_url` will always be functionally identical the the request parameter.
 
 * Examples *
@@ -208,13 +208,13 @@ http://bit.ly/cmeH01
 ----
 
 === /v3/expand ===
-Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back the target URL.
+Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back the target URL.
 
 * Parameters *
 
   * *format*  (optional) indicates the requested response format. supported formats: json (default), xml, txt.
-  * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
-  * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name ).
+  * *shortUrl* refers to one or more bitly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+  * *hash* refers to one or more bitly hashes, (e.g.: 2bYgqR or a-custom-name ).
 
 * Note *
 
@@ -224,8 +224,8 @@ Given a bit.ly URL or hash (or multiple), /v3/expand decodes it and returns back
 * Output *
   * *short_url* this is an echo back of the shortUrl request parameter.
   * *hash* this is an echo back of the hash request parameter.
-  * *user_hash* is the corresponding bit.ly user identifier.
-  * *global_hash* is the corresponding bit.ly aggregate identifier.
+  * *user_hash* is the corresponding bitly user identifier.
+  * *global_hash* is the corresponding bitly aggregate identifier.
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND".
   * *long_url* is the URL that the requested `short_url` or `hash` points to.
 
@@ -339,12 +339,12 @@ http://cnn.com/
 
 
 === /v3/validate ===
-For any given a bit.ly user login and apiKey, you can validate that the pair is active.
+For any given a bitly user login and apiKey, you can validate that the pair is active.
 
 * Parameters *
   * *format* (optional) indicates the requested response format. supported formats: json (default), xml, txt.
-  * *x_login* is the end users user's bit.ly login (for validation).
-  * *x_apiKey* is the end users bit.ly apiKey (for validation).
+  * *x_login* is the end users user's bitly login (for validation).
+  * *x_apiKey* is the end users bitly apiKey (for validation).
 
 * Output *
 
@@ -383,13 +383,13 @@ For any given a bit.ly user login and apiKey, you can validate that the pair is 
 
 ----
 === /v3/clicks ===
-For one or more bit.ly URL's or hashes, you can generate statistics about the clicks on that link. 
+For one or more bitly URL's or hashes, you can generate statistics about the clicks on that link. 
 
 * Parameters *
 
   * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
-  * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
-  * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+  * *shortUrl* refers to one or more bitly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+  * *hash* refers to one or more bitly hashes, (e.g.: 2bYgqR or a-custom-name).
 
 * Note *
 
@@ -399,10 +399,10 @@ For one or more bit.ly URL's or hashes, you can generate statistics about the cl
 * Output *
   * *short_url* this matches the shortUrl request parameter.
   * *hash* this matches the hash request parameter.
-  * *user_hash* is the corresponding bit.ly user identifier.
-  * *global_hash* is the corresponding bit.ly aggregate identifier.
-  * *user_clicks* this is the total count of clicks to this users bit.ly link.
-  * *global_clicks* this is the total count of clicks to all bit.ly links that point to the same same long url.
+  * *user_hash* is the corresponding bitly user identifier.
+  * *global_hash* is the corresponding bitly aggregate identifier.
+  * *user_clicks* this is the total count of clicks to this user's bitly link.
+  * *global_clicks* this is the total count of clicks to all bitly links that point to the same same long url.
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND"
 
 * Examples *
@@ -481,26 +481,26 @@ For one or more bit.ly URL's or hashes, you can generate statistics about the cl
 
 ----
 === /v3/referrers ===
-Provides a list of referring sites for a specified bit.ly short link, and the number of clicks per referrer.
+Provides a list of referring sites for a specified bitly short link, and the number of clicks per referrer.
 
 * Parameters *
 
  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
- * *shortUrl* refers a bit.ly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
- * *hash* refers to a bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+ * *shortUrl* refers a bitly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+ * *hash* refers to a bitly hashes, (e.g.: 2bYgqR or a-custom-name).
 
 * Note *
 
  * Either `shortUrl` or `hash` must be given as a parameter.
- * This API endpoint can only provide data for one bit.ly short link per API call.
+ * This API endpoint can only provide data for one bitly short link per API call.
 
 * Output *
  * *short_url* this matches the shortUrl request parameter.
  * *hash* this matches the hash request parameter.
- * *user_hash* is the corresponding bit.ly user identifier.
- * *global_hash* is the corresponding bit.ly aggregate identifier.
- * *referrer* is a referring site for a given bit.ly link.
- * *referrer_app* is a referring application (such as Tweetdeck) for a given bit.ly link.
+ * *user_hash* is the corresponding bitly user identifier.
+ * *global_hash* is the corresponding bitly aggregate identifier.
+ * *referrer* is a referring site for a given bitly link.
+ * *referrer_app* is a referring application (such as Tweetdeck) for a given bitly link.
  * *url* is the URL of a referring application (such as http://tweetdeck.com).
  * *clicks* is the number of clicks from the corresponding referrer. 
 
@@ -613,25 +613,25 @@ Provides a list of referring sites for a specified bit.ly short link, and the nu
 
 ----
 === /v3/countries ===
-Provides a list of countries from which clicks on a specified bit.ly short link have originated, and the number of clicks per country.
+Provides a list of countries from which clicks on a specified bitly short link have originated, and the number of clicks per country.
 
 * Parameters *
 
  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
- * *shortUrl* refers a bit.ly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
- * *hash* refers to a bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+ * *shortUrl* refers a bitly URL, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+ * *hash* refers to a bitly hashes, (e.g.: 2bYgqR or a-custom-name).
 
 * Note *
 
  * Either `shortUrl` or `hash` must be given as a parameter.
- * This API endpoint can only provide data for one bit.ly short link per API call.
+ * This API endpoint can only provide data for one bitly short link per API call.
 
 * Output *
  * *short_url* this matches the shortUrl request parameter.
  * *hash* this matches the hash request parameter.
- * *user_hash* is the corresponding bit.ly user identifier.
- * *global_hash* is the corresponding bit.ly aggregate identifier.
- * *countries* is a list of countries from which clicks on the bit.ly short link have originated.
+ * *user_hash* is the corresponding bitly user identifier.
+ * *global_hash* is the corresponding bitly aggregate identifier.
+ * *countries* is a list of countries from which clicks on the bitly short link have originated.
  * *clicks* is the number of clicks that have originated from the corresponding country.
 
 * Examples *
@@ -710,13 +710,13 @@ Provides a list of countries from which clicks on a specified bit.ly short link 
 
 ----
 === /v3/clicks_by_minute ===
-For one or more bit.ly links, provides time series clicks per minute for the last hour in reverse chronological order (most recent to least recent).
+For one or more bitly links, provides time series clicks per minute for the last hour in reverse chronological order (most recent to least recent).
 
 * Parameters *
 
  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
- * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
- * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+ * *shortUrl* refers to one or more bitly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+ * *hash* refers to one or more bitly hashes, (e.g.: 2bYgqR or a-custom-name).
 
 * Note *
 
@@ -726,8 +726,8 @@ For one or more bit.ly links, provides time series clicks per minute for the las
 * Output *
  * *short_url* this matches the shortUrl request parameter.
  * *hash* this matches the hash request parameter.
- * *user_hash* is the corresponding bit.ly user identifier.
- * *global_hash* is the corresponding bit.ly aggregate identifier.
+ * *user_hash* is the corresponding bitly user identifier.
+ * *global_hash* is the corresponding bitly aggregate identifier.
  * *clicks* is the number of clicks received for a given link that minute.
 
 * Examples *
@@ -831,13 +831,13 @@ For one or more bit.ly links, provides time series clicks per minute for the las
 
 ----
 === /v3/clicks_by_day ===
-For one or more bit.ly links, provides time series clicks per day for the last 1-30 days in reverse chronological order (most recent to least recent).
+For one or more bitly links, provides time series clicks per day for the last 1-30 days in reverse chronological order (most recent to least recent).
 
 * Parameters *
 
  * *format* (optional) indicates the requested response format. supported formats: json (default), xml.
- * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
- * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name).
+ * *shortUrl* refers to one or more bitly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+ * *hash* refers to one or more bitly hashes, (e.g.: 2bYgqR or a-custom-name).
  * *days* (optional) specifies the number of days for which to retrieve click data, from 1 to 30 (default 7).
 
 * Note *
@@ -848,8 +848,8 @@ For one or more bit.ly links, provides time series clicks per day for the last 1
 * Output *
  * *short_url* this matches the shortUrl request parameter.
  * *hash* this matches the hash request parameter.
- * *user_hash* is the corresponding bit.ly user identifier.
- * *global_hash* is the corresponding bit.ly aggregate identifier.
+ * *user_hash* is the corresponding bitly user identifier.
+ * *global_hash* is the corresponding bitly aggregate identifier.
  * *clicks* is the number of clicks received for a given link that day.
  * *day_start* is time code representing the start of the day for which click data is provided.
 
@@ -967,7 +967,7 @@ This is used to query whether a given short domain is assigned for bitly.Pro, an
 ----
 === /v3/lookup ===
 
-This is used to query for a bit.ly link based on a long URL. For example you would use `/v3/lookup` followed by `/v3/clicks` to find click data when you have a long URL to start with.
+This is used to query for a bitly link based on a long URL. For example you would use `/v3/lookup` followed by `/v3/clicks` to find click data when you have a long URL to start with.
 
 * Parameters *
 
@@ -981,8 +981,8 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
 * Output *
 
   * *url* an echo back of the url parameter.
-  * *short_url* is the corresponding bit.ly short link.
-  * *global_hash* is the corresponding bit.ly aggregate identifier.
+  * *short_url* is the corresponding bitly short link.
+  * *global_hash* is the corresponding bitly aggregate identifier.
 
 * Examples *
   * json format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
@@ -1062,12 +1062,12 @@ This is used to query for a bit.ly link based on a long URL. For example you wou
 ----
 === /v3/info ===
 
-This is used to return the page title for a given bit.ly link.
+This is used to return the page title for a given bitly link.
 
 * Parameters *
   * *format*  (optional) indicates the requested response format. supported formats: json (default), xml, txt.
-  * *shortUrl* refers to one or more bit.ly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
-  * *hash* refers to one or more bit.ly hashes, (e.g.: 2bYgqR or a-custom-name ).
+  * *shortUrl* refers to one or more bitly URLs, (e.g.: http://bit.ly/1RmnUT or http://j.mp/1RmnUT).
+  * *hash* refers to one or more bitly hashes, (e.g.: 2bYgqR or a-custom-name ).
 
 * Note *
 
@@ -1077,11 +1077,11 @@ This is used to return the page title for a given bit.ly link.
 * Output *
   * *short_url* this is an echo back of the shortUrl request parameter.
   * *hash* this is an echo back of the hash request parameter.
-  * *user_hash* is the corresponding bit.ly user identifier.
-  * *global_hash* is the corresponding bit.ly aggregate identifier.
+  * *user_hash* is the corresponding bitly user identifier.
+  * *global_hash* is the corresponding bitly aggregate identifier.
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND".
   * *title* is the HTML page title for the destination page (when available).
-  * *created_by* the bit.ly username that originally shortened this link.
+  * *created_by* the bitly username that originally shortened this link.
 
 * Examples *
   * json format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=json`
@@ -1164,16 +1164,16 @@ This is used to return the page title for a given bit.ly link.
 This endpoint returns an OAuth access token, and is the 3rd step for [#OAuth_Web_Flow Oauth Web Flow] and the only step for [#OAuth_XAuth_Flow OAuth XAuth Flow].
 
 * Parameters for OAuth Web flow*
-   * *client_id* is your application’s bit.ly client id.
-   * *client_secret* is your application’s bit.ly client secret.
+   * *client_id* is your application’s bitly client id.
+   * *client_secret* is your application’s bitly client secret.
    * *code* is the OAuth verification code acquired via OAuth’s web authentication protocol.
    * *redirect_uri* is the page to which a user was redirected upon successfully authenticating. 
 
 * Parameters for OAuth XAuth*
-   * *client_id* is your application’s bit.ly client id.
-   * *client_secret* is your application’s bit.ly client secret.
-   * *x_auth_username* is the end-user's bit.ly username *for XAuth authentication only*.
-   * *x_auth_password* is the end-user's bit.ly password *for XAuth authentication only*..
+   * *client_id* is your application’s bitly client id.
+   * *client_secret* is your application’s bitly client secret.
+   * *x_auth_username* is the end-user's bitly username *for XAuth authentication only*.
+   * *x_auth_password* is the end-user's bitly password *for XAuth authentication only*..
 * Note * 
   * This request MUST be a `HTTP POST` request.
   * This endpoint is only available on `https://api-ssl.bitly.com/`
@@ -1183,8 +1183,8 @@ This endpoint returns an OAuth access token, and is the 3rd step for [#OAuth_Web
 
 URL encoded string in the format of access_token=%s&login=%s&apiKey=%s
    * *access_token* is the OAuth access token for specified user
-   * *login* is the end-user’s bit.ly username
-   * *apiKey* is the end-user’s bit.ly API key
+   * *login* is the end-user’s bitly username
+   * *apiKey* is the end-user’s bitly API key
 
 <wiki:comment>
 * Examples *
@@ -1215,11 +1215,11 @@ access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&login=bitlyapidemo&apiKey=
 ----
 === /v3/user/clicks ===
 
-OAuth 2 endpoint that provides the total clicks per day on a user’s bit.ly links.
+OAuth 2 endpoint that provides the total clicks per day on a user’s bitly links.
 
 * Parameters *
 
-   * *access_token* is the OAuth access token for a bit.ly user
+   * *access_token* is the OAuth access token for a bitly user
    * *days* (optional) an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7).
    * * format * (optional) indicates the requested response format. Supported formats: json (default), xml.
 
@@ -1274,11 +1274,11 @@ OAuth 2 endpoint that provides the total clicks per day on a user’s bit.ly lin
 ----
 === /v3/user/referrers ===
 
-OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a given user’s bit.ly links, and the number of clicks per referrer.
+OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a given user’s bitly links, and the number of clicks per referrer.
 
 * Parameters *
 
-   * *access_token* is the OAuth access token for a bit.ly user,
+   * *access_token* is the OAuth access token for a bitly user,
    * *days* (optional) an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7)
    * * format * (optional) indicates the requested response format. Supported formats: json (default), xml.
 
@@ -1365,11 +1365,11 @@ OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a
 ----
 === /v3/user/countries ===
  
-OAuth 2 endpoint that provides a list of countries from which clicks on a given user’s bit.ly links are originating, and the number of clicks per country.
+OAuth 2 endpoint that provides a list of countries from which clicks on a given user’s bitly links are originating, and the number of clicks per country.
 
 * Parameters *
 
-   * *access_token* is the OAuth access token for a bit.ly user.
+   * *access_token* is the OAuth access token for a bitly user.
    * *days* (optional) an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7).
    * * format * (optional) indicates the requested response format. supported formats: json (default), xml.
 
@@ -1378,7 +1378,7 @@ OAuth 2 endpoint that provides a list of countries from which clicks on a given 
   * Results are returned in reverse chronological order (from most recent to least recent).
 
 * Output *
-  * *countries* a list of countries from which clicks on the specified bit.ly user’s links are originating.
+  * *countries* a list of countries from which clicks on the specified bitly user’s links are originating.
   * *clicks* the number of clicks originating from a given country.
 
 * Examples *
@@ -1453,7 +1453,7 @@ OAuth 2 endpoint that provides a given user’s 100 most popular links based on 
 
 * Parameters *
 
-   * *access_token* is the OAuth access token for a bit.ly user
+   * *access_token* is the OAuth access token for a bitly user
    * * format * (optional) indicates the requested response format. supported formats: json (default), xml.
 
 * Note *
@@ -1462,7 +1462,7 @@ OAuth 2 endpoint that provides a given user’s 100 most popular links based on 
 
 * Output *
    * *clicks* is the number of clicks within the past hour.
-   * *user_hash* is the corresponding bit.ly user link identifier.
+   * *user_hash* is the corresponding bitly user link identifier.
 
 
 * Examples *
@@ -1489,7 +1489,7 @@ OAuth 2 endpoint that provides a given user’s 100 most popular links based on 
 
 = Discussion = 
 
-We invite you to visit our Google Group to discuss technical issues related to using the bit.ly API:
+We invite you to visit our Google Group to discuss technical issues related to using the bitly API:
  
  http://groups.google.com/group/bitly-api
 
