@@ -18,7 +18,7 @@ Since *bitly links never change or expire*, we ask that you cache data locally w
 ==Avoiding API Calls on Page Loads==
 Most rate limiting issues are caused by extraneous API calls. We ask that you avoid making calls to the bitly API on page loads, and instead make these calls based on explicit user actions (such as clicking a “share” button).
 
-==Passing End-User Logins==
+==Authenticating End-Users With OAuth 2==
 If you are shortening URLs on behalf of end-users, we ask that you use our OAuth 2 implementation to authenticate end-users before shortening.  URLs shortened in this manner will be added to the specified end-user’s history, allowing the end-user to manage and track his/her shortened URLs. To register an OAuth application, please contact api@bit.ly.
 
 ==HTTP Response Status Codes==
