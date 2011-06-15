@@ -149,15 +149,13 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 * Parameters *
   * * format * (optional) indicates the requested response format. supported formats: json (default), xml, txt.
   * * longUrl * is a long URL to be shortened (example: http://betaworks.com/).
-  * * domain * (optional) refers to a preferred domain; either bit.ly [default] or j.mp. This affects the output value of `url`.
-  * *x_login* (optional) is the end-user's login when make requests on behalf of another bitly user. This allows application developers to pass along an end user's bitly login.
-  * *x_apiKey* (optional) is the end-user's apiKey when making requests on behalf of another bitly user. This allows application developers to pass along an end user's bitly apiKey.
+  * * domain * (optional) refers to a preferred domain; either bit.ly, j.mp, bitly.com, or a given user's custom short domain (for example, nyti.ms or 4sq.com). This affects the output value of `url`. The default for this parameter is the short domain selected by each user in his/her bitly account settings. Passing a specific domain via this parameter will override the user's default settings.
     
 * Notes *
  * Long URLs should be [http://en.wikipedia.org/wiki/Percent-encoding URL-encoded]. You can not include a `longUrl` in the request that has '&', '?', '#', ' ', or other reserved parameters without first encoding it.
  * Long URLs should not contain spaces: any `longUrl` with spaces will be rejected. All spaces should be either percent encoded (%20) or plus encoded (+). Note that tabs, newlines and trailing spaces are all indications of errors. Please remember to strip leading and trailing whitespace from any user input before shortening.
  * Long URLs must have a slash between the domain and the path component. For example, `http://example.com?query=parameter` is invalid, and instead should be formatted as `http://example.com/?query=parameter`
- * When including `x_login` and `x_apiKey`, the shortened URL will be inserted into the history for the user specified by `x_login`. it will not be inserted into the history for the user specified by `login`.
+ * The default value for the "domain" parameter is selected by each user from within his/her bitly account settings at http://bitly.com/a/account
 
 * Output *
 
@@ -1502,6 +1500,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2011-Jun-15 || updated behavior of "domain" parameter for /v3/shorten ||
 || 2011-Mar-09 || removed /v3/authenticate endpoint ||
 || 2011-Feb-16 || migrated endpoints to api.bitly.com ||
 || 2010-Dec-15 || added CORS support ||
