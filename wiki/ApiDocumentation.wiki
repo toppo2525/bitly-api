@@ -149,7 +149,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 * Parameters *
   * * format * (optional) indicates the requested response format. supported formats: json (default), xml, txt.
   * * longUrl * is a long URL to be shortened (example: http://betaworks.com/).
-  * * domain * (optional) refers to a preferred domain; either bit.ly, j.mp, bitly.com, or a given user's custom short domain (for example, nyti.ms or 4sq.com). This affects the output value of `url`. The default for this parameter is the short domain selected by each user in his/her bitly account settings. Passing a specific domain via this parameter will override the user's default settings.
+  * * domain * (optional) refers to a preferred domain; either bit.ly, j.mp, or bitly.com, for users who do NOT have a custom short domain set up with bitly. This affects the output value of `url`. The default for this parameter is the short domain selected by each user in his/her bitly account settings. Passing a specific domain via this parameter will override the default settings for users who do NOT have a custom short domain set up with bitly. For users who have implemented a custom short domain, bitly will always return short links according to the user's account-level preference.
     
 * Notes *
  * Long URLs should be [http://en.wikipedia.org/wiki/Percent-encoding URL-encoded]. You can not include a `longUrl` in the request that has '&', '?', '#', ' ', or other reserved parameters without first encoding it.
