@@ -18,9 +18,9 @@ Here are the topics covered in the bitly REST API documentation. Also, see our A
 
 All API endpoints require that authentication credentials be supplied as query arguments. Authentication can be either a login and apiKey or an OAuth access_token depending on the endpoint.
 
-To get started, you'll need a free bitly user account and apiKey. Signup at: http://bit.ly/a/sign_up 
+To get started, you'll need a free bitly user account and apiKey. Signup at: http://bitly.com/a/sign_up 
 
-If you already have an account, you can find your apiKey at: http://bit.ly/a/your_api_key
+If you already have an account, you can find your apiKey at: http://bitly.com/a/your_api_key
 
  login=*login*&apiKey=*apiKey*
 
@@ -125,7 +125,7 @@ Web applications can easily acquire an OAuth access token for a bitly end user b
 
   * Register your application from within your bitly account settings -- your application will be assigned a client_id and a client_secret. Request access to register your application by emailing api@bit.ly.
 
-  * Redirect the user to https://bit.ly/oauth/authorize, using the client_id and redirect_uri parameters to pass your client ID and the page you would like to redirect to upon acquiring an access token.  An example redirect URL looks like: ` https://bit.ly/oauth/authorize?client_id=...&redirect_uri=http://myexamplewebapp.com/oauth_page`
+  * Redirect the user to https://bitly.com/oauth/authorize, using the client_id and redirect_uri parameters to pass your client ID and the page you would like to redirect to upon acquiring an access token.  An example redirect URL looks like: ` https://bitly.com/oauth/authorize?client_id=...&redirect_uri=http://myexamplewebapp.com/oauth_page`
 
   * Upon authorizing your application, the user is directed to the page specified in the redirect_uri parameter. We append a “code” parameter to this URI, that contains a value that can be exchanged for an OAuth access token using the oauth/access_token endpoint documented below.  For example, if you passed a redirect_uri value of `http://myexamplewebapp.com/oauth_page`, a successful authentication will redirect the user to `http://myexamplewebapp.com/oauth_page?code=...`.  
 
