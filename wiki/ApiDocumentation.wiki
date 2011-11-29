@@ -16,19 +16,22 @@ Here are the topics covered in the bitly REST API documentation. Also, see our A
 
 == Authentication and Shared Parameters ==
 
-All API endpoints require that authentication credentials be supplied as query arguments. Authentication can be either a login and apiKey or an OAuth access_token depending on the endpoint.
+All API endpoints require that authentication credentials be supplied as query arguments. *All V3 API endpoints now support an OAuth access_token, and we strongly recommend that you register an application and authenticate using this method.*:
+
+
+ access_token=*access_token*
+
+ Most V3 API endpoints (with the exception of user-level metrics endpoints) also accept a login and apiKey, though this method is deprecated:
+
+ login=*login*&apiKey=*apiKey*
 
 To get started, you'll need a free bitly user account and apiKey. Signup at: http://bitly.com/a/sign_up 
 
 If you already have an account, you can find your apiKey at: http://bitly.com/a/your_api_key
 
- login=*login*&apiKey=*apiKey*
+To authenticate with OAuth, you will need to register an OAuth application and then acquire an access_token using either OAuth Web Flow or OAuth XAuth flow, both documented [ApiDocumentation#OAuth here]. *To have your account enabled to register an OAuth application, please email us at api@bitly.com.*
 
-For user-level OAuth API endpoints, you will need to register an OAuth application and then acquire an access_token using either OAuth Web Flow or OAuth XAuth flow, both documented [ApiDocumentation#OAuth here].
-
- access_token=*access_token*
-
-Note: the bitlyapidemo login and apiKey used in this document is intended for us as an example only.
+Note: the bitlyapidemo login and apiKey, and the example OAuth access token used in this document are intended for use as examples only.
 
 ----
 
@@ -108,14 +111,14 @@ Please note that our API rate limits reset every hour on the hour. If you are ex
 To avoid common causes of rate limiting issues, please read our ApiBestPractices.
 
 === High-volume users ===
-If you're a high-volume user of the bitly API, please contact us at api@bit.ly to discuss your options.
+If you're a high-volume user of the bitly API, please contact us at api@bitly.com to discuss your options.
 
 When contacting bitly support include a description of how you are using the bitly API, which API endpoints you are using, and a current request volume over a 24 hour period.
 
 ----
 == OAuth ==
 
-bitly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bitly.com/` *To request OAuth access, e-mail api@bit.ly with your bitly username.*
+bitly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bitly.com/` *To request OAuth access, e-mail api@bitly.com with your bitly username.*
 
 OAuth 2.0 is a simple and secure authentication mechanism. It allows web applications to acquire an access token for bitly via a quick redirect to the bitly site. Once a web application has an access token, it can access a user’s link metrics, and shorten links using that user’s bitly account.  Authentication with OAuth can be accomplished in the following steps:
 
@@ -123,7 +126,7 @@ OAuth 2.0 is a simple and secure authentication mechanism. It allows web applica
 
 Web applications can easily acquire an OAuth access token for a bitly end user by following these steps:
 
-  * Register your application from within your bitly account settings -- your application will be assigned a client_id and a client_secret. Request access to register your application by emailing api@bit.ly.
+  * Register your application from within your bitly account settings -- your application will be assigned a client_id and a client_secret. Request access to register your application by emailing api@bitly.com.
 
   * Redirect the user to https://bitly.com/oauth/authorize, using the client_id and redirect_uri parameters to pass your client ID and the page you would like to redirect to upon acquiring an access token.  An example redirect URL looks like: ` https://bitly.com/oauth/authorize?client_id=...&redirect_uri=http://myexamplewebapp.com/oauth_page`
 
@@ -133,7 +136,7 @@ Web applications can easily acquire an OAuth access token for a bitly end user b
 
 === OAuth XAuth Flow ===
 
-For applications where OAuth web flow cannot be used (for example, mobile applications without a browser layer), an OAuth access token can be acquired by making a single call to the [#/oauth/access_token /oauth/access_token] API endpoint and passing the end-user’s bitly account credentials with the x_auth_username and x_auth_password parameters. *Note that the end-user need only enter his/her username and password once for the application to authenticate -- applications using XAuth SHOULD NOT store end-user passwords.  Authentication via XAuth must be requested by e-mailing api@bit.ly.*
+For applications where OAuth web flow cannot be used (for example, mobile applications without a browser layer), an OAuth access token can be acquired by making a single call to the [#/oauth/access_token /oauth/access_token] API endpoint and passing the end-user’s bitly account credentials with the x_auth_username and x_auth_password parameters. *Note that the end-user need only enter his/her username and password once for the application to authenticate -- applications using XAuth SHOULD NOT store end-user passwords.  Authentication via XAuth must be requested by e-mailing api@bitly.com.*
 
 ----
 == QR Codes ==
@@ -166,7 +169,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
  * *`long_url`* is an echo back of the longUrl request parameter. This may not always be equal to the URL requested. That's because some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This `long_url` will always be functionally identical the the request parameter.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
+  * json format `http://api.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
 {{{
 {
     "status_code": 200, 
@@ -181,7 +184,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=xml`
+  * xml format `http://api.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -197,7 +200,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 </response>
 }}}
 
-  * txt format `http://api.bitly.com/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=txt`
+  * txt format `http://api.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=txt`
 {{{
 http://bit.ly/cmeH01
 }}}
@@ -228,7 +231,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
   * *long_url* is the URL that the requested `short_url` or `hash` points to.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
+  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=json`
 {{{
 {
     "status_code": 200, 
@@ -262,7 +265,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
+  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -294,7 +297,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
     </data>
 </response>
 }}}
-  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "status_code": 200, 
@@ -312,7 +315,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -329,7 +332,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
 </response>
 }}}
 
-  * txt format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=txt`
+  * txt format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=txt`
 {{{
 http://cnn.com/
 }}}
@@ -404,7 +407,7 @@ For one or more bitly URL's or hashes, you can generate statistics about the cli
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND"
 
 * Examples *
-  * json format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=json`
+  * json format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=json`
 {{{
 {
     "status_code": 200, 
@@ -441,7 +444,7 @@ For one or more bitly URL's or hashes, you can generate statistics about the cli
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a35.&format=xml`
+  * xml format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -503,7 +506,7 @@ Provides a list of referring sites for a specified bitly short link, and the num
  * *clicks* is the number of clicks from the corresponding referrer. 
 
 * Examples *
-  * json format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -557,7 +560,7 @@ Provides a list of referring sites for a specified bitly short link, and the num
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -633,7 +636,7 @@ Provides a list of countries from which clicks on a specified bitly short link h
  * *clicks* is the number of clicks that have originated from the corresponding country.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -670,7 +673,7 @@ Provides a list of countries from which clicks on a specified bitly short link h
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -730,7 +733,7 @@ For one or more bitly links, provides time series clicks per minute for the last
 
 * Examples *
 
-  * json format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -749,7 +752,7 @@ For one or more bitly links, provides time series clicks per minute for the last
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -852,7 +855,7 @@ For one or more bitly links, provides time series clicks per day for the last 1-
  * *day_start* is time code representing the start of the day for which click data is provided.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/clicks_by_day?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json&days=7&hash=grqSlY&hash=dYhyia`
+  * json format `http://api.bitly.com/v3/clicks_by_day?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json&days=7&hash=grqSlY&hash=dYhyia`
 {{{
 {
     "status_code": 200,
@@ -983,7 +986,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
   * *global_hash* is the corresponding bitly aggregate identifier.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -1005,7 +1008,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1026,7 +1029,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
 </response>
 }}}
 
-  * json format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=json`
+  * json format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -1042,7 +1045,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&format=xml`
+  * xml format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1082,7 +1085,7 @@ This is used to return the page title for a given bitly link.
   * *created_by* the bitly username that originally shortened this link.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=json`
+  * json format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a.35&format=json`
 {{{
 {
     "data": {
@@ -1120,7 +1123,7 @@ This is used to return the page title for a given bitly link.
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&hash=j3&hash=a.35&format=xml`
+  * xml format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a.35&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1175,7 +1178,7 @@ This endpoint returns an OAuth access token, and is the 3rd step for [#OAuth_Web
 * Note * 
   * This request MUST be a `HTTP POST` request.
   * This endpoint is only available on `https://api-ssl.bitly.com/`
-  * The x_auth_username and x_auth_password are only to be used when authentication via web redirect is not possible (for example, mobile applications without a browser layer). Access to these parameters must be requested by e-mailing api@bit.ly.
+  * The x_auth_username and x_auth_password are only to be used when authentication via web redirect is not possible (for example, mobile applications without a browser layer). Access to these parameters must be requested by e-mailing api@bitly.com.
 
 * Output *
 
@@ -1500,6 +1503,7 @@ To report an error with a request or response please submit an issue:
 = Revision History =
 
 || *Date** || *Change* ||
+|| 2011-Nov-29 || added OAuth support to all v3 endpoints ||
 || 2011-Jun-15 || updated behavior of "domain" parameter for /v3/shorten ||
 || 2011-Mar-09 || removed /v3/authenticate endpoint ||
 || 2011-Feb-16 || migrated endpoints to api.bitly.com ||
