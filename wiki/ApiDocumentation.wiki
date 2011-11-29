@@ -168,7 +168,22 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
  * *`long_url`* is an echo back of the longUrl request parameter. This may not always be equal to the URL requested. That's because some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This `long_url` will always be functionally identical the the request parameter.
 
 * Examples *
-  * json format `https://api-ssl.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
+  * json format, authenticated via Oauth `https://api-ssl.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
+{{{
+{
+    "status_code": 200, 
+    "data": {
+        "url": "http://bit.ly/cmeH01", 
+        "hash": "cmeH01", 
+        "global_hash": "1YKMfY", 
+        "long_url": "http://betaworks.com/", 
+        "new_hash": 0
+    }, 
+    "status_txt": "OK"
+}
+}}}
+
+  * json format, authenticated via login/API key `https://api-ssl.bitly.com/v3/shorten?login=bitlyapidemo&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
 {{{
 {
     "status_code": 200, 
