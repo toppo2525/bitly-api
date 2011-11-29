@@ -21,7 +21,7 @@ All API endpoints require that authentication credentials be supplied as query a
 
  access_token=*access_token*
 
- Most V3 API endpoints (with the exception of user-level metrics endpoints) also accept a login and apiKey, though this method is deprecated:
+Most V3 API endpoints (with the exception of user-level metrics endpoints) also accept a login and apiKey, though this method is deprecated:
 
  login=*login*&apiKey=*apiKey*
 
