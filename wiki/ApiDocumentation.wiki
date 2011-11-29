@@ -16,7 +16,7 @@ Here are the topics covered in the bitly REST API documentation. Also, see our A
 
 == Authentication and Shared Parameters ==
 
-All API endpoints require that authentication credentials be supplied as query arguments. *All V3 API endpoints now support an OAuth access_token, and we strongly recommend that you register an application and authenticate using this method.*:
+All API endpoints require that authentication credentials be supplied as query arguments. *All V3 API endpoints now support an OAuth access_token, and we strongly recommend that you register an application and authenticate using this method*:
 
 
  access_token=*access_token*
