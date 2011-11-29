@@ -16,12 +16,11 @@ Here are the topics covered in the bitly REST API documentation. Also, see our A
 
 == Authentication and Shared Parameters ==
 
-All API endpoints require that authentication credentials be supplied as query arguments. *All V3 API endpoints now support an OAuth access_token, and we strongly recommend that you register an application and authenticate using this method*:
-
+All API endpoints require that authentication credentials be supplied as query arguments. *All V3 API endpoints now support an OAuth access_token.* We strongly recommend using this authentication method for any scenario in which you will be calling the bitly API on behalf of multiple users:
 
  access_token=*access_token*
 
-Most V3 API endpoints (with the exception of user-level metrics endpoints) also accept a login and apiKey, though this method is deprecated:
+Most V3 API endpoints (with the exception of user-level metrics endpoints) also accept a login and apiKey. We recommend using this method if and only if you will be using the bitly API to shorten links for a single user or site:
 
  login=*login*&apiKey=*apiKey*
 
