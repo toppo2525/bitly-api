@@ -168,7 +168,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
  * *`long_url`* is an echo back of the longUrl request parameter. This may not always be equal to the URL requested. That's because some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This `long_url` will always be functionally identical the the request parameter.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
+  * json format `https://api-ssl.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=json`
 {{{
 {
     "status_code": 200, 
@@ -183,7 +183,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -199,7 +199,7 @@ For a long URL, /v3/shorten encodes a URL and returns a short one.
 </response>
 }}}
 
-  * txt format `http://api.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=txt`
+  * txt format `https://api-ssl.bitly.com/v3/shorten?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&longUrl=http%3A%2F%2Fbetaworks.com%2F&format=txt`
 {{{
 http://bit.ly/cmeH01
 }}}
@@ -230,7 +230,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
   * *long_url* is the URL that the requested `short_url` or `hash` points to.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=json`
+  * json format `https://api-ssl.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=json`
 {{{
 {
     "status_code": 200, 
@@ -264,7 +264,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/expand?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -296,7 +296,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
     </data>
 </response>
 }}}
-  * json format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
+  * json format `https://api-ssl.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "status_code": 200, 
@@ -314,7 +314,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -331,7 +331,7 @@ Given a bitly URL or hash (or multiple), /v3/expand decodes it and returns back 
 </response>
 }}}
 
-  * txt format `http://api.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=txt`
+  * txt format `https://api-ssl.bitly.com/v3/expand?shortUrl=http%3A%2F%2Fbit.ly%2F31IqMl&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=txt`
 {{{
 http://cnn.com/
 }}}
@@ -351,7 +351,7 @@ For any given a bitly user login and apiKey, you can validate that the pair is a
   * *`valid`* 0 or 1 designating whether the x_login and x_apiKey pair is currently valid.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+  * json format `https://api-ssl.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
 {{{
 {
     "status_code": 200, 
@@ -362,7 +362,7 @@ For any given a bitly user login and apiKey, you can validate that the pair is a
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -376,7 +376,7 @@ For any given a bitly user login and apiKey, you can validate that the pair is a
 
 }}}
 
-  * txt format `http://api.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=txt`
+  * txt format `https://api-ssl.bitly.com/v3/validate?x_login=notbilytapi&x_apiKey=not_apikey&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=txt`
 {{{
 0
 }}}
@@ -406,7 +406,7 @@ For one or more bitly URL's or hashes, you can generate statistics about the cli
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND"
 
 * Examples *
-  * json format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=json`
+  * json format `https://api-ssl.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=json`
 {{{
 {
     "status_code": 200, 
@@ -443,7 +443,7 @@ For one or more bitly URL's or hashes, you can generate statistics about the cli
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/clicks?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a35.&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -505,7 +505,7 @@ Provides a list of referring sites for a specified bitly short link, and the num
  * *clicks* is the number of clicks from the corresponding referrer. 
 
 * Examples *
-  * json format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
+  * json format `https://api-ssl.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -559,7 +559,7 @@ Provides a list of referring sites for a specified bitly short link, and the num
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/referrers?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -635,7 +635,7 @@ Provides a list of countries from which clicks on a specified bitly short link h
  * *clicks* is the number of clicks that have originated from the corresponding country.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
+  * json format `https://api-ssl.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -672,7 +672,7 @@ Provides a list of countries from which clicks on a specified bitly short link h
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/countries?shortUrl=http%3A%2F%2Fbit.ly%2FdjZ9g4&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -732,7 +732,7 @@ For one or more bitly links, provides time series clicks per minute for the last
 
 * Examples *
 
-  * json format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
+  * json format `https://api-ssl.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -751,7 +751,7 @@ For one or more bitly links, provides time series clicks per minute for the last
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/clicks_by_minute?shortUrl=http%3A%2F%2Fj.mp%2F9DguyN&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -854,7 +854,7 @@ For one or more bitly links, provides time series clicks per day for the last 1-
  * *day_start* is time code representing the start of the day for which click data is provided.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/clicks_by_day?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json&days=7&hash=grqSlY&hash=dYhyia`
+  * json format `https://api-ssl.bitly.com/v3/clicks_by_day?access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json&days=7&hash=grqSlY&hash=dYhyia`
 {{{
 {
     "status_code": 200,
@@ -939,7 +939,7 @@ This is used to query whether a given short domain is assigned for bitly.Pro, an
   * *domain* this is an echo back of the request parameter.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
+  * json format `https://api-ssl.bitly.com/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=json`
 {{{
 {
     "status_code": 200, 
@@ -951,7 +951,7 @@ This is used to query whether a given short domain is assigned for bitly.Pro, an
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/bitly_pro_domain?domain=nyti.ms&apiKey=R_0da49e0a9118ff35f52f629d2d71bf07&login=bitlyapidemo&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -985,7 +985,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
   * *global_hash* is the corresponding bitly aggregate identifier.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
+  * json format `https://api-ssl.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -1007,7 +1007,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/lookup?url=http%3A%2F%2Fbetaworks.com%2F&url=http%3A%2F%2Fcode.google.com%2Fp%2Fbitly-api%2F&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1028,7 +1028,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
 </response>
 }}}
 
-  * json format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
+  * json format `https://api-ssl.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=json`
 {{{
 {
     "data": {
@@ -1044,7 +1044,7 @@ This is used to query for a bitly link based on a long URL. For example you woul
 }
 }}}
 
-  * xml format `http://api.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/lookup?url=asdf%3A%2F%2Fwww.google.com%2Fnot%2Fa%2Freal%2Flink&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
@@ -1084,7 +1084,7 @@ This is used to return the page title for a given bitly link.
   * *created_by* the bitly username that originally shortened this link.
 
 * Examples *
-  * json format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a.35&format=json`
+  * json format `https://api-ssl.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a.35&format=json`
 {{{
 {
     "data": {
@@ -1122,7 +1122,7 @@ This is used to return the page title for a given bitly link.
 }}}
 
 
-  * xml format `http://api.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a.35&format=xml`
+  * xml format `https://api-ssl.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a.35&format=xml`
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
