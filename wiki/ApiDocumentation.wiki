@@ -228,6 +228,16 @@ For an additional level of security, *do not include the key itself anywhere in 
 </html>
 }}}
 
+In this scenario, the API key, URL and login would be stored in a file called 'api_key_include.js', which would look like this:
+
+{{{
+{
+  "api_key":"***REPLACE ME WITH YOUR API KEY***", 
+  "api_login":"***REPLACE ME WITH YOUR LOGIN***", 
+  "api_url":"api.bitly.com"
+}
+}}}
+
 ----
 == REST API ==
 
