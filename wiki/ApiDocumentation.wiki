@@ -28,7 +28,7 @@ To get started, you'll need a free bitly user account and apiKey. Signup at: htt
 
 If you already have an account, you can find your apiKey at: http://bitly.com/a/your_api_key
 
-To authenticate with OAuth, you will need to register an OAuth application and then acquire an access_token using either OAuth Web Flow or OAuth XAuth flow, both documented [ApiDocumentation#OAuth here]. *To have your account enabled to register an OAuth application, please email us at api@bitly.com.*
+To authenticate with OAuth, you will need to register an OAuth application and then acquire an access_token using either OAuth Web Flow or OAuth XAuth flow, both documented [ApiDocumentation#OAuth here]. *You can register an OAuth application by clicking the "Register OAuth Application" button at the bottom of your bitly account settings page.*
 
 Note: the bitlyapidemo login and apiKey, and the example OAuth access token used in this document are intended for use as examples only.
 
@@ -117,7 +117,7 @@ When contacting bitly support include a description of how you are using the bit
 ----
 == OAuth ==
 
-bitly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bitly.com/` *To request OAuth access, e-mail api@bitly.com with your bitly username.*
+bitly currently supports the OAuth 2 draft specification.  All OAuth 2 requests MUST use the SSL endpoint available at `https://api-ssl.bitly.com/` *To register an OAuth application, click the "Register OAuth Application" button at the bottom of your bitly account settings page.* You will be sent a registration code to the email address with which you have registered your bitly account.
 
 OAuth 2.0 is a simple and secure authentication mechanism. It allows web applications to acquire an access token for bitly via a quick redirect to the bitly site. Once a web application has an access token, it can access a user’s link metrics, and shorten links using that user’s bitly account.  Authentication with OAuth can be accomplished in the following steps:
 
@@ -125,7 +125,7 @@ OAuth 2.0 is a simple and secure authentication mechanism. It allows web applica
 
 Web applications can easily acquire an OAuth access token for a bitly end user by following these steps:
 
-  * Register your application from within your bitly account settings -- your application will be assigned a client_id and a client_secret. Request access to register your application by emailing api@bitly.com.
+  * Register your application from within your bitly account settings -- your application will be assigned a client_id and a client_secret. You can start this process by clicking the "Register Oauth Application" button at the bottom of your bitly account settings page.
 
   * Redirect the user to https://bitly.com/oauth/authorize, using the client_id and redirect_uri parameters to pass your client ID and the page you would like to redirect to upon acquiring an access token.  An example redirect URL looks like: ` https://bitly.com/oauth/authorize?client_id=...&redirect_uri=http://myexamplewebapp.com/oauth_page`
 
