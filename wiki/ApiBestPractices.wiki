@@ -19,7 +19,7 @@ Since *bitly links never change or expire*, we ask that you cache data locally w
 Most rate limiting issues are caused by extraneous API calls. We ask that you avoid making calls to the bitly API on page loads, and instead make these calls based on explicit user actions (such as clicking a “share” button).
 
 ==Authenticating End-Users With OAuth 2==
-If you are shortening URLs on behalf of end-users, we ask that you use our OAuth 2 implementation to authenticate end-users before shortening.  URLs shortened in this manner will be added to the specified end-user’s history, allowing the end-user to manage and track his/her shortened URLs. To register an OAuth application, please contact api@bit.ly.
+If you are shortening URLs on behalf of end-users, we ask that you use our OAuth 2 implementation to authenticate end-users before shortening.  URLs shortened in this manner will be added to the specified end-user’s history, allowing the end-user to manage and track his/her shortened URLs. You can begin registering an OAuth application from within your bitly account settings.
 
 ==HTTP Response Status Codes==
 Please note that all valid responses in json and xml format will carry an HTTP Response Status Code of 200. This means that *invalid, malformed or rate-limited json and xml requests may still return an HTTP response status code of 200*. In json and xml responses, the status_code and status_txt values indicate whether a request is well formed and valid. For txt format calls, the HTTP Response Status Codes 403, 500 and 503 are used denote rate limiting, a problem with the request format, or an unknown error.
