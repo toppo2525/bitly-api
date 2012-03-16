@@ -1208,6 +1208,7 @@ This is used to return the page title for a given bitly link.
   * *error* indicates there was an error retrieving data for a given shortUrl or hash. An example error is "NOT_FOUND".
   * *title* is the HTML page title for the destination page (when available).
   * *created_by* the bitly username that originally shortened this link.
+  * *created_at* the epoch timestamp when this bitly link was created.
 
 * Examples *
   * json format `https://api-ssl.bitly.com/v3/info?shortUrl=http%3A%2F%2Ftcrn.ch%2Fa4MSUH&shortUrl=http%3A%2F%2Fbit.ly%2F1YKMfY&access_token=f356652cf912f5ce51de5b614f1aacfc48fc1da7&hash=j3&hash=a.35&format=json`
