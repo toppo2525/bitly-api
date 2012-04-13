@@ -1,7 +1,15 @@
 #summary bitly REST API method documentation
 #labels Featured
 
-= bitly API Documentation =
+= BITLY'S API DOCUMENTATION IS NOW LOCATED AT HTTP://DEV.BITLY.COM =
+
+*This page is deprecated, and will not be updated.*
+
+Please visit http://dev.bitly.com
+
+----
+----
+----
 
 *bitly exposes its data via an Application Programming Interface (API), so developers can interact in a programmatic way with the bitly website. This document is the official reference for that functionality. The current API version is 3.0*
 
